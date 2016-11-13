@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - res_committee_admin@115.159.0.237" uuid="c6f66afd-c229-4695-9205-701b6785cd49">
+      <secret-storage>master_key</secret-storage>
+      <user-name>panis</user-name>
+      <schema-pattern>res_committee_admin.*</schema-pattern>
+      <default-schemas>res_committee_admin.*</default-schemas>
+    </data-source>
+  </component>
+</project>

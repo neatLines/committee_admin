@@ -10,20 +10,21 @@
 
     <mvc:default-servlet-handler/>
 
-    <mvc:annotation-driven/>
-
     <mvc:interceptors>
         <mvc:interceptor>
             <!-- 需拦截的地址 -->
             <!-- 一级目录 -->
             <mvc:mapping path="/*" />
-
-
             <!-- 需排除拦截的地址 -->
             <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/register"/>
+            <mvc:exclude-mapping path="/registerp"/>
             <bean class="com.panis.servlet.SecurityServlet" />
         </mvc:interceptor>
     </mvc:interceptors>
+
+
+    <mvc:annotation-driven/>
 
 
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -33,4 +34,19 @@
     </bean>
 
 
+    <!-- 表示JPA Repository所在的包 -->
+    <jpa:repositories base-package="com.panis.repository"/>
+
+    <!-- 链接到persistence.xml -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="defaultPersistenceUnit"/>
+    </bean>
+
+    <!-- 事务管理 -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- 开启事务管理注解 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
