@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by fuyipeng on 2016/11/10.
  */
 @Entity
-@Table(name = "publicity_table", schema = "res_committee_admin", catalog = "")
+@Table(name = "publicity_table", schema = "committee_admin", catalog = "")
 public class PublicityTableEntity {
     private int pId;
     private String title;

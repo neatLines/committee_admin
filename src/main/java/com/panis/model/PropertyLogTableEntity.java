@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Created by fuyipeng on 2016/11/10.
  */
 @Entity
-@Table(name = "property_log_table", schema = "res_committee_admin", catalog = "")
+@Table(name = "property_log_table", schema = "committee_admin", catalog = "")
 public class PropertyLogTableEntity {
     private int proLogId;
     private Timestamp date;

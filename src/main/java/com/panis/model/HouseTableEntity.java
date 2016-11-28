@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by fuyipeng on 2016/11/10.
  */
 @Entity
-@Table(name = "house_table", schema = "res_committee_admin", catalog = "")
+@Table(name = "house_table", schema = "committee_admin", catalog = "")
 public class HouseTableEntity {
     private int houseId;
     private String pannant;

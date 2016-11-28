@@ -7,7 +7,7 @@ import java.util.Collection;
  * Created by fuyipeng on 2016/11/10.
  */
 @Entity
-@Table(name = "user_table", schema = "res_committee_admin", catalog = "")
+@Table(name = "user_table", schema = "committee_admin", catalog = "")
 public class UserTableEntity {
     private int uId;
     private String uName;
