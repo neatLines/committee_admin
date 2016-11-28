@@ -28,6 +28,8 @@ public class MainController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(Model model) {
+        model.addAttribute("userCode","abc");
+        model.addAttribute("role","2");
         return "login";
     }
 
@@ -46,24 +48,6 @@ public class MainController {
         return "redirect:/";
     }
 
-    @RequestMapping(value="/check", method=RequestMethod.GET)
-    public String check (HttpServletRequest request, HttpSession session) {
-
-        System.out.println("");
-        System.out.println("");
-        System.out.println("inside check");
-
-
-        System.out.println("");
-        System.out.println("*** Session data ***");
-        Enumeration<String> e = session.getAttributeNames();
-        while (e.hasMoreElements()) {
-            String s = e.nextElement();
-            System.out.println(s + " == " + session.getAttribute(s));
-        }
-
-        return "test";
-    }
 
     @RequestMapping(value = "/register" ,method = RequestMethod.GET)
     public String addUser() {
@@ -71,7 +55,8 @@ public class MainController {
     }
 
     @RequestMapping(value = "/registerp",method = RequestMethod.POST)
-    public String addUserPost(@ModelAttribute("user") UserTableEntity userTableEntity) {
+    @ResponseBody
+    public String addUserPost(@RequestBody UserTableEntity userTableEntity) {
         // post请求传递过来的是一个UserTableEntity对象，里面包含了该用户
         /*
             private String uName;
@@ -82,10 +67,10 @@ public class MainController {
             private String password;
          */
         // 通过@ModelAttribute()注解可以获取传递过来的'user'，并创建这个对象
+        System.out.println(userTableEntity.getuName()+userTableEntity.getUserName()+userTableEntity.getPassword());
 
         Md5Util md5Util = new Md5Util();
         userTableEntity.setPassword(md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName()));
-        System.out.println(userTableEntity.getuName()+userTableEntity.getUserName()+userTableEntity.getPassword());
         userTableEntity.setPower((byte) 0);
         // 数据库中添加一个用户，并立即刷新缓存
         userRepository.saveAndFlush(userTableEntity);
