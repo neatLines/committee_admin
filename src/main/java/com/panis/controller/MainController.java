@@ -32,7 +32,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/loginp", method = RequestMethod.POST)
-    public String getJSON(@ModelAttribute("user") UserTableEntity userTableEntity,Model model) {
+    public String getJSON(@ModelAttribute("user") UserTableEntity userTableEntity, Model model) {
         List<UserTableEntity> dataList = userRepository.findOrderByUserName(userTableEntity.getUserName());
         Md5Util md5Util = new Md5Util();
 
@@ -85,6 +85,7 @@ public class MainController {
 
         Md5Util md5Util = new Md5Util();
         userTableEntity.setPassword(md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName()));
+        System.out.println(userTableEntity.getuName()+userTableEntity.getUserName()+userTableEntity.getPassword());
         userTableEntity.setPower((byte) 0);
         // 数据库中添加一个用户，并立即刷新缓存
         userRepository.saveAndFlush(userTableEntity);

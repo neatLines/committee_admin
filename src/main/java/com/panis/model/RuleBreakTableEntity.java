@@ -3,15 +3,13 @@ package com.panis.model;
 import javax.persistence.*;
 
 /**
- * Created by fuyipeng on 2016/11/10.
+ * Created by fuyipeng on 28/11/2016.
  */
 @Entity
 @Table(name = "rule_break_table", schema = "committee_admin", catalog = "")
 public class RuleBreakTableEntity {
     private int breakLogId;
     private String decribe;
-    private UserTableEntity userTableByAdminUId;
-    private UserTableEntity userTableByBreakUId;
 
     @Id
     @Column(name = "break_log_id", nullable = false)
@@ -51,25 +49,5 @@ public class RuleBreakTableEntity {
         int result = breakLogId;
         result = 31 * result + (decribe != null ? decribe.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "admin_u_id", referencedColumnName = "u_id", nullable = false)
-    public UserTableEntity getUserTableByAdminUId() {
-        return userTableByAdminUId;
-    }
-
-    public void setUserTableByAdminUId(UserTableEntity userTableByAdminUId) {
-        this.userTableByAdminUId = userTableByAdminUId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "break_u_id", referencedColumnName = "u_id", nullable = false)
-    public UserTableEntity getUserTableByBreakUId() {
-        return userTableByBreakUId;
-    }
-
-    public void setUserTableByBreakUId(UserTableEntity userTableByBreakUId) {
-        this.userTableByBreakUId = userTableByBreakUId;
     }
 }

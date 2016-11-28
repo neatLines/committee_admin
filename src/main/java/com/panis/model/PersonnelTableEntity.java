@@ -3,14 +3,13 @@ package com.panis.model;
 import javax.persistence.*;
 
 /**
- * Created by fuyipeng on 2016/11/10.
+ * Created by fuyipeng on 28/11/2016.
  */
 @Entity
 @Table(name = "personnel_table", schema = "committee_admin", catalog = "")
 public class PersonnelTableEntity {
     private int uId;
     private String duty;
-    private UserTableEntity userTableByUId;
 
     @Id
     @Column(name = "u_id", nullable = false)
@@ -50,15 +49,5 @@ public class PersonnelTableEntity {
         int result = uId;
         result = 31 * result + (duty != null ? duty.hashCode() : 0);
         return result;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "u_id", referencedColumnName = "u_id", nullable = false)
-    public UserTableEntity getUserTableByUId() {
-        return userTableByUId;
-    }
-
-    public void setUserTableByUId(UserTableEntity userTableByUId) {
-        this.userTableByUId = userTableByUId;
     }
 }

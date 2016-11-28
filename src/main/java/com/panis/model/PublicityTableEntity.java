@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by fuyipeng on 2016/11/10.
+ * Created by fuyipeng on 28/11/2016.
  */
 @Entity
 @Table(name = "publicity_table", schema = "committee_admin", catalog = "")
@@ -13,7 +13,6 @@ public class PublicityTableEntity {
     private String title;
     private String detail;
     private Date date;
-    private UserTableEntity userTableByWriterId;
 
     @Id
     @Column(name = "p_id", nullable = false)
@@ -77,15 +76,5 @@ public class PublicityTableEntity {
         result = 31 * result + (detail != null ? detail.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "writer_id", referencedColumnName = "u_id", nullable = false)
-    public UserTableEntity getUserTableByWriterId() {
-        return userTableByWriterId;
-    }
-
-    public void setUserTableByWriterId(UserTableEntity userTableByWriterId) {
-        this.userTableByWriterId = userTableByWriterId;
     }
 }

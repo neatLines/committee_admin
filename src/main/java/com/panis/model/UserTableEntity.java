@@ -1,10 +1,9 @@
 package com.panis.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 /**
- * Created by fuyipeng on 2016/11/10.
+ * Created by fuyipeng on 28/11/2016.
  */
 @Entity
 @Table(name = "user_table", schema = "committee_admin", catalog = "")
@@ -12,18 +11,11 @@ public class UserTableEntity {
     private int uId;
     private String uName;
     private int uAge;
-    private byte uSex;
+    private String uSex;
     private String phoneNumber;
     private String userName;
     private String password;
     private Byte power;
-    private Collection<HouseTableEntity> houseTablesByUId;
-    private Collection<ParkTableEntity> parkTablesByUId;
-    private PersonnelTableEntity personnelTableByUId;
-    private Collection<PropertyLogTableEntity> propertyLogTablesByUId;
-    private Collection<PublicityTableEntity> publicityTablesByUId;
-    private Collection<RuleBreakTableEntity> ruleBreakTablesByUId;
-    private Collection<RuleBreakTableEntity> ruleBreakTablesByUId_0;
 
     @Id
     @Column(name = "u_id", nullable = false)
@@ -56,12 +48,12 @@ public class UserTableEntity {
     }
 
     @Basic
-    @Column(name = "u_sex", nullable = false)
-    public byte getuSex() {
+    @Column(name = "u_sex", nullable = false, length = 11)
+    public String getuSex() {
         return uSex;
     }
 
-    public void setuSex(byte uSex) {
+    public void setuSex(String uSex) {
         this.uSex = uSex;
     }
 
@@ -114,8 +106,8 @@ public class UserTableEntity {
 
         if (uId != that.uId) return false;
         if (uAge != that.uAge) return false;
-        if (uSex != that.uSex) return false;
         if (uName != null ? !uName.equals(that.uName) : that.uName != null) return false;
+        if (uSex != null ? !uSex.equals(that.uSex) : that.uSex != null) return false;
         if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
@@ -129,74 +121,11 @@ public class UserTableEntity {
         int result = uId;
         result = 31 * result + (uName != null ? uName.hashCode() : 0);
         result = 31 * result + uAge;
-        result = 31 * result + (int) uSex;
+        result = 31 * result + (uSex != null ? uSex.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (power != null ? power.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "userTableByUId")
-    public Collection<HouseTableEntity> getHouseTablesByUId() {
-        return houseTablesByUId;
-    }
-
-    public void setHouseTablesByUId(Collection<HouseTableEntity> houseTablesByUId) {
-        this.houseTablesByUId = houseTablesByUId;
-    }
-
-    @OneToMany(mappedBy = "userTableByUId")
-    public Collection<ParkTableEntity> getParkTablesByUId() {
-        return parkTablesByUId;
-    }
-
-    public void setParkTablesByUId(Collection<ParkTableEntity> parkTablesByUId) {
-        this.parkTablesByUId = parkTablesByUId;
-    }
-
-    @OneToOne(mappedBy = "userTableByUId")
-    public PersonnelTableEntity getPersonnelTableByUId() {
-        return personnelTableByUId;
-    }
-
-    public void setPersonnelTableByUId(PersonnelTableEntity personnelTableByUId) {
-        this.personnelTableByUId = personnelTableByUId;
-    }
-
-    @OneToMany(mappedBy = "userTableByChangeUId")
-    public Collection<PropertyLogTableEntity> getPropertyLogTablesByUId() {
-        return propertyLogTablesByUId;
-    }
-
-    public void setPropertyLogTablesByUId(Collection<PropertyLogTableEntity> propertyLogTablesByUId) {
-        this.propertyLogTablesByUId = propertyLogTablesByUId;
-    }
-
-    @OneToMany(mappedBy = "userTableByWriterId")
-    public Collection<PublicityTableEntity> getPublicityTablesByUId() {
-        return publicityTablesByUId;
-    }
-
-    public void setPublicityTablesByUId(Collection<PublicityTableEntity> publicityTablesByUId) {
-        this.publicityTablesByUId = publicityTablesByUId;
-    }
-
-    @OneToMany(mappedBy = "userTableByAdminUId")
-    public Collection<RuleBreakTableEntity> getRuleBreakTablesByUId() {
-        return ruleBreakTablesByUId;
-    }
-
-    public void setRuleBreakTablesByUId(Collection<RuleBreakTableEntity> ruleBreakTablesByUId) {
-        this.ruleBreakTablesByUId = ruleBreakTablesByUId;
-    }
-
-    @OneToMany(mappedBy = "userTableByBreakUId")
-    public Collection<RuleBreakTableEntity> getRuleBreakTablesByUId_0() {
-        return ruleBreakTablesByUId_0;
-    }
-
-    public void setRuleBreakTablesByUId_0(Collection<RuleBreakTableEntity> ruleBreakTablesByUId_0) {
-        this.ruleBreakTablesByUId_0 = ruleBreakTablesByUId_0;
     }
 }

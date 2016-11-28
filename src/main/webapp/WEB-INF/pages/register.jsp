@@ -35,7 +35,7 @@
 <%--private String password;--%>
 <body>
 <div class="container">
-    <h1>SpringMVC 添加用户</h1>
+    <h1>添加用户</h1>
     <hr/>
     <form:form action="registerp" method="post" commandName="user" role="form">
         <div class="form-group">
@@ -48,9 +48,9 @@
         </div>
         <div class="form-group">
             <select class="form-control" id="uSex" name="uSex">
-                <option>1</option>
-                <option>2</option>
-                <option>0</option>
+                <option>男</option>
+                <option>女</option>
+                <option>空</option>
             </select>
         </div>
         <div class="form-group">

@@ -3,7 +3,7 @@ package com.panis.model;
 import javax.persistence.*;
 
 /**
- * Created by fuyipeng on 2016/11/10.
+ * Created by fuyipeng on 28/11/2016.
  */
 @Entity
 @Table(name = "house_table", schema = "committee_admin", catalog = "")
@@ -12,7 +12,6 @@ public class HouseTableEntity {
     private String pannant;
     private String apHouse;
     private String state;
-    private UserTableEntity userTableByUId;
 
     @Id
     @Column(name = "house_id", nullable = false)
@@ -76,15 +75,5 @@ public class HouseTableEntity {
         result = 31 * result + (apHouse != null ? apHouse.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "u_id", referencedColumnName = "u_id")
-    public UserTableEntity getUserTableByUId() {
-        return userTableByUId;
-    }
-
-    public void setUserTableByUId(UserTableEntity userTableByUId) {
-        this.userTableByUId = userTableByUId;
     }
 }

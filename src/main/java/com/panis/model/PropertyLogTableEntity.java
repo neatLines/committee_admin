@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by fuyipeng on 2016/11/10.
+ * Created by fuyipeng on 28/11/2016.
  */
 @Entity
 @Table(name = "property_log_table", schema = "committee_admin", catalog = "")
@@ -13,8 +13,6 @@ public class PropertyLogTableEntity {
     private Timestamp date;
     private byte changeWay;
     private Byte effective;
-    private UserTableEntity userTableByChangeUId;
-    private PropertyTableEntity propertyTableByChangedPrId;
 
     @Id
     @Column(name = "pro_log_id", nullable = false)
@@ -78,25 +76,5 @@ public class PropertyLogTableEntity {
         result = 31 * result + (int) changeWay;
         result = 31 * result + (effective != null ? effective.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "change_u_id", referencedColumnName = "u_id", nullable = false)
-    public UserTableEntity getUserTableByChangeUId() {
-        return userTableByChangeUId;
-    }
-
-    public void setUserTableByChangeUId(UserTableEntity userTableByChangeUId) {
-        this.userTableByChangeUId = userTableByChangeUId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "changed_pr_id", referencedColumnName = "property_id", nullable = false)
-    public PropertyTableEntity getPropertyTableByChangedPrId() {
-        return propertyTableByChangedPrId;
-    }
-
-    public void setPropertyTableByChangedPrId(PropertyTableEntity propertyTableByChangedPrId) {
-        this.propertyTableByChangedPrId = propertyTableByChangedPrId;
     }
 }

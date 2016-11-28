@@ -1,10 +1,9 @@
 package com.panis.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 /**
- * Created by fuyipeng on 2016/11/10.
+ * Created by fuyipeng on 28/11/2016.
  */
 @Entity
 @Table(name = "property_table", schema = "committee_admin", catalog = "")
@@ -13,7 +12,6 @@ public class PropertyTableEntity {
     private String pName;
     private int pValue;
     private int count;
-    private Collection<PropertyLogTableEntity> propertyLogTablesByPropertyId;
 
     @Id
     @Column(name = "property_id", nullable = false)
@@ -77,14 +75,5 @@ public class PropertyTableEntity {
         result = 31 * result + pValue;
         result = 31 * result + count;
         return result;
-    }
-
-    @OneToMany(mappedBy = "propertyTableByChangedPrId")
-    public Collection<PropertyLogTableEntity> getPropertyLogTablesByPropertyId() {
-        return propertyLogTablesByPropertyId;
-    }
-
-    public void setPropertyLogTablesByPropertyId(Collection<PropertyLogTableEntity> propertyLogTablesByPropertyId) {
-        this.propertyLogTablesByPropertyId = propertyLogTablesByPropertyId;
     }
 }
