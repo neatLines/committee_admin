@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class ParkTableEntity {
     private int parkId;
     private String place;
+    private Integer uId;
 
     @Id
     @Column(name = "park_id", nullable = false)
@@ -31,6 +32,16 @@ public class ParkTableEntity {
         this.place = place;
     }
 
+    @Basic
+    @Column(name = "u_id", nullable = true)
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,6 +51,7 @@ public class ParkTableEntity {
 
         if (parkId != that.parkId) return false;
         if (place != null ? !place.equals(that.place) : that.place != null) return false;
+        if (uId != null ? !uId.equals(that.uId) : that.uId != null) return false;
 
         return true;
     }
@@ -48,6 +60,7 @@ public class ParkTableEntity {
     public int hashCode() {
         int result = parkId;
         result = 31 * result + (place != null ? place.hashCode() : 0);
+        result = 31 * result + (uId != null ? uId.hashCode() : 0);
         return result;
     }
 }

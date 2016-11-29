@@ -49,6 +49,7 @@ public class HouseTableEntity {
         return state;
     }
 
+
     public void setState(String state) {
         this.state = state;
     }
@@ -75,5 +76,15 @@ public class HouseTableEntity {
         result = 31 * result + (apHouse != null ? apHouse.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
         return result;
+    }    private Integer uId;
+
+    @Basic
+    @Column(name = "u_id", nullable = true)
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
     }
 }

@@ -12,6 +12,7 @@ public class PublicityTableEntity {
     private int pId;
     private String title;
     private String detail;
+    private int writerId;
     private Date date;
 
     @Id
@@ -45,6 +46,16 @@ public class PublicityTableEntity {
     }
 
     @Basic
+    @Column(name = "writer_id", nullable = false)
+    public int getWriterId() {
+        return writerId;
+    }
+
+    public void setWriterId(int writerId) {
+        this.writerId = writerId;
+    }
+
+    @Basic
     @Column(name = "date", nullable = false)
     public Date getDate() {
         return date;
@@ -62,6 +73,7 @@ public class PublicityTableEntity {
         PublicityTableEntity that = (PublicityTableEntity) o;
 
         if (pId != that.pId) return false;
+        if (writerId != that.writerId) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (detail != null ? !detail.equals(that.detail) : that.detail != null) return false;
         if (date != null ? !date.equals(that.date) : that.date != null) return false;
@@ -74,6 +86,7 @@ public class PublicityTableEntity {
         int result = pId;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (detail != null ? detail.hashCode() : 0);
+        result = 31 * result + writerId;
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
     }

@@ -267,76 +267,81 @@
       <column id="66" parent="9" name="decribe">
         <data-type>varchar(400)</data-type>
       </column>
-      <index id="67" parent="9" name="FK40x6xxjpgx48gwqn91ka7fm5o">
+      <column id="67" parent="9" name="flag">
+        <mandatory>1</mandatory>
+        <data-type>tinyint(2)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <index id="68" parent="9" name="FK40x6xxjpgx48gwqn91ka7fm5o">
         <columns>break_u_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="68" parent="9" name="FKiirqynkrol48ai16msto2bggt">
+      <index id="69" parent="9" name="FKiirqynkrol48ai16msto2bggt">
         <columns>admin_u_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="69" parent="9" name="PRIMARY">
+      <key id="70" parent="9" name="PRIMARY">
         <columns>break_log_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="70" parent="9" name="FK40x6xxjpgx48gwqn91ka7fm5o">
+      <foreign-key id="71" parent="9" name="FK40x6xxjpgx48gwqn91ka7fm5o">
         <columns>break_u_id</columns>
         <ref-key>~.user_table.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="71" parent="9" name="FKiirqynkrol48ai16msto2bggt">
+      <foreign-key id="72" parent="9" name="FKiirqynkrol48ai16msto2bggt">
         <columns>admin_u_id</columns>
         <ref-key>~.user_table.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="72" parent="9" name="rule_break_table_ibfk_1">
+      <foreign-key id="73" parent="9" name="rule_break_table_ibfk_1">
         <columns>admin_u_id</columns>
         <ref-key>~.user_table.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="73" parent="9" name="rule_break_table_ibfk_2">
+      <foreign-key id="74" parent="9" name="rule_break_table_ibfk_2">
         <columns>break_u_id</columns>
         <ref-key>~.user_table.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="74" parent="10" name="u_id">
+      <column id="75" parent="10" name="u_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="75" parent="10" name="u_name">
+      <column id="76" parent="10" name="u_name">
         <mandatory>1</mandatory>
         <data-type>varchar(40)</data-type>
       </column>
-      <column id="76" parent="10" name="u_age">
+      <column id="77" parent="10" name="u_age">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="77" parent="10" name="u_sex">
+      <column id="78" parent="10" name="u_sex">
         <mandatory>1</mandatory>
         <data-type>varchar(11)</data-type>
       </column>
-      <column id="78" parent="10" name="phone_number">
+      <column id="79" parent="10" name="phone_number">
         <mandatory>1</mandatory>
         <data-type>varchar(15)</data-type>
       </column>
-      <column id="79" parent="10" name="user_name">
+      <column id="80" parent="10" name="user_name">
         <mandatory>1</mandatory>
         <data-type>varchar(40)</data-type>
       </column>
-      <column id="80" parent="10" name="password">
+      <column id="81" parent="10" name="password">
         <mandatory>1</mandatory>
         <data-type>varchar(40)</data-type>
       </column>
-      <column id="81" parent="10" name="power">
+      <column id="82" parent="10" name="power">
         <data-type>tinyint(4)</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <key id="82" parent="10" name="PRIMARY">
+      <key id="83" parent="10" name="PRIMARY">
         <columns>u_id</columns>
         <primary>1</primary>
       </key>

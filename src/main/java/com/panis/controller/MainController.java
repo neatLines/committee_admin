@@ -8,9 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.Enumeration;
 import java.util.List;
 
 /**
@@ -28,13 +25,14 @@ public class MainController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(Model model) {
-        model.addAttribute("userCode","abc");
+        model.addAttribute("userCode","1");
         model.addAttribute("role","2");
         return "login";
     }
 
     @RequestMapping(value = "/loginp", method = RequestMethod.POST)
-    public String getJSON(@ModelAttribute("user") UserTableEntity userTableEntity, Model model) {
+    @ResponseBody
+    public String getJSON(@RequestBody UserTableEntity userTableEntity, Model model) {
         List<UserTableEntity> dataList = userRepository.findOrderByUserName(userTableEntity.getUserName());
         Md5Util md5Util = new Md5Util();
 
@@ -42,7 +40,7 @@ public class MainController {
             return "login";
         }
         if (md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName()).equals(dataList.get(0).getPassword())){
-            model.addAttribute("userCode", userTableEntity.getUserName());
+            model.addAttribute("userCode", Integer.toString(userTableEntity.getuId()));
             model.addAttribute("role",dataList.get(0).getPower());
         }
         return "redirect:/";
