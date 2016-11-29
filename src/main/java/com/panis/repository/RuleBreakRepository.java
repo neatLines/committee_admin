@@ -21,7 +21,9 @@ public interface RuleBreakRepository extends JpaRepository<RuleBreakTableEntity,
     @Transactional  // 说明该方法是事务性操作
     // 定义查询
     // @Param注解用于提取参数
-    @Query("update RuleBreakTableEntity rb set rb.adminUId=:adminUId, rb.breakUId=:breakUId, rb.decribe=:decribe, rb.flag=:flag where rb.breakLogId=:breakLogId")
+    @Query("update RuleBreakTableEntity rb set rb.adminUId=:adminUId, " +
+            "rb.breakUId=:breakUId, rb.decribe=:decribe, rb.flag=:flag" +
+            " where rb.breakLogId=:breakLogId")
     public void updateRuleBreakTable(@Param("adminUId") Integer adminUId, @Param("breakUId") Integer breakUId,
                            @Param("decribe") String decribe, @Param("flag") Byte flag, @Param("breakLogId") Integer breakLogId);
 }

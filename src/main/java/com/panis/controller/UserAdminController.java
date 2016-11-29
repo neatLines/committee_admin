@@ -1,9 +1,12 @@
 package com.panis.controller;
 
+import com.panis.model.HouseTableEntity;
 import com.panis.model.RuleBreakTableEntity;
 import com.panis.model.UserTableEntity;
+import com.panis.repository.HouseRepository;
 import com.panis.repository.RuleBreakRepository;
 import com.panis.repository.UserRepository;
+import com.panis.util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,12 +28,17 @@ public class UserAdminController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    HouseRepository houseRepository;
+    //// TODO: 29/11/2016 session得到userCode未测试
+
     @RequestMapping(value = "/json/getMinBreakLog", method = RequestMethod.GET)
     public @ResponseBody List<RuleBreakTableEntity> getBreakLog (HttpSession session,Model model) {
         List<RuleBreakTableEntity> ruleBreakTableEntities = ruleBreakRepository.findOrderByBreakUId(Integer.parseInt((String) session.getAttribute("userCode")));
         return ruleBreakTableEntities;
     }
-//// TODO: 29/11/2016 未测试
+//// TODO: 29/11/2016 session得到userCode未测试
     @RequestMapping(value = "/json/setHadRead", method = RequestMethod.POST)
     @ResponseBody
     public void setHadWrite (@RequestBody List<RuleBreakTableEntity> ruleBreakTableEntity,HttpSession session,Model model) {
@@ -44,12 +52,15 @@ public class UserAdminController {
             }
         }
     }
-
+//// TODO: 29/11/2016 session得到userCode未测试
     @RequestMapping(value = "/json/changeInfo",method = RequestMethod.POST)
     @ResponseBody
     public void changeInfo(@RequestBody UserTableEntity userTableEntity,HttpSession session) {
         UserTableEntity userTableEntity1 = userRepository.findOrderByUId(Integer.valueOf((String)session.getAttribute("userCode"))).get(0);
-        if (userTableEntity.equals(userTableEntity1)) {
+        if (userTableEntity.getUserName().equals(userTableEntity1.getUserName())) {
+            userTableEntity.setPower(userTableEntity1.getPower());
+            Md5Util md5Util = new Md5Util();
+            userTableEntity.setPassword(md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName()));
             userRepository.updateUserInfo(userTableEntity.getuName(),userTableEntity.getuAge(),
                     userTableEntity.getuSex(),userTableEntity.getPhoneNumber(),
                     userTableEntity.getUserName(),userTableEntity.getPassword(),
@@ -57,6 +68,22 @@ public class UserAdminController {
             userRepository.flush();
         }
     }
+
+    //// TODO: 29/11/2016 session得到userCode未测试
+    @RequestMapping(value = "/json/changeHouseInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public void changeHouseInfo(@RequestBody HouseTableEntity houseTableEntity,HttpSession session) {
+        UserTableEntity userTableEntity = userRepository.findOrderByUId(Integer.valueOf((String)session.getAttribute("userCode"))).get(0);
+//        UserTableEntity userTableEntity = userRepository.findOrderByUId(1).get(0);
+        HouseTableEntity houseTableEntity1 = houseRepository.findOrderByHouseId(houseTableEntity.getHouseId()).get(0);
+        if (houseTableEntity1.getuId().equals(userTableEntity.getuId())) {
+            houseRepository.updateHouseInfo(houseTableEntity1.getuId(),houseTableEntity1.getApHouse(),
+                    houseTableEntity1.getPannant(),houseTableEntity.getState(),
+                    houseTableEntity1.getHouseId());
+            userRepository.flush();
+        }
+    }
+
 
     @RequestMapping(value="/check", method= RequestMethod.GET)
     public String check (HttpServletRequest request, HttpSession session) {
