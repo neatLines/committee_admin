@@ -2,69 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19a21e78-f243-49ee-a4d7-5331f4b936e7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_2_6_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/Dao/HouseDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/Dao/ParkDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/Dao/PersonnelDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/Dao/PublicityDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/Dao/RuleBreakDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/Dao/UserDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/DaoImpl/HouseDaoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/DaoImpl/ParkDaoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/DaoImpl/PersonnelDaoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/DaoImpl/PublicityDaoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/DaoImpl/RuleBreakDaoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/DaoImpl/UserDaoImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/DataBaseConnect/DataBaseConnect.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/util/Config.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/panis/util/XMLReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/databaseConfig.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/panis/controller/UserAdminControllerTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/databaseConfig.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_3_8_1.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/controller/UserAdminController.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/controller/UserAdminController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/model/CommonalityTableEntity.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/model/CommonalityTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/model/HouseTableEntity.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/model/HouseTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/model/ParkTableEntity.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/model/ParkTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/model/PersonnelTableEntity.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/model/PersonnelTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/model/PropertyLogTableEntity.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/model/PropertyLogTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/model/PropertyTableEntity.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/model/PropertyTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/model/PublicityTableEntity.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/model/PublicityTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/model/RuleBreakTableEntity.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/model/RuleBreakTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/model/UserTableEntity.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/model/UserTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/panis/repository/ParkRepository.class" afterPath="$PROJECT_DIR$/target/classes/com/panis/repository/ParkRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin.war" afterPath="$PROJECT_DIR$/target/committee_admin.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/controller/UserAdminController.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/controller/UserAdminController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/CommonalityTableEntity.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/CommonalityTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/HouseTableEntity.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/HouseTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/ParkTableEntity.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/ParkTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/PersonnelTableEntity.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/PersonnelTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/PropertyLogTableEntity.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/PropertyLogTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/PropertyTableEntity.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/PropertyTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/PublicityTableEntity.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/PublicityTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/RuleBreakTableEntity.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/RuleBreakTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/UserTableEntity.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/model/UserTableEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/repository/ParkRepository.class" afterPath="$PROJECT_DIR$/target/committee_admin/WEB-INF/classes/com/panis/repository/ParkRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/committee_admin_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/committee_admin_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/committee_admin.iml" afterPath="$PROJECT_DIR$/committee_admin.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/controller/UserAdminController.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/controller/UserAdminController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/model/CommonalityTableEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/model/CommonalityTableEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/model/HouseTableEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/model/HouseTableEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/model/ParkTableEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/model/ParkTableEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/model/PersonnelTableEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/model/PersonnelTableEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/model/PropertyLogTableEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/model/PropertyLogTableEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/model/PropertyTableEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/model/PropertyTableEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/model/PublicityTableEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/model/PublicityTableEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/model/RuleBreakTableEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/model/RuleBreakTableEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/model/UserTableEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/model/UserTableEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/controller/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/controller/MainController.java" />
     </list>
     <ignored path="committee_admin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -120,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HouseDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/panis/Dao/HouseDao.java">
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/panis/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="426">
+              <caret line="47" column="2" lean-forward="false" selection-start-line="47" selection-start-column="2" selection-end-line="47" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -217,7 +156,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserDaoImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserDaoImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/panis/DaoImpl/UserDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-159">
@@ -274,7 +213,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/register.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/panis/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/panis/repository/RuleBreakRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/panis/repository/UserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/panis/repository/HouseRepository.java" />
@@ -315,6 +253,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/panis/DaoImpl/PublicityDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/panis/DaoImpl/RuleBreakDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/panis/DaoImpl/UserDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/panis/controller/MainController.java" />
       </list>
     </option>
   </component>
@@ -1388,7 +1327,7 @@
       <workItem from="1480575350721" duration="250000" />
       <workItem from="1480576138817" duration="1548000" />
       <workItem from="1480598075224" duration="8822000" />
-      <workItem from="1480652427774" duration="13176000" />
+      <workItem from="1480652427774" duration="13330000" />
     </task>
     <servers />
   </component>
@@ -1425,7 +1364,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93053000" />
+    <option name="totallyTimeSpent" value="93207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -1451,7 +1390,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32536522" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32536522" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1809,14 +1748,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/panis/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/panis/Dao/RuleBreakDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1946,6 +1877,14 @@
             <marker date="1480666967000" expanded="true" signature="1535:1574" ph="SELECT * FRO... user_table" />
             <marker date="1480666967000" expanded="true" signature="2095:2221" ph="UPDATE user_... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/panis/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="47" column="2" lean-forward="false" selection-start-line="47" selection-start-column="2" selection-end-line="47" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
