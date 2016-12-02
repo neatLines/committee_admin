@@ -45,7 +45,6 @@ public class MainController {
         }
         return "redirect:/";
     }
-da
 
     @RequestMapping(value = "/register" ,method = RequestMethod.GET)
     public String addUser() {
