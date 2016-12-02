@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CONFIG>
+    <VALUE>
+        <server>123.206.102.69</server>
+        <dbName>committee_admin</dbName>
+        <user>panis</user>
+        <password>admin</password>
+        <port>3306</port>
+    </VALUE>
+</CONFIG>

@@ -87,4 +87,9 @@ public class HouseTableEntity {
     public void setuId(Integer uId) {
         this.uId = uId;
     }
+
+    @Override
+    public String toString() {
+        return "houseId:"+houseId+"\npannant:"+pannant+"\napHouse:"+apHouse+"\nstate:"+state;
+    }
 }

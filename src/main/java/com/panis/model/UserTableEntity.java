@@ -128,4 +128,9 @@ public class UserTableEntity {
         result = 31 * result + (power != null ? power.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "uId:"+uId+"\nuName:"+uName+"\nuAge:"+uAge+"\nuSex:"+uSex+"\nphoneNumber:"+phoneNumber+"\npassword:"+password+"\npower:"+power;
+    }
 }

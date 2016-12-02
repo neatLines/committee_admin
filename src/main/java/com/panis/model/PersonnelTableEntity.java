@@ -50,4 +50,9 @@ public class PersonnelTableEntity {
         result = 31 * result + (duty != null ? duty.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "uId:"+uId+"\nduty:"+duty;
+    }
 }

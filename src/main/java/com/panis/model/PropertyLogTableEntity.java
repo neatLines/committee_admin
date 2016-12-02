@@ -103,4 +103,9 @@ public class PropertyLogTableEntity {
         result = 31 * result + (effective != null ? effective.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "proLogId:"+proLogId+"\ndate:"+date+"\nchangeUId:"+changeUId+"\nchangedPrId:"+changedPrId+"\nchangeWay:"+changeWay+"\neffective:"+effective;
+    }
 }

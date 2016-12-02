@@ -77,4 +77,9 @@ public class CommonalityTableEntity {
         result = 31 * result + count;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "conId:"+conId+"\nconName:"+conName+"\nconDate:"+conDate+"\ncount"+count;
+    }
 }

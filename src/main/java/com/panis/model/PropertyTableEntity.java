@@ -76,4 +76,10 @@ public class PropertyTableEntity {
         result = 31 * result + count;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "propertyId:"+propertyId+"\npName:"+pName+"\npValue:"+pValue+"\ncount:"+count;
+    }
 }
+

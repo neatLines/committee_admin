@@ -90,4 +90,9 @@ public class PublicityTableEntity {
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "pId:"+pId+"\ntitle:"+title+"\ndetail:"+detail+"\nwriterId:"+writerId+"\ndate:"+date;
+    }
 }

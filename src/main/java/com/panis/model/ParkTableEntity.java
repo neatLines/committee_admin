@@ -63,4 +63,9 @@ public class ParkTableEntity {
         result = 31 * result + (uId != null ? uId.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "parkId:"+parkId+"\nplace:"+place+"\nuId:"+uId;
+    }
 }

@@ -95,4 +95,9 @@ public class RuleBreakTableEntity {
         result = 31 * result + (int) flag;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "BreakLogId:"+breakLogId+"\nadminUId:"+adminUId+"\nbreakUId:"+breakUId+"\ndecribe:"+decribe+"\nflag:"+flag;
+    }
 }
