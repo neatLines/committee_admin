@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="19a21e78-f243-49ee-a4d7-5331f4b936e7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/panis/controller/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/panis/controller/MainController.java" />
-    </list>
+    <list default="true" id="19a21e78-f243-49ee-a4d7-5331f4b936e7" name="Default" comment="" />
     <ignored path="committee_admin.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -1327,7 +1324,7 @@
       <workItem from="1480575350721" duration="250000" />
       <workItem from="1480576138817" duration="1548000" />
       <workItem from="1480598075224" duration="8822000" />
-      <workItem from="1480652427774" duration="13330000" />
+      <workItem from="1480652427774" duration="13441000" />
     </task>
     <servers />
   </component>
@@ -1364,7 +1361,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93207000" />
+    <option name="totallyTimeSpent" value="93318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
