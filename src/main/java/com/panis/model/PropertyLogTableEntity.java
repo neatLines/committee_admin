@@ -14,7 +14,7 @@ public class PropertyLogTableEntity {
     private int changeUId;
     private int changedPrId;
     private byte changeWay;
-    private Byte effective;
+    private Boolean effective;
 
     @Id
     @Column(name = "pro_log_id", nullable = false)
@@ -68,11 +68,11 @@ public class PropertyLogTableEntity {
 
     @Basic
     @Column(name = "effective", nullable = true)
-    public Byte getEffective() {
+    public Boolean getEffective() {
         return effective;
     }
 
-    public void setEffective(Byte effective) {
+    public void setEffective(Boolean effective) {
         this.effective = effective;
     }
 

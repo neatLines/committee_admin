@@ -19,5 +19,7 @@ public interface UserDao {
                                    String phoneNumber, String userName,
                                    String password, byte power, Integer uId) throws Exception;
     public void flush();
+
+    public boolean insert(UserTableEntity userTableEntity) throws Exception;
 }
 

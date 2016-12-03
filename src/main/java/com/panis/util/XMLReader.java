@@ -5,25 +5,25 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
  * Created by fuyipeng on 01/12/2016.
  */
 public class XMLReader {
-    private static String fileName= "databaseConfig.xml";
-
-    private Config config;
-
+    private static String dbConfig = "databaseConfig.xml";
+    private static String className = "tableAndClassName.xml";
 
     public static Config getConfig() {
         Config config = new Config();
         String path = XMLReader.class.getResource("/").getPath();
         System.out.println(path);
-        fileName = path+fileName;
-        System.out.println(fileName);
+        dbConfig = path+dbConfig;
+        className = path+className;
+        System.out.println(dbConfig+className);
         try {
-            File f = new File(fileName);
+            File f = new File(dbConfig);
             if (!f.exists()) {
                 System.out.println("  Error : Config file doesn't exist!");
                 System.exit(1);
@@ -36,16 +36,37 @@ public class XMLReader {
             Iterator<?> itr = root.elementIterator("VALUE");
             data = (Element) itr.next();
 
-            config.server = data.elementText("server").trim();
-            config.user = data.elementText("user").trim();
-            config.pass = data.elementText("password").trim();
-            config.port = data.elementText("port").trim();
-            config.dbname = data.elementText("dbName").trim();
+            config.setServer(data.elementText("server").trim());
+            config.setUser(data.elementText("user").trim());
+            config.setPass(data.elementText("password").trim());
+            config.setPort(data.elementText("port").trim());
+            config.setDbname(data.elementText("dbName").trim());
+
+            File f2 = new File(className);
+            if (!f2.exists()) {
+                System.out.println(" Error : ClassConfig file doesn't exist!");
+                System.exit(1);
+            }
+            reader = new SAXReader();
+            doc = reader.read(f2);
+            root = doc.getRootElement();
+            itr = root.elementIterator("VALUE");
+            data = (Element) itr.next();
+
+            HashMap<String,String> map = new HashMap<>();
+
+            for (Iterator i = data.elementIterator();i.hasNext();) {
+                Element node = (Element) i.next();
+                map.put(node.getName(),node.getText());
+//                System.out.println(node.getName()+":"+node.getText());
+            }
+            config.setClassName(map);
 
         } catch (Exception ex) {
             System.out.println("Error : " + ex.toString());
         }
-        fileName = "databaseConfig.xml";
+        dbConfig = "databaseConfig.xml";
+        className = "tableAndClassName.xml";
         return config;
 
     }

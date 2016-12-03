@@ -14,27 +14,13 @@ import java.util.List;
 /**
  * Created by fuyipeng on 01/12/2016.
  */
-public class RuleBreakDaoImpl implements RuleBreakDao {
+public class RuleBreakDaoImpl extends BaseDaoImpl implements RuleBreakDao {
 
-    private DataBaseConnect connect = null;
-    private PreparedStatement statement = null;
 
     public RuleBreakDaoImpl() {
         super();
-        connect= new DataBaseConnect();
     }
 
-    @Override
-    public List<RuleBreakTableEntity> findAll() throws Exception{
-        Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM rule_break_table";
-        statement = connection.prepareStatement(sql);
-        ResultSet rs = statement.executeQuery();
-        List<RuleBreakTableEntity> list;
-        list = getList(rs);
-        connect.close();
-        return list;
-    }
 
     @Override
     public List<RuleBreakTableEntity> findOrderByBreakUId(int breakUId) throws Exception {

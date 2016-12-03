@@ -15,7 +15,7 @@ public class UserTableEntity {
     private String phoneNumber;
     private String userName;
     private String password;
-    private Byte power;
+    private Boolean power;
 
     @Id
     @Column(name = "u_id", nullable = false)
@@ -89,11 +89,11 @@ public class UserTableEntity {
 
     @Basic
     @Column(name = "power", nullable = true)
-    public Byte getPower() {
+    public Boolean getPower() {
         return power;
     }
 
-    public void setPower(Byte power) {
+    public void setPower(Boolean power) {
         this.power = power;
     }
 

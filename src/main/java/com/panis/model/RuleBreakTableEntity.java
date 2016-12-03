@@ -58,15 +58,15 @@ public class RuleBreakTableEntity {
         this.decribe = decribe;
     }
 
-    private byte flag;
+    private Boolean flag;
 
     @Basic
     @javax.persistence.Column(name = "flag", nullable = false)
-    public byte getFlag() {
+    public Boolean getFlag() {
         return flag;
     }
 
-    public void setFlag(byte flag) {
+    public void setFlag(Boolean flag) {
         this.flag = flag;
     }
 
@@ -92,7 +92,7 @@ public class RuleBreakTableEntity {
         result = 31 * result + adminUId;
         result = 31 * result + breakUId;
         result = 31 * result + (decribe != null ? decribe.hashCode() : 0);
-        result = 31 * result + (int) flag;
+        result = 31 * result + (flag != null ? flag.hashCode() : 0;
         return result;
     }
 

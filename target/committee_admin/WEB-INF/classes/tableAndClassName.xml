@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CONFIG>
+    <VALUE>
+        <CommonalityTableEntity>commonality_table</CommonalityTableEntity>
+        <HouseTableEntity>house_table</HouseTableEntity>
+        <ParkTableEntity>park_table</ParkTableEntity>
+        <PersonnelTableEntity>personnel_table</PersonnelTableEntity>
+        <PropertyLogTableEntity>property_log_table</PropertyLogTableEntity>
+        <PropertyTableEntity>property_table</PropertyTableEntity>
+        <PublicityTableEntity>publicity_table</PublicityTableEntity>
+        <RuleBreakTableEntity>rule_break_table</RuleBreakTableEntity>
+        <UserTableEntity>user_table</UserTableEntity>
+    </VALUE>
+</CONFIG>

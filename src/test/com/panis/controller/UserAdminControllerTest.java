@@ -23,6 +23,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -36,20 +37,6 @@ import static org.junit.Assert.*;
 public class UserAdminControllerTest {
     RuleBreakDao ruleBreakDao;
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    HouseRepository houseRepository;
-
-    @Autowired
-    PublicityRepository publicityRepository;
-
-    @Autowired
-    PersonnelRepository personnelRepository;
-
-    @Autowired
-    ParkRepository parkRepository;
 
     @Before
     public void setUp() throws Exception {
@@ -62,23 +49,52 @@ public class UserAdminControllerTest {
     }
 
     @Test
-    public void getBreakLog() throws Exception {
-        MockHttpSession session = new MockHttpSession();
-        session.setAttribute("userCode","1");
-
-        System.out.println("inside check");
-
-        System.out.println("");
-        System.out.println("*** Session data ***");
-        Enumeration<String> e = session.getAttributeNames();
-        while (e.hasMoreElements()) {
-            String s = e.nextElement();
-            System.out.println(s + " == " + session.getAttribute(s));
+    public void getAllBreakLog() throws Exception {
+        List<RuleBreakTableEntity> ruleBreakTableEntities = null;
+        try {
+            ruleBreakTableEntities = ruleBreakDao.findAll(RuleBreakTableEntity.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ruleBreakDao = new RuleBreakDaoImpl();
-        List<RuleBreakTableEntity> ruleBreakTableEntities = ruleBreakDao.findOrderByBreakUId(Integer.parseInt((String)session.getAttribute("userCode")));
+        for (RuleBreakTableEntity ruleBreakTableEntity:ruleBreakTableEntities) {
+            System.out.println(ruleBreakTableEntity.toString());
+        }
 
-        System.out.println(ruleBreakTableEntities.get(0).toString());
+    }
+
+    @Test
+    public void getBreakLog() throws Exception {
+//        MockHttpSession session = new MockHttpSession();
+//        session.setAttribute("userCode","1");
+//
+//        System.out.println("inside check");
+//
+//        System.out.println("");
+//        System.out.println("*** Session data ***");
+//        Enumeration<String> e = session.getAttributeNames();
+//        while (e.hasMoreElements()) {
+//            String s = e.nextElement();
+//            System.out.println(s + " == " + session.getAttribute(s));
+//        }
+//        ruleBreakDao = new RuleBreakDaoImpl();
+//        List<RuleBreakTableEntity> ruleBreakTableEntities = ruleBreakDao.findOrderByBreakUId(Integer.parseInt((String)session.getAttribute("userCode")));
+//
+//        System.out.println(ruleBreakTableEntities.get(0).toString());
+
+        ruleBreakDao = new RuleBreakDaoImpl();
+        List<RuleBreakTableEntity> ruleBreakTableEntities = null;
+        try {
+            ruleBreakTableEntities = ruleBreakDao.findAll(RuleBreakTableEntity.class);
+        } catch (SQLException e2) {
+            e2.printStackTrace();
+        } catch (Exception e3) {
+            e3.printStackTrace();
+        }
+        for (RuleBreakTableEntity ruleBreakTableEntity:ruleBreakTableEntities) {
+            System.out.println(ruleBreakTableEntity.toString());
+        }
     }
 
     @Test

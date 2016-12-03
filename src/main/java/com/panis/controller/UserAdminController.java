@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -45,6 +47,19 @@ public class UserAdminController {
     }
 
     // TODO: 29/11/2016 session得到userCode未测试
+
+    @RequestMapping(value = "/json/getAllBreakLog", method = RequestMethod.GET)
+    public @ResponseBody List<RuleBreakTableEntity> getAllBreakLog (HttpSession session) {
+        List<RuleBreakTableEntity> ruleBreakTableEntities = null;
+        try {
+            ruleBreakTableEntities = ruleBreakDao.findAll(RuleBreakTableEntity.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ruleBreakTableEntities;
+    }
 
     @RequestMapping(value = "/json/getMinBreakLog", method = RequestMethod.GET)
     public @ResponseBody List<RuleBreakTableEntity> getBreakLog (HttpSession session,Model model) {

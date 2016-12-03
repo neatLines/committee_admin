@@ -1,5 +1,7 @@
 package com.panis.controller;
 
+import com.panis.Dao.UserDao;
+import com.panis.DaoImpl.UserDaoImpl;
 import com.panis.model.UserTableEntity;
 import com.panis.repository.UserRepository;
 import com.panis.util.Md5Util;
@@ -16,8 +18,14 @@ import java.util.List;
 @Controller
 @SessionAttributes({"userCode","role"})
 public class MainController {
-    @Autowired
-    UserRepository userRepository;
+
+    UserDao userDao;
+
+    public MainController() {
+        super();
+        userDao = new UserDaoImpl();
+    }
+
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String index(Model model) {
         return "index";
@@ -33,7 +41,12 @@ public class MainController {
     @RequestMapping(value = "/loginp", method = RequestMethod.POST)
     @ResponseBody
     public String getJSON(@RequestBody UserTableEntity userTableEntity, Model model) {
-        List<UserTableEntity> dataList = userRepository.findOrderByUserName(userTableEntity.getUserName());
+        List<UserTableEntity> dataList = null;
+        try {
+            dataList = userDao.findOrderByUserName(userTableEntity.getUserName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Md5Util md5Util = new Md5Util();
 
         if (dataList.isEmpty()) {
@@ -70,7 +83,11 @@ public class MainController {
         userTableEntity.setPassword(md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName()));
         userTableEntity.setPower((byte) 0);
         // 数据库中添加一个用户，并立即刷新缓存
-        userRepository.saveAndFlush(userTableEntity);
+        try {
+            userDao.insert(userTableEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // 重定向到登陆页面
         return "redirect:/login";
