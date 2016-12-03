@@ -34,18 +34,7 @@ public class ParkDaoImpl extends BaseDaoImpl implements ParkDao{
         return list;
     }
 
-    @Override
-    public List<ParkTableEntity> findOrderByParkId(Integer parkId) throws Exception {
-        Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM park_table WHERE park_id = ?";
-        statement = connection.prepareStatement(sql);
-        statement.setInt(1,parkId);
-        ResultSet rs = statement.executeQuery();
-        List<ParkTableEntity> list;
-        list = getList(rs);
-        connect.close();
-        return list;
-    }
+
     List<ParkTableEntity> getList(ResultSet resultSet) throws SQLException {
         List<ParkTableEntity> list = new ArrayList<ParkTableEntity>();
         while(resultSet.next()){

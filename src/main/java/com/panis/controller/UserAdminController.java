@@ -115,7 +115,7 @@ public class UserAdminController {
     public Object changeInfo(@RequestBody UserTableEntity userTableEntity,HttpSession session) {
         UserTableEntity userTableEntity1;
         try {
-            userTableEntity1 = userDao.findOrderByUId(Integer.valueOf((String) session.getAttribute("userCode"))).get(0);
+            userTableEntity1 = (UserTableEntity) userDao.findById(Integer.valueOf((String) session.getAttribute("userCode"))).get(0);
         } catch (Exception e) {
             return "{\"info\":\"你还没有登陆\"}";
 
@@ -144,14 +144,16 @@ public class UserAdminController {
     public Object changeHouseInfo(@RequestBody HouseTableEntity houseTableEntity,HttpSession session) {
         UserTableEntity userTableEntity;
         try {
-            userTableEntity = userDao.findOrderByUId(Integer.valueOf((String) session.getAttribute("userCode"))).get(0);
+            UserTableEntity temp = new UserTableEntity();
+            temp.setuId(Integer.valueOf((String) session.getAttribute("userCode")));
+            userTableEntity = (UserTableEntity) userDao.findById(temp).get(0);
         } catch (Exception e) {
             return "{\"info\":\"你还没有登陆\"}";
         }
 //        UserTableEntity userTableEntity = userRepository.findOrderByUId(1).get(0);
         HouseTableEntity houseTableEntity1 = null;
         try {
-            houseTableEntity1 = houseDao.findOrderByHouseId(houseTableEntity.getHouseId()).get(0);
+            houseTableEntity1 = (HouseTableEntity) houseDao.findById(houseTableEntity).get(0);
             if (houseTableEntity1.getuId().equals(userTableEntity.getuId())) {
                 houseDao.updateHouseInfo(houseTableEntity1.getuId(), houseTableEntity1.getApHouse(),
                         houseTableEntity1.getPannant(), houseTableEntity.getState(),
@@ -184,7 +186,7 @@ public class UserAdminController {
     public  PublicityTableEntity getDetail(@RequestBody PublicityTableEntity publicityTableEntity){
         List<PublicityTableEntity> publicityTableEntities = null;
         try {
-            publicityTableEntities = publicityDao.findOrderByPId(publicityTableEntity.getpId());
+            publicityTableEntities = publicityDao.findById(publicityTableEntity);
         } catch (Exception e) {
             e.printStackTrace();
         }

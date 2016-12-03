@@ -9,8 +9,6 @@ import java.util.List;
  */
 public interface HouseDao extends BaseDao {
 
-    public List<HouseTableEntity> findOrderByHouseId(int houseId) throws Exception;
-
     public boolean updateHouseInfo(Integer uId, String apHouse,
                                    String pannant, String state,
                                    int houseId) throws Exception;

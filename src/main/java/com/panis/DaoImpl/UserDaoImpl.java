@@ -31,18 +31,6 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
         return list;
     }
 
-    @Override
-    public List<UserTableEntity> findOrderByUId(Integer uId) throws Exception {
-        Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM user_table WHERE u_id = ?";
-        List<UserTableEntity> list;
-        statement = connection.prepareStatement(sql);
-        statement.setInt(1,uId);
-        ResultSet rs = statement.executeQuery();
-        list = getList(rs);
-        connect.close();
-        return list;
-    }
 
     @Override
     public boolean updateUserInfo(String uName, Integer uAge, String uSex, String phoneNumber, String userName, String password, Integer power, Integer uId) throws Exception{
@@ -71,26 +59,6 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
     public void flush() {
     }
 
-    @Override
-    public boolean insert(UserTableEntity userTableEntity) throws Exception{
-        Connection connection = connect.getConnection();
-        String sql = "INSERT INTO user_table (u_name, u_age, u_sex, phone_number, user_name, password, power) VALUES (?,?,?,?,?,?,?)";
-        statement = connection.prepareStatement(sql);
-        statement.setString(1,userTableEntity.getuName());
-        statement.setInt(2,userTableEntity.getuAge());
-        statement.setString(3,userTableEntity.getuSex());
-        statement.setString(4,userTableEntity.getPhoneNumber());
-        statement.setString(5,userTableEntity.getUserName());
-        statement.setString(6,userTableEntity.getPassword());
-        statement.setInt(7,userTableEntity.getPower());
-        int insert = statement.executeUpdate();
-        connect.close();
-        if (insert > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     List<UserTableEntity> getList(ResultSet resultSet) throws SQLException {
         List<UserTableEntity> list = new ArrayList<UserTableEntity>();

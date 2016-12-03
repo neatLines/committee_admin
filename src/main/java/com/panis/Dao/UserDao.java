@@ -11,14 +11,10 @@ public interface UserDao extends BaseDao {
 
     public List<UserTableEntity> findOrderByUserName(String userName) throws Exception;
 
-    public List<UserTableEntity> findOrderByUId(Integer uId) throws Exception;
-
     public boolean updateUserInfo (String uName,
                                    Integer uAge, String uSex,
                                    String phoneNumber, String userName,
                                    String password, Integer power, Integer uId) throws Exception;
     public void flush();
-
-    public boolean insert(UserTableEntity userTableEntity) throws Exception;
 }
 

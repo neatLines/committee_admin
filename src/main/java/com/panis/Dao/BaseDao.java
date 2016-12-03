@@ -10,4 +10,7 @@ import java.util.Objects;
 public interface BaseDao {
     public List findAll(Class cl) throws Exception;
 
+    public boolean insert(Object object) throws Exception;
+
+    public List findById(Object object) throws Exception;
 }

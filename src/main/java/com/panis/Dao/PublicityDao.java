@@ -9,6 +9,4 @@ import java.util.List;
  */
 public interface PublicityDao extends BaseDao{
 
-    public List<PublicityTableEntity> findOrderByPId(Integer pId) throws Exception;
-
 }

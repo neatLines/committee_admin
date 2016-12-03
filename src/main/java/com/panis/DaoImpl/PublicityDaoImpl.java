@@ -17,18 +17,7 @@ public class PublicityDaoImpl extends BaseDaoImpl implements PublicityDao {
         super();
     }
 
-    @Override
-    public List<PublicityTableEntity> findOrderByPId(Integer pId) throws Exception {
-        Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM publicity_table WHERE p_id = ?";
-        statement = connection.prepareStatement(sql);
-        statement.setInt(1,pId);
-        ResultSet rs = statement.executeQuery();
-        List<PublicityTableEntity> list;
-        list = getList(rs);
-        connect.close();
-        return list;
-    }
+
 
     List<PublicityTableEntity> getList(ResultSet resultSet) throws SQLException {
         List<PublicityTableEntity> list = new ArrayList<PublicityTableEntity>();

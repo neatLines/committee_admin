@@ -11,5 +11,4 @@ public interface ParkDao extends BaseDao{
 
     public List<ParkTableEntity> findOrderByUId(Integer uId) throws Exception;
 
-    public List<ParkTableEntity> findOrderByParkId(Integer parkId) throws Exception;
 }

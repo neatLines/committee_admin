@@ -26,19 +26,6 @@ public class HouseDaoImpl extends BaseDaoImpl implements HouseDao{
 
 
     @Override
-    public List<HouseTableEntity> findOrderByHouseId(int houseId) throws Exception{
-        Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM house_table WHERE house_id = ?";
-        statement = connection.prepareStatement(sql);
-        statement.setInt(1,houseId);
-        ResultSet rs = statement.executeQuery();
-        List<HouseTableEntity> list;
-        list = getList(rs);
-        connect.close();
-        return list;
-    }
-
-    @Override
     public boolean updateHouseInfo(Integer uId, String apHouse, String pannant, String state, int houseId) throws Exception{
         Connection connection = connect.getConnection();
         String sql = "UPDATE house_table SET u_id = ?, ap_house = ?, pannant = ?, state = ? WHERE house_id = ?";
