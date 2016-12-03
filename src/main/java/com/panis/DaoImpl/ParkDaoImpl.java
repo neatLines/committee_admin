@@ -14,27 +14,12 @@ import java.util.List;
 /**
  * Created by fuyipeng on 02/12/2016.
  */
-public class ParkDaoImpl implements ParkDao{
-
-    private DataBaseConnect connect = null;
-    private PreparedStatement statement = null;
+public class ParkDaoImpl extends BaseDaoImpl implements ParkDao{
 
     public ParkDaoImpl() {
         super();
-        connect= new DataBaseConnect();
     }
 
-    @Override
-    public List<ParkTableEntity> findAll() throws Exception{
-        Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM park_table";
-        statement = connection.prepareStatement(sql);
-        ResultSet rs = statement.executeQuery();
-        List<ParkTableEntity> list;
-        list = getList(rs);
-        connect.close();
-        return list;
-    }
 
     @Override
     public List<ParkTableEntity> findOrderByUId(Integer uId) throws Exception{
@@ -62,7 +47,6 @@ public class ParkDaoImpl implements ParkDao{
         return list;
     }
     List<ParkTableEntity> getList(ResultSet resultSet) throws SQLException {
-        Connection connection = connect.getConnection();
         List<ParkTableEntity> list = new ArrayList<ParkTableEntity>();
         while(resultSet.next()){
             ParkTableEntity parkTableEntity = new ParkTableEntity();
@@ -74,7 +58,6 @@ public class ParkDaoImpl implements ParkDao{
             parkTableEntity.setuId(u_id);
             list.add(parkTableEntity);
         }
-        connect.close();
         return list;
     }
 }

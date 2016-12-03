@@ -1,11 +1,9 @@
 package com.panis.DaoImpl;
 
 import com.panis.Dao.RuleBreakDao;
-import com.panis.DataBaseConnect.DataBaseConnect;
 import com.panis.model.RuleBreakTableEntity;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,14 +34,14 @@ public class RuleBreakDaoImpl extends BaseDaoImpl implements RuleBreakDao {
     }
 
     @Override
-    public boolean updateRuleBreakTable(Integer adminUId, Integer breakUId, String decribe, Byte flag, Integer breakLogId) throws Exception{
+    public boolean updateRuleBreakTable(Integer adminUId, Integer breakUId, String decribe, Boolean flag, Integer breakLogId) throws Exception{
         Connection connection = connect.getConnection();
         String sql = "UPDATE rule_break_table SET admin_u_id = ?, break_u_id = ?, decribe = ?, flag = ? WHERE break_log_id = ?";
         statement = connection.prepareStatement(sql);
         statement.setInt(1,adminUId);
         statement.setInt(2,breakUId);
         statement.setString(3,decribe);
-        statement.setByte(4,flag);
+        statement.setBoolean(4,flag);
         statement.setInt(5,breakLogId);
         int update = statement.executeUpdate();
         connect.close();
@@ -67,7 +65,7 @@ public class RuleBreakDaoImpl extends BaseDaoImpl implements RuleBreakDao {
             int adminUid = resultSet.getInt(2);
             int breakUid = resultSet.getInt(3);
             String decribe = resultSet.getString(4);
-            Byte flag = resultSet.getByte(5);
+            Boolean flag = resultSet.getBoolean(5);
             ruleBreakTableEntity.setBreakLogId(breakLogId);
             ruleBreakTableEntity.setAdminUId(adminUid);
             ruleBreakTableEntity.setBreakUId(breakUid);

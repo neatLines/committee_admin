@@ -11,25 +11,12 @@ import java.util.List;
 /**
  * Created by fuyipeng on 01/12/2016.
  */
-public class UserDaoImpl implements UserDao {
-    private DataBaseConnect connect = null;
-    private PreparedStatement statement = null;
+public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
     public UserDaoImpl() {
         super();
-        connect= new DataBaseConnect();
     }
 
-    @Override
-    public List<UserTableEntity> findAll() throws Exception {
-        Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM user_table";
-        statement = connection.prepareStatement(sql);
-        ResultSet rs = statement.executeQuery();
-        List<UserTableEntity> list;
-        list = getList(rs);
-        return list;
-    }
 
     @Override
     public List<UserTableEntity> findOrderByUserName(String userName) throws Exception{
@@ -58,7 +45,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean updateUserInfo(String uName, Integer uAge, String uSex, String phoneNumber, String userName, String password, byte power, Integer uId) throws Exception{
+    public boolean updateUserInfo(String uName, Integer uAge, String uSex, String phoneNumber, String userName, String password, Integer power, Integer uId) throws Exception{
         Connection connection = connect.getConnection();
         String sql = "UPDATE user_table SET u_name = ?,u_age = ?, u_sex = ?, phone_number = ?, user_name = ?, password = ?, power = ? WHERE u_id = ?";
         statement = connection.prepareStatement(sql);
@@ -68,7 +55,7 @@ public class UserDaoImpl implements UserDao {
         statement.setString(4,phoneNumber);
         statement.setString(5,userName);
         statement.setString(6,password);
-        statement.setByte(7,power);
+        statement.setInt(7,power);
         statement.setInt(8,uId);
 
         int update = statement.executeUpdate();
@@ -95,7 +82,7 @@ public class UserDaoImpl implements UserDao {
         statement.setString(4,userTableEntity.getPhoneNumber());
         statement.setString(5,userTableEntity.getUserName());
         statement.setString(6,userTableEntity.getPassword());
-        statement.setByte(7,userTableEntity.getPower());
+        statement.setInt(7,userTableEntity.getPower());
         int insert = statement.executeUpdate();
         connect.close();
         if (insert > 0) {
@@ -115,7 +102,7 @@ public class UserDaoImpl implements UserDao {
             String uSex = resultSet.getString(4);
             String phoneNumber = resultSet.getString(5);
             String password = resultSet.getString(6);
-            Byte power = resultSet.getByte(7);
+            int power = resultSet.getInt(7);
             userTableEntity.setuId(uId);
             userTableEntity.setuName(uName);
             userTableEntity.setuAge(uAge);

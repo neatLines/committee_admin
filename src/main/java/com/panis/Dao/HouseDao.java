@@ -7,8 +7,7 @@ import java.util.List;
 /**
  * Created by fuyipeng on 01/12/2016.
  */
-public interface HouseDao {
-    public List<HouseTableEntity> findAll() throws Exception;
+public interface HouseDao extends BaseDao {
 
     public List<HouseTableEntity> findOrderByHouseId(int houseId) throws Exception;
 

@@ -3,12 +3,13 @@ package com.panis.model;
 import javax.persistence.*;
 
 /**
- * Created by fuyipeng on 28/11/2016.
+ * Created by fuyipeng on 03/12/2016.
  */
 @Entity
 @Table(name = "house_table", schema = "committee_admin", catalog = "")
 public class HouseTableEntity {
     private int houseId;
+    private Integer uId;
     private String pannant;
     private String apHouse;
     private String state;
@@ -21,6 +22,16 @@ public class HouseTableEntity {
 
     public void setHouseId(int houseId) {
         this.houseId = houseId;
+    }
+
+    @Basic
+    @Column(name = "u_id", nullable = true)
+    public Integer getuId() {
+        return uId;
+    }
+
+    public void setuId(Integer uId) {
+        this.uId = uId;
     }
 
     @Basic
@@ -49,7 +60,6 @@ public class HouseTableEntity {
         return state;
     }
 
-
     public void setState(String state) {
         this.state = state;
     }
@@ -62,6 +72,7 @@ public class HouseTableEntity {
         HouseTableEntity that = (HouseTableEntity) o;
 
         if (houseId != that.houseId) return false;
+        if (uId != null ? !uId.equals(that.uId) : that.uId != null) return false;
         if (pannant != null ? !pannant.equals(that.pannant) : that.pannant != null) return false;
         if (apHouse != null ? !apHouse.equals(that.apHouse) : that.apHouse != null) return false;
         if (state != null ? !state.equals(that.state) : that.state != null) return false;
@@ -72,24 +83,15 @@ public class HouseTableEntity {
     @Override
     public int hashCode() {
         int result = houseId;
+        result = 31 * result + (uId != null ? uId.hashCode() : 0);
         result = 31 * result + (pannant != null ? pannant.hashCode() : 0);
         result = 31 * result + (apHouse != null ? apHouse.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
         return result;
-    }    private Integer uId;
-
-    @Basic
-    @Column(name = "u_id", nullable = true)
-    public Integer getuId() {
-        return uId;
-    }
-
-    public void setuId(Integer uId) {
-        this.uId = uId;
     }
 
     @Override
     public String toString() {
-        return "houseId:"+houseId+"\npannant:"+pannant+"\napHouse:"+apHouse+"\nstate:"+state;
+        return "houseId:"+houseId+"\nu_id:"+uId+"\npannant:"+pannant+"\napHouse:"+apHouse+"\nstate:"+state;
     }
 }

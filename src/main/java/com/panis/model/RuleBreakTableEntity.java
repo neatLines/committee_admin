@@ -1,19 +1,21 @@
 package com.panis.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by fuyipeng on 29/11/2016.
+ * Created by fuyipeng on 03/12/2016.
  */
 @Entity
-@javax.persistence.Table(name = "rule_break_table", schema = "committee_admin", catalog = "")
+@Table(name = "rule_break_table", schema = "committee_admin", catalog = "")
 public class RuleBreakTableEntity {
     private int breakLogId;
+    private int adminUId;
+    private int breakUId;
+    private String decribe;
+    private boolean flag;
 
     @Id
-    @javax.persistence.Column(name = "break_log_id", nullable = false)
+    @Column(name = "break_log_id", nullable = false)
     public int getBreakLogId() {
         return breakLogId;
     }
@@ -22,10 +24,8 @@ public class RuleBreakTableEntity {
         this.breakLogId = breakLogId;
     }
 
-    private int adminUId;
-
     @Basic
-    @javax.persistence.Column(name = "admin_u_id", nullable = false)
+    @Column(name = "admin_u_id", nullable = false)
     public int getAdminUId() {
         return adminUId;
     }
@@ -34,10 +34,8 @@ public class RuleBreakTableEntity {
         this.adminUId = adminUId;
     }
 
-    private int breakUId;
-
     @Basic
-    @javax.persistence.Column(name = "break_u_id", nullable = false)
+    @Column(name = "break_u_id", nullable = false)
     public int getBreakUId() {
         return breakUId;
     }
@@ -46,10 +44,8 @@ public class RuleBreakTableEntity {
         this.breakUId = breakUId;
     }
 
-    private String decribe;
-
     @Basic
-    @javax.persistence.Column(name = "decribe", nullable = true, length = 400)
+    @Column(name = "decribe", nullable = true, length = 400)
     public String getDecribe() {
         return decribe;
     }
@@ -58,15 +54,13 @@ public class RuleBreakTableEntity {
         this.decribe = decribe;
     }
 
-    private Boolean flag;
-
     @Basic
-    @javax.persistence.Column(name = "flag", nullable = false)
-    public Boolean getFlag() {
+    @Column(name = "flag", nullable = false)
+    public boolean isFlag() {
         return flag;
     }
 
-    public void setFlag(Boolean flag) {
+    public void setFlag(boolean flag) {
         this.flag = flag;
     }
 
@@ -92,7 +86,7 @@ public class RuleBreakTableEntity {
         result = 31 * result + adminUId;
         result = 31 * result + breakUId;
         result = 31 * result + (decribe != null ? decribe.hashCode() : 0);
-        result = 31 * result + (flag != null ? flag.hashCode() : 0;
+        result = 31 * result + (flag ? 1 : 0);
         return result;
     }
 

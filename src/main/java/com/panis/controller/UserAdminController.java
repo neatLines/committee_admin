@@ -86,10 +86,10 @@ public class UserAdminController {
         try {
             for (int i = 0; i < ruleBreakTableEntity.size(); i++) {
                 if (ruleBreakTableEntity.get(i).getBreakUId() == Integer.parseInt((String) session.getAttribute("userCode"))) {
-                    ruleBreakTableEntity.get(i).setFlag((byte) 1);
+                    ruleBreakTableEntity.get(i).setFlag(true);
                     ruleBreakDao.updateRuleBreakTable(ruleBreakTableEntity.get(i).getAdminUId(),
                             ruleBreakTableEntity.get(i).getBreakUId(), ruleBreakTableEntity.get(i).getDecribe(),
-                            ruleBreakTableEntity.get(i).getFlag(), ruleBreakTableEntity.get(i).getBreakLogId());
+                            ruleBreakTableEntity.get(i).isFlag(), ruleBreakTableEntity.get(i).getBreakLogId());
                     ruleBreakDao.flush();
                     count++;
                 }
@@ -169,7 +169,7 @@ public class UserAdminController {
     public @ResponseBody List<PublicityTableEntity> getAllPublic() {
         List<PublicityTableEntity> publicityTableEntities = null;
         try {
-            publicityTableEntities = publicityDao.findAll();
+            publicityTableEntities = publicityDao.findAll(PublicityTableEntity.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -195,7 +195,7 @@ public class UserAdminController {
     @ResponseBody
     public List<PersonnelTableEntity> getPersonnelOnlyRead() {
         try {
-            return personnelDao.findAll();
+            return personnelDao.findAll(PersonnelTableEntity.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

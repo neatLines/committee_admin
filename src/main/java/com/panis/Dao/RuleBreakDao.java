@@ -11,7 +11,7 @@ public interface RuleBreakDao extends BaseDao {
     public List<RuleBreakTableEntity> findOrderByBreakUId(int breakUId) throws Exception;
 
     public boolean updateRuleBreakTable(Integer adminUId, Integer breakUId,
-                                        String decribe, Byte flag, Integer breakLogId) throws Exception;
+                                        String decribe, Boolean flag, Integer breakLogId) throws Exception;
 
     public void flush();
 }

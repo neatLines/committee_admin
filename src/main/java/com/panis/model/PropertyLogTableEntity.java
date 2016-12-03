@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by fuyipeng on 28/11/2016.
+ * Created by fuyipeng on 03/12/2016.
  */
 @Entity
 @Table(name = "property_log_table", schema = "committee_admin", catalog = "")
@@ -13,7 +13,7 @@ public class PropertyLogTableEntity {
     private Timestamp date;
     private int changeUId;
     private int changedPrId;
-    private byte changeWay;
+    private String changeWay;
     private Boolean effective;
 
     @Id
@@ -58,11 +58,11 @@ public class PropertyLogTableEntity {
 
     @Basic
     @Column(name = "change_way", nullable = false)
-    public byte getChangeWay() {
+    public String getChangeWay() {
         return changeWay;
     }
 
-    public void setChangeWay(byte changeWay) {
+    public void setChangeWay(String changeWay) {
         this.changeWay = changeWay;
     }
 
@@ -86,8 +86,8 @@ public class PropertyLogTableEntity {
         if (proLogId != that.proLogId) return false;
         if (changeUId != that.changeUId) return false;
         if (changedPrId != that.changedPrId) return false;
-        if (changeWay != that.changeWay) return false;
         if (date != null ? !date.equals(that.date) : that.date != null) return false;
+        if (changeWay != null ? !changeWay.equals(that.changeWay) : that.changeWay != null) return false;
         if (effective != null ? !effective.equals(that.effective) : that.effective != null) return false;
 
         return true;
@@ -99,7 +99,7 @@ public class PropertyLogTableEntity {
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + changeUId;
         result = 31 * result + changedPrId;
-        result = 31 * result + (int) changeWay;
+        result = 31 * result + (changeWay != null ? changeWay.hashCode() : 0);
         result = 31 * result + (effective != null ? effective.hashCode() : 0);
         return result;
     }

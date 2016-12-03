@@ -11,25 +11,10 @@ import java.util.List;
 /**
  * Created by fuyipeng on 02/12/2016.
  */
-public class PublicityDaoImpl implements PublicityDao {
-    private DataBaseConnect connect = null;
-    private PreparedStatement statement = null;
+public class PublicityDaoImpl extends BaseDaoImpl implements PublicityDao {
 
     public PublicityDaoImpl() {
         super();
-        connect= new DataBaseConnect();
-    }
-
-    @Override
-    public List<PublicityTableEntity> findAll() throws Exception{
-        Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM publicity_table";
-        statement = connection.prepareStatement(sql);
-        ResultSet rs = statement.executeQuery();
-        List<PublicityTableEntity> list;
-        list = getList(rs);
-        connect.close();
-        return list;
     }
 
     @Override
@@ -46,7 +31,6 @@ public class PublicityDaoImpl implements PublicityDao {
     }
 
     List<PublicityTableEntity> getList(ResultSet resultSet) throws SQLException {
-        Connection connection = connect.getConnection();
         List<PublicityTableEntity> list = new ArrayList<PublicityTableEntity>();
         while(resultSet.next()){
             PublicityTableEntity publicityTableEntity = new PublicityTableEntity();
@@ -62,7 +46,6 @@ public class PublicityDaoImpl implements PublicityDao {
             publicityTableEntity.setDate(date);
             list.add(publicityTableEntity);
         }
-        connect.close();
         return list;
     }
 }

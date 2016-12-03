@@ -14,29 +14,16 @@ import java.util.List;
 /**
  * Created by fuyipeng on 02/12/2016.
  */
-public class HouseDaoImpl implements HouseDao{
-    private DataBaseConnect connect = null;
-    private PreparedStatement statement = null;
+public class HouseDaoImpl extends BaseDaoImpl implements HouseDao{
 
     public HouseDaoImpl() {
         super();
-        connect= new DataBaseConnect();
     }
 
     // TODO: 02/12/2016 每个方法后都close statement
     // TODO: 02/12/2016 不必手动关闭connect
     // TODO: 02/12/2016 思考合适的关闭时间
-    @Override
-    public List<HouseTableEntity> findAll() throws Exception {
-        Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM house_table";
-        statement = connection.prepareStatement(sql);
-        ResultSet rs = statement.executeQuery();
-        List<HouseTableEntity> list;
-        list = getList(rs);
-        connect.close();
-        return list;
-    }
+
 
     @Override
     public List<HouseTableEntity> findOrderByHouseId(int houseId) throws Exception{

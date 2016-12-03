@@ -3,9 +3,7 @@ package com.panis.controller;
 import com.panis.Dao.UserDao;
 import com.panis.DaoImpl.UserDaoImpl;
 import com.panis.model.UserTableEntity;
-import com.panis.repository.UserRepository;
 import com.panis.util.Md5Util;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -81,7 +79,7 @@ public class MainController {
 
         Md5Util md5Util = new Md5Util();
         userTableEntity.setPassword(md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName()));
-        userTableEntity.setPower((byte) 0);
+        userTableEntity.setPower(0);
         // 数据库中添加一个用户，并立即刷新缓存
         try {
             userDao.insert(userTableEntity);

@@ -3,7 +3,7 @@ package com.panis.model;
 import javax.persistence.*;
 
 /**
- * Created by fuyipeng on 28/11/2016.
+ * Created by fuyipeng on 03/12/2016.
  */
 @Entity
 @Table(name = "user_table", schema = "committee_admin", catalog = "")
@@ -15,7 +15,7 @@ public class UserTableEntity {
     private String phoneNumber;
     private String userName;
     private String password;
-    private Boolean power;
+    private Integer power;
 
     @Id
     @Column(name = "u_id", nullable = false)
@@ -89,11 +89,11 @@ public class UserTableEntity {
 
     @Basic
     @Column(name = "power", nullable = true)
-    public Boolean getPower() {
+    public Integer getPower() {
         return power;
     }
 
-    public void setPower(Boolean power) {
+    public void setPower(Integer power) {
         this.power = power;
     }
 

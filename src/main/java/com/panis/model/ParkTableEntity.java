@@ -3,7 +3,7 @@ package com.panis.model;
 import javax.persistence.*;
 
 /**
- * Created by fuyipeng on 28/11/2016.
+ * Created by fuyipeng on 03/12/2016.
  */
 @Entity
 @Table(name = "park_table", schema = "committee_admin", catalog = "")
