@@ -37,16 +37,11 @@ public class UserAdminControllerTest {
     @Test
     public void getAllBreakLog() throws Exception {
         ruleBreakDao = new RuleBreakDaoImpl();
-        List<RuleBreakTableEntity> ruleBreakTableEntities = null;
+        List ruleBreakTableEntities = null;
         try {
-            ruleBreakTableEntities = ruleBreakDao.findAll(RuleBreakTableEntity.class);
+            ruleBreakTableEntities = ruleBreakDao.findAllLinkUserTable(RuleBreakTableEntity.class);
         } catch (SQLException e2) {
             e2.printStackTrace();
-        } catch (Exception e3) {
-            e3.printStackTrace();
-        }
-        for (RuleBreakTableEntity ruleBreakTableEntity:ruleBreakTableEntities) {
-            System.out.println(ruleBreakTableEntity.toString());
         }
     }
 
@@ -82,9 +77,7 @@ public class UserAdminControllerTest {
             for (int i = 0; i < ruleBreakTableEntity.size(); i++) {
                 if (ruleBreakTableEntity.get(i).getBreakUId() == Integer.parseInt((String) session.getAttribute("userCode"))) {
                     ruleBreakTableEntity.get(i).setFlag(true);
-                    ruleBreakDao.updateRuleBreakTable(ruleBreakTableEntity.get(i).getAdminUId(),
-                            ruleBreakTableEntity.get(i).getBreakUId(), ruleBreakTableEntity.get(i).getDecribe(),
-                            ruleBreakTableEntity.get(i).isFlag(), ruleBreakTableEntity.get(i).getBreakLogId());
+                    ruleBreakDao.updateById(ruleBreakTableEntity);
                     ruleBreakDao.flush();
                     count++;
                     System.out.println(ruleBreakTableEntity.get(0).toString());

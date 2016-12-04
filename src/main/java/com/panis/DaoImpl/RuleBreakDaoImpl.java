@@ -21,58 +21,33 @@ public class RuleBreakDaoImpl extends BaseDaoImpl implements RuleBreakDao {
 
 
     @Override
-    public List<RuleBreakTableEntity> findOrderByBreakUId(int breakUId) throws Exception {
+    public List findOrderByBreakUId(int breakUId) throws Exception {
         Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM rule_break_table WHERE break_u_id = ?";
-        List<RuleBreakTableEntity> list;
+        String sql = "SELECT * FROM rule_break_table INNER JOIN user_table ON rule_break_table.admin_u_id = user_table.u_id AND break_u_id = ? FOR UPDATE";
+        List list;
         statement = connection.prepareStatement(sql);
         statement.setInt(1,breakUId);
         ResultSet rs = statement.executeQuery();
-        list = getList(rs);
+        list = resultSetToList(rs);
         connect.close();
         return list;
     }
 
     @Override
-    public boolean updateRuleBreakTable(Integer adminUId, Integer breakUId, String decribe, Boolean flag, Integer breakLogId) throws Exception{
+    public List findAllLinkUserAndAdmin() throws Exception {
         Connection connection = connect.getConnection();
-        String sql = "UPDATE rule_break_table SET admin_u_id = ?, break_u_id = ?, decribe = ?, flag = ? WHERE break_log_id = ?";
+        String sql = "SELECT admin_name, u_name, decribe, flag FROM (SELECT u_name AS admin_name, decribe, flag, break_u_id FROM rule_break_table INNER JOIN user_table ON rule_break_table.admin_u_id = user_table.u_id) AS tableA INNER JOIN user_table ON break_u_id = user_table.u_id";
+        List list;
         statement = connection.prepareStatement(sql);
-        statement.setInt(1,adminUId);
-        statement.setInt(2,breakUId);
-        statement.setString(3,decribe);
-        statement.setBoolean(4,flag);
-        statement.setInt(5,breakLogId);
-        int update = statement.executeUpdate();
+        ResultSet rs = statement.executeQuery();
+        list = resultSetToList(rs);
         connect.close();
-        if (update > 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return list;
     }
+
 
     @Override
     public void flush() {
     }
 
-    List<RuleBreakTableEntity> getList(ResultSet resultSet) throws SQLException {
-        List<RuleBreakTableEntity> list = new ArrayList<RuleBreakTableEntity>();
-        while(resultSet.next()){
-            RuleBreakTableEntity ruleBreakTableEntity = new RuleBreakTableEntity();
-            int breakLogId = resultSet.getInt(1);
-            int adminUid = resultSet.getInt(2);
-            int breakUid = resultSet.getInt(3);
-            String decribe = resultSet.getString(4);
-            Boolean flag = resultSet.getBoolean(5);
-            ruleBreakTableEntity.setBreakLogId(breakLogId);
-            ruleBreakTableEntity.setAdminUId(adminUid);
-            ruleBreakTableEntity.setBreakUId(breakUid);
-            ruleBreakTableEntity.setDecribe(decribe);
-            ruleBreakTableEntity.setFlag(flag);
-            list.add(ruleBreakTableEntity);
-        }
-        return list;
-    }
 }

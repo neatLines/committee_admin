@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CONFIG>
+    <VALUE>
+        <CommonalityTableEntity>commonality_table</CommonalityTableEntity>
+        <HouseTableEntity>house_table</HouseTableEntity>
+        <ParkTableEntity>park_table</ParkTableEntity>
+        <PersonnelTableEntity>personnel_table</PersonnelTableEntity>
+        <PropertyLogTableEntity>property_log_table</PropertyLogTableEntity>
+        <PropertyTableEntity>property_table</PropertyTableEntity>
+        <PublicityTableEntity>publicity_table</PublicityTableEntity>
+        <RuleBreakTableEntity>rule_break_table</RuleBreakTableEntity>
+        <UserTableEntity>user_table</UserTableEntity>
+        <house_table>u_id</house_table>
+        <park_table>u_id</park_table>
+        <personnel_table>u_id</personnel_table>
+        <property_log_table>change_u_id</property_log_table>
+        <publicity_table>writer_id</publicity_table>
+        <rule_break_table>admin_u_id</rule_break_table>
+    </VALUE>
+</CONFIG>
