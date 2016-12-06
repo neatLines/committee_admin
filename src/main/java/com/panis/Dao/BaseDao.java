@@ -14,9 +14,9 @@ public interface BaseDao {
 
     public List findById(Object object) throws Exception;
 
-    public boolean updateById(Object object) throws Exception;
+    public boolean updateById(List<Object> objects) throws Exception;
 
-    public boolean delete(Object object) throws Exception;
+    public boolean delete(List<Object> objects) throws Exception;
 
     public List findAllLinkUserTable(Class cl) throws Exception;
 

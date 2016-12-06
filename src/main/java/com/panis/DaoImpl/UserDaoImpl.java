@@ -25,13 +25,26 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
     @Override
     public List<UserTableEntity> findOrderByUserName(String userName) throws Exception{
         Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM user_table WHERE user_name = ? FOR UPDATE";
+        String sql = "SELECT * FROM user_table WHERE user_name = ?";
         List<UserTableEntity> list;
         statement = connection.prepareStatement(sql);
         statement.setString(1,userName);
         ResultSet rs = statement.executeQuery();
         list = resultSetToList(rs);
-        connect.close();
+        flush(connect);
+        return list;
+    }
+
+    @Override
+    public List findAllLinkPersonnel() throws Exception {
+        Connection connection = connect.getConnection();
+        String sql = "SELECT user_table.u_id, u_name, user_name, duty FROM personnel_table INNER JOIN user_table ON personnel_table.u_id = user_table.u_id";
+        List list;
+        statement = connection.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        list = resultSetToList(rs);
+        flush(connect);
+
         return list;
     }
 

@@ -24,17 +24,17 @@ import java.util.List;
 @SessionAttributes({"userCode","role"})
 public class UserAdminController {
 
-    HouseDao houseDao;
+    private HouseDao houseDao;
 
-    ParkDao parkDao;
+    private ParkDao parkDao;
 
-    PersonnelDao personnelDao;
+    private PersonnelDao personnelDao;
 
-    PublicityDao publicityDao;
+    private PublicityDao publicityDao;
 
-    RuleBreakDao ruleBreakDao;
+    private RuleBreakDao ruleBreakDao;
 
-    UserDao userDao;
+    private UserDao userDao;
 
     public UserAdminController() {
         super();
@@ -45,6 +45,8 @@ public class UserAdminController {
         ruleBreakDao = new RuleBreakDaoImpl();
         userDao = new UserDaoImpl();
     }
+
+
 
     /**
      * json接口
@@ -109,19 +111,31 @@ public class UserAdminController {
     @RequestMapping(value = "/json/setHadRead", method = RequestMethod.POST)
     @ResponseBody
     public Object setHadWrite (@RequestBody List<RuleBreakTableEntity> ruleBreakTableEntity,HttpSession session,Model model) {
+        String u_id;
+        try {
+            u_id = (String) session.getAttribute("userCode");
+        } catch (NullPointerException np) {
+            return "{\"info\":\"permission denied\"}";
+        }
+        List list = new ArrayList();
         int count = 0;
         try {
             for (int i = 0; i < ruleBreakTableEntity.size(); i++) {
-                if (ruleBreakTableEntity.get(i).getBreakUId() == Integer.parseInt((String) session.getAttribute("userCode"))) {
+                if (ruleBreakTableEntity.get(i).getBreakUId() == Integer.parseInt(u_id)) {
                     ruleBreakTableEntity.get(i).setFlag(true);
-                    ruleBreakDao.updateById(ruleBreakTableEntity);
-                    ruleBreakDao.flush();
+                    list.add(ruleBreakTableEntity);
                     count++;
                 }
             }
         } catch (Exception e) {
             return "{\"info\":\"你还没有登陆\"}";
         }
+        try {
+            ruleBreakDao.updateById(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         if (ruleBreakTableEntity.size()==count) {
             return "{\"info\":\"success\"}";
         } else {
@@ -149,14 +163,15 @@ public class UserAdminController {
             userTableEntity1 = (UserTableEntity) userDao.findById(Integer.valueOf((String) session.getAttribute("userCode"))).get(0);
         } catch (Exception e) {
             return "{\"info\":\"你还没有登陆\"}";
-
         }
         if (userTableEntity.getUserName().equals(userTableEntity1.getUserName())) {
             userTableEntity.setPower(userTableEntity1.getPower());
             Md5Util md5Util = new Md5Util();
             userTableEntity.setPassword(md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName()));
             try {
-                userDao.updateById(userTableEntity);
+                List list = new ArrayList();
+                list.add(userTableEntity);
+                userDao.updateById(list);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -194,7 +209,9 @@ public class UserAdminController {
         try {
             houseTableEntity1 = (HouseTableEntity) houseDao.findById(houseTableEntity).get(0);
             if (houseTableEntity1.getuId().equals(userTableEntity.getuId())) {
-                houseDao.updateById(houseTableEntity);
+                List list = new ArrayList();
+                list.add(houseTableEntity);
+                houseDao.updateById(list);
                 return "{\"info\":\"success\"}";
             }
         } catch (Exception e) {
@@ -211,15 +228,12 @@ public class UserAdminController {
      * @return
      */
     @RequestMapping(value = "/json/getAllPublicity", method = RequestMethod.GET)
-    public @ResponseBody List<PublicityTableEntity> getAllPublic() {
-        List<PublicityTableEntity> publicityTableEntities = null;
+    public @ResponseBody List getAllPublic() {
+        List publicityTableEntities = null;
         try {
             publicityTableEntities = publicityDao.findAll(PublicityTableEntity.class);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        for (int i = 0;i < publicityTableEntities.size();i++) {
-            publicityTableEntities.get(i).setDetail("");
         }
         return publicityTableEntities;
     }

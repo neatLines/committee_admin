@@ -48,7 +48,20 @@ public class DataBaseConnect {
             System.out.println("连接失败");
             e.printStackTrace();
         }
+        try {
+            connection.setAutoCommit(false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return connection;
+    }
+
+    public void commit() throws SQLException {
+        connection.commit();
+    }
+
+    public void rollback() throws SQLException {
+        connection.rollback();
     }
 
     public void close() {

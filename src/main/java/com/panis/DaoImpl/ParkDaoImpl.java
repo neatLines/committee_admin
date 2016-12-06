@@ -24,13 +24,13 @@ public class ParkDaoImpl extends BaseDaoImpl implements ParkDao{
     @Override
     public List<ParkTableEntity> findOrderByUId(Integer uId) throws Exception{
         Connection connection = connect.getConnection();
-        String sql = "SELECT * FROM park_table WHERE u_id = ? FOR UPDATE";
+        String sql = "SELECT * FROM park_table WHERE u_id = ?";
         statement = connection.prepareStatement(sql);
         statement.setInt(1,uId);
         ResultSet rs = statement.executeQuery();
         List<ParkTableEntity> list;
         list = resultSetToList(rs);
-        connect.close();
+        flush(connect);
         return list;
     }
 

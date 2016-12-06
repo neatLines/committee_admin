@@ -11,6 +11,4 @@ public interface RuleBreakDao extends BaseDao {
     public List findOrderByBreakUId(int breakUId) throws Exception;
 
     public List findAllLinkUserAndAdmin() throws Exception;
-
-    public void flush();
 }

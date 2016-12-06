@@ -5,10 +5,7 @@ import com.panis.DataBaseConnect.DataBaseConnect;
 import com.panis.model.UserTableEntity;
 
 import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
+import java.sql.*;
 import java.util.*;
 import java.util.concurrent.locks.Lock;
 
@@ -34,13 +31,14 @@ public class BaseDaoImpl implements BaseDao {
 
         StringBuilder sql = new StringBuilder("SELECT * FROM ");
         sql.append(map.get(cl.getSimpleName()));
-        sql.append(" FOR UPDATE");
         System.out.println(sql);
         statement = connection.prepareStatement(String.valueOf(sql));
         ResultSet rs = statement.executeQuery();
 //        connect.close();
-        return resultSetToList(rs);
-
+        List list;
+        list = resultSetToList(rs);
+        flush(connect);
+        return list;
     }
 
     @Override
@@ -64,7 +62,6 @@ public class BaseDaoImpl implements BaseDao {
         }
         sql.deleteCharAt(sql.length()-1);
         sql.append(")");
-        sql.append(" FOR UPDATE");
 
         System.out.println(sql);
 
@@ -75,9 +72,8 @@ public class BaseDaoImpl implements BaseDao {
             statement.setObject(i,fields[i].get(object));
         }
         System.out.println(sql);
-        int insert = statement.executeUpdate();
-        connect.close();
-        return insert > 0;
+        statement.executeUpdate();
+        return flush(connect);
     }
 
     @Override
@@ -91,19 +87,21 @@ public class BaseDaoImpl implements BaseDao {
         sql.append(" WHERE ");
         sql.append(humpToLine2(fields[0].getName()));
         sql.append(" = ");
+        fields[0].setAccessible(true);
         sql.append(fields[0].get(object));
-        sql.append(" FOR UPDATE");
 
         System.out.println(sql);
         statement = connection.prepareStatement(String.valueOf(sql));
         ResultSet rs = statement.executeQuery();
 //        connect.close();
-        return getList(rs,cl);
+        List list = getList(rs,cl);
+        flush(connect);
+        return list;
     }
 
     @Override
-    public boolean updateById(Object object) throws Exception {
-        Class cl = object.getClass();
+    public boolean updateById(List<Object> objects) throws Exception {
+        Class cl = objects.get(0).getClass();
         Connection connection = connect.getConnection();
         HashMap<String, String> map = connect.getClassName();
         Field[] fields = cl.getDeclaredFields();
@@ -118,44 +116,40 @@ public class BaseDaoImpl implements BaseDao {
         sql.append(" WHERE ");
         sql.append(humpToLine2(fields[0].getName()));
         sql.append(" = ?");
-        sql.append(" FOR UPDATE");
 
         System.out.println(sql);
-        statement = connection.prepareStatement(String.valueOf(sql));
-        for (int i = 1; i < fields.length; i++) {
-            fields[i].setAccessible(true);
-            statement.setObject(i,fields[i].get(object));
+        for (Object object:objects) {
+            statement = connection.prepareStatement(String.valueOf(sql));
+            for (int i = 1; i < fields.length; i++) {
+                fields[i].setAccessible(true);
+                statement.setObject(i, fields[i].get(object));
+            }
+            fields[0].setAccessible(true);
+            statement.setObject(fields.length, fields[0].get(object));
+            statement.executeUpdate();
         }
-        fields[0].setAccessible(true);
-        statement.setObject(fields.length,fields[0].get(object));
-        int update = 0;
-        update = statement.executeUpdate();
-        connect.close();
-        return update > 0;
+        return flush(connect);
+
     }
 
     @Override
-    public boolean delete(Object object) throws Exception {
-        Class cl = object.getClass();
+    public boolean delete(List<Object> objects) throws Exception {
+        Class cl = objects.get(0).getClass();
         Connection connection = connect.getConnection();
         HashMap<String,String> map = connect.getClassName();
         Field[] fields = cl.getDeclaredFields();
+        fields[0].setAccessible(true);
         StringBuilder sql = new StringBuilder("DELETE FROM ");
         sql.append(map.get(cl.getSimpleName()));
         sql.append(" WHERE ");
         sql.append(humpToLine2(fields[0].getName()));
         sql.append(" = ?");
-        sql.append(" FOR UPDATE");
-
-        statement = connection.prepareStatement(String.valueOf(sql));
-        fields[0].setAccessible(true);
-
-        statement.setObject(1,fields[0].get(object));
-
-        int delete = 0;
-        delete = statement.executeUpdate();
-        connect.close();
-        return delete > 0;
+        for (Object object:objects) {
+            statement = connection.prepareStatement(String.valueOf(sql));
+            statement.setObject(1, fields[0].get(object));
+            statement.executeUpdate();
+        }
+        return flush(connect);
     }
 
     @Override
@@ -175,13 +169,30 @@ public class BaseDaoImpl implements BaseDao {
         sql.append(".");
         sql.append(map.get(map.get(cl.getSimpleName())));
         sql.append(" = user_table.u_id");
-        sql.append(" FOR UPDATE");
         System.out.println(sql);
         statement = connection.prepareStatement(String.valueOf(sql));
         ResultSet rs = statement.executeQuery();
-//        connect.close();
-        return resultSetToList(rs);
+        List list = resultSetToList(rs);
+        flush(connect);
+        return list;
 
+    }
+
+    public boolean flush(DataBaseConnect connectTemp) {
+        try {
+            connectTemp.commit();
+        } catch (SQLException sqlE) {
+            try {
+                connectTemp.rollback();
+            } catch (SQLException sqle) {
+                sqle.printStackTrace();
+                return false;
+            }
+            return false;
+        } finally {
+            connectTemp.close();
+            return true;
+        }
     }
 
     public List getList(ResultSet rs, Class cl) throws Exception{

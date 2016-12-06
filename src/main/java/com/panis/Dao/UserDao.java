@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface UserDao extends BaseDao {
     public List<UserTableEntity> findOrderByUserName(String userName) throws Exception;
+
+    public List findAllLinkPersonnel() throws Exception;
 }
 

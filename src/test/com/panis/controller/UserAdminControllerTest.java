@@ -77,8 +77,7 @@ public class UserAdminControllerTest {
             for (int i = 0; i < ruleBreakTableEntity.size(); i++) {
                 if (ruleBreakTableEntity.get(i).getBreakUId() == Integer.parseInt((String) session.getAttribute("userCode"))) {
                     ruleBreakTableEntity.get(i).setFlag(true);
-                    ruleBreakDao.updateById(ruleBreakTableEntity);
-                    ruleBreakDao.flush();
+//                    ruleBreakDao.updateById(ruleBreakTableEntity);
                     count++;
                     System.out.println(ruleBreakTableEntity.get(0).toString());
                 }

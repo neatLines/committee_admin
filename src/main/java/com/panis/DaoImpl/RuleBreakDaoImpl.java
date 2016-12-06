@@ -29,7 +29,7 @@ public class RuleBreakDaoImpl extends BaseDaoImpl implements RuleBreakDao {
         statement.setInt(1,breakUId);
         ResultSet rs = statement.executeQuery();
         list = resultSetToList(rs);
-        connect.close();
+        flush(connect);
         return list;
     }
 
@@ -41,13 +41,8 @@ public class RuleBreakDaoImpl extends BaseDaoImpl implements RuleBreakDao {
         statement = connection.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         list = resultSetToList(rs);
-        connect.close();
+        flush(connect);
         return list;
-    }
-
-
-    @Override
-    public void flush() {
     }
 
 }
