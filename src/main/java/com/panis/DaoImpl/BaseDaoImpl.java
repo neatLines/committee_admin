@@ -159,6 +159,8 @@ public class BaseDaoImpl implements BaseDao {
         Field[] fields = cl.getDeclaredFields();
         StringBuilder sql = new StringBuilder("SELECT ");
         for (Field ff:fields) {
+            sql.append(map.get(cl.getSimpleName()));
+            sql.append(".");
             sql.append(humpToLine2(ff.getName()));
             sql.append(", ");
         }

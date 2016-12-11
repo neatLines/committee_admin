@@ -2,9 +2,7 @@ package com.panis.controller;
 
 import com.panis.Dao.*;
 import com.panis.DaoImpl.*;
-import com.panis.model.CommonalityTableEntity;
-import com.panis.model.PublicityTableEntity;
-import com.panis.model.RuleBreakTableEntity;
+import com.panis.model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +24,8 @@ public class BaseAdminController {
     RuleBreakDao ruleBreakDao;
     UserDao userDao;
     CommonalityDao commonalityDao;
-
+    PropertyDao propertyDao;
+    PropertyLogDao propertyLogDao;
     public BaseAdminController() {
         houseDao = new HouseDaoImpl();
         parkDao = new ParkDaoImpl();
@@ -35,6 +34,8 @@ public class BaseAdminController {
         ruleBreakDao = new RuleBreakDaoImpl();
         userDao = new UserDaoImpl();
         commonalityDao = new CommonalityDaoImpl();
+        propertyDao = new PropertyDaoImpl();
+        propertyLogDao = new PropertyLogDaoImpl();
     }
 
     public int isAdmin(HttpSession session) {
@@ -216,5 +217,130 @@ public class BaseAdminController {
 
     @RequestMapping(value = "/json/deleteBreakLog", method = RequestMethod.POST)
     @ResponseBody
-    public Object deleteBreakLog
+    public Object deleteBreakLog(@RequestBody RuleBreakTableEntity ruleBreakTableEntity, HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            List list = new ArrayList();
+            list.add(ruleBreakTableEntity);
+            try {
+                if (ruleBreakDao.delete(list)) {
+                    return "{\"info\":\"delete success\"}";
+                } else {
+                    return "{\"info\":\"delete fail\"}";
+                }
+            } catch (Exception e) {
+                return "{\"info\":\"what happen\"}";
+            }
+        }
+    }
+
+    @RequestMapping(value = "/json/getAllProperty", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getAllProperty(HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                return propertyDao.findAll(PropertyTableEntity.class);
+            } catch (Exception e) {
+                return "{\"info\":\"what happen\"}";
+            }
+        }
+    }
+
+    @RequestMapping(value = "/json/addProperty", method = RequestMethod.POST)
+    @ResponseBody
+    public Object addProperty(@RequestBody PropertyTableEntity propertyTableEntity, HttpSession session) {
+
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                if (propertyDao.insert(propertyTableEntity)) {
+                    PropertyLogTableEntity propertyLogTableEntity = new PropertyLogTableEntity();
+                    propertyLogTableEntity.setChangeUId(Integer.valueOf((String) session.getAttribute("userCode")));
+                    propertyLogTableEntity.setChangedPrId(propertyTableEntity.getPropertyId());
+                    propertyLogTableEntity.setChangeWay("增加");
+                    propertyLogDao.insert(propertyLogTableEntity);
+                    return "{\"info\":\"insert success\"}";
+                } else {
+                    return "{\"info\":\"insert fail\"}";
+                }
+            } catch (Exception e) {
+                return "{\"info\":\"what happen\"}";
+            }
+        }
+    }
+
+    @RequestMapping(value = "/json/changeProperty",method = RequestMethod.POST)
+    @ResponseBody
+    public Object changeProperty(@RequestBody PropertyTableEntity propertyTableEntity, HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                List list = new ArrayList();
+                list.add(propertyTableEntity);
+                if (propertyDao.updateById(list)) {
+                    PropertyLogTableEntity propertyLogTableEntity = new PropertyLogTableEntity();
+                    propertyLogTableEntity.setChangeUId(Integer.valueOf((String) session.getAttribute("userCode")));
+                    propertyLogTableEntity.setChangedPrId(propertyTableEntity.getPropertyId());
+                    propertyLogTableEntity.setChangeWay("修改");
+                    propertyLogDao.insert(propertyLogTableEntity);
+                    return "{\"info\":\"change success\"}";
+                } else {
+                    return "{\"info\":\"change fail\"}";
+                }
+            } catch (Exception e) {
+                return "{\"info\":\"what happen\"}";
+            }
+        }
+    }
+
+    @RequestMapping(value = "/json/deleteProperty",method = RequestMethod.POST)
+    @ResponseBody
+    public Object deleteProperty(@RequestBody PropertyTableEntity propertyTableEntity, HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                List list = new ArrayList();
+                list.add(propertyTableEntity);
+                if (propertyDao.delete(list)) {
+                    PropertyLogTableEntity propertyLogTableEntity = new PropertyLogTableEntity();
+                    propertyLogTableEntity.setChangeUId(Integer.valueOf((String) session.getAttribute("userCode")));
+                    propertyLogTableEntity.setChangedPrId(propertyTableEntity.getPropertyId());
+                    propertyLogTableEntity.setChangeWay("删除");
+                    propertyLogDao.insert(propertyLogTableEntity);
+                    return "{\"info\":\"delete success\"}";
+                } else {
+                    return "{\"info\":\"delete fail\"}";
+                }
+            } catch (Exception e) {
+                return "{\"info\":\"what happen\"}";
+            }
+        }
+    }
+
+    @RequestMapping(value = "/json/getAllPropertyLog", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getAllPropertyLog(HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                return propertyLogDao.findAll(PropertyLogTableEntity.class);
+            } catch (Exception e) {
+                return "{\"info\":\"what happen\"}";
+            }
+        }
+    }
+
 }

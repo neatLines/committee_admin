@@ -296,7 +296,7 @@ public class UserAdminController {
     @ResponseBody
     public List<PersonnelTableEntity> getPersonnelOnlyRead() {
         try {
-            return personnelDao.findAll(PersonnelTableEntity.class);
+            return personnelDao.findAllLinkUserTable(PersonnelTableEntity.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
