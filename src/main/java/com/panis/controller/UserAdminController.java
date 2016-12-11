@@ -143,6 +143,31 @@ public class UserAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 得到个人信息
+     * 无数入
+     * 返回当前登陆的账号信息
+     * @param session
+     * @return
+     */
+
+    @RequestMapping(value = "/json/getMinInfo",method = RequestMethod.GET)
+    @ResponseBody
+    public Object getMinInfo(HttpSession session) {
+        UserTableEntity userTableEntity = null;
+        try {
+            userTableEntity = (UserTableEntity) userDao.findById(Integer.valueOf((String) session.getAttribute("userCode"))).get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (userTableEntity==null) {
+            return "{\"info\":\"你还没有登陆\"}";
+        }
+        return userTableEntity;
+    }
+
+
 
     /**
      * json接口
@@ -165,8 +190,10 @@ public class UserAdminController {
             return "{\"info\":\"你还没有登陆\"}";
         }
         if (userTableEntity.getUserName().equals(userTableEntity1.getUserName())) {
+            userTableEntity.setuId(userTableEntity1.getuId());
             userTableEntity.setPower(userTableEntity1.getPower());
             Md5Util md5Util = new Md5Util();
+
             userTableEntity.setPassword(md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName()));
             try {
                 List list = new ArrayList();

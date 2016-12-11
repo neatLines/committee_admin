@@ -108,15 +108,15 @@ public class SystemAdminController {
     @RequestMapping(value = "/json/deleteUser",method = RequestMethod.POST)
     @ResponseBody
     public Object deleteUser(@RequestBody UserTableEntity userTableEntity, HttpSession session) {
-//        String temp = null;
-//        try {
-//            temp = (String) session.getAttribute("role");
-//        } catch (Exception e) {
-//            return "{\"info\":\"permission denied\"}";
-//        }
-//        if (!"2".equals(temp)) {
-//            return "{\"info\":\"permission denied\"}";
-//        }
+        String temp = null;
+        try {
+            temp = (String) session.getAttribute("role");
+        } catch (Exception e) {
+            return "{\"info\":\"permission denied\"}";
+        }
+        if (!"2".equals(temp)) {
+            return "{\"info\":\"permission denied\"}";
+        }
         try {
             List list = new ArrayList();
             list.add(userTableEntity);
@@ -131,15 +131,15 @@ public class SystemAdminController {
     @RequestMapping(value = "/json/changeUserDuty", method = RequestMethod.POST)
     @ResponseBody
     public Object changeUserDuty(@RequestBody PersonnelTableEntity personnelTableEntity, HttpSession session) {
-//        String temp = null;
-//        try {
-//            temp = (String) session.getAttribute("role");
-//        } catch (Exception e) {
-//            return "{\"info\":\"permission denied\"}";
-//        }
-//        if (!"2".equals(temp)) {
-//            return "{\"info\":\"permission denied\"}";
-//        }
+        String temp = null;
+        try {
+            temp = (String) session.getAttribute("role");
+        } catch (Exception e) {
+            return "{\"info\":\"permission denied\"}";
+        }
+        if (!"2".equals(temp)) {
+            return "{\"info\":\"permission denied\"}";
+        }
         try {
             UserTableEntity tmp = new UserTableEntity();
             tmp.setuId(personnelTableEntity.getuId());

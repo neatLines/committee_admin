@@ -52,6 +52,11 @@ public class MainController {
         return "login";
     }
 
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public String test() {
+        return "test";
+    }
+
     /**
      * 接受userTableEntity中的password和username
      * 完成登陆验证
@@ -75,7 +80,8 @@ public class MainController {
         if (dataList.isEmpty()) {
             return "login";
         }
-        if (md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName()).equals(dataList.get(0).getPassword())){
+        System.out.println(dataList.get(0).toString());
+        if ((md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName())).equals(dataList.get(0).getPassword())){
             model.addAttribute("userCode", Integer.toString(userTableEntity.getuId()));
             model.addAttribute("role",dataList.get(0).getPower());
         }

@@ -30,7 +30,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
         statement = connection.prepareStatement(sql);
         statement.setString(1,userName);
         ResultSet rs = statement.executeQuery();
-        list = resultSetToList(rs);
+        list = getList(rs,UserTableEntity.class);
         flush(connect);
         return list;
     }
