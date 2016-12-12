@@ -57,11 +57,10 @@ public class SystemAdminController {
         String temp = null;
         try {
             temp = (String) session.getAttribute("role");
-            System.out.println(temp);
         } catch (Exception e) {
             return "{\"info\":\"permission denied\"}";
         }
-        if (!"2".equals(temp)) {
+        if (!"2".equals(temp)||!"1".equals(temp)) {
             return "{\"info\":\"permission denied\"}";
         } else {
             try {
@@ -114,7 +113,7 @@ public class SystemAdminController {
         } catch (Exception e) {
             return "{\"info\":\"permission denied\"}";
         }
-        if (!"2".equals(temp)) {
+        if (!"2".equals(temp)||!"1".equals(temp)) {
             return "{\"info\":\"permission denied\"}";
         }
         try {

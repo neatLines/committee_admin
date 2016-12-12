@@ -14,6 +14,8 @@ import java.util.Map;
 /**
  * Created by fuyipeng on 11/12/2016.
  */
+
+// TODO: 12/12/2016 有时间重构
 @Controller
 @SessionAttributes({"userCode","role"})
 public class BaseAdminController {
@@ -343,4 +345,172 @@ public class BaseAdminController {
         }
     }
 
+
+    @RequestMapping(value = "/json/addUser", method = RequestMethod.POST)
+    @ResponseBody
+    public Object addUser(@RequestBody UserTableEntity userTableEntity, HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                if (userDao.insert(userTableEntity)) {
+                    return "{\"info\":\"insert success\"}";
+                } else {
+                    return "{\"info\":\"insert fail\"}";
+                }
+            } catch (Exception e) {
+                return "{\"info\":\"something happened\"}";
+            }
+        }
+    }
+
+
+    @RequestMapping(value = "/json/changeUserInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Object changeUserInfo(@RequestBody UserTableEntity userTableEntity,HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                UserTableEntity temp = (UserTableEntity) userDao.findById(userTableEntity).get(0);
+                userTableEntity.setPower(temp.getPower());
+                List list = new ArrayList();
+                list.add(userTableEntity);
+                if (userDao.updateById(list)) {
+                    return "{\"info\":\"change success\"}";
+                } else {
+                    return "{\"info\":\"change fail\"}";
+
+                }
+            } catch (Exception e) {
+                return "{\"info\":\"something happened\"}";
+            }
+        }
+    }
+
+
+    @RequestMapping(value = "/json/addPark", method = RequestMethod.POST)
+    @ResponseBody
+    public Object addPark(@RequestBody ParkTableEntity parkTableEntity, HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                if (parkDao.insert(parkTableEntity)) {
+                    return "{\"info\":\"insert success\"}";
+                } else {
+                    return "{\"info\":\"insert fail\"}";
+                }
+            } catch (Exception e) {
+                return "{\"info\":\"something happened\"}";
+            }
+        }
+    }
+
+    @RequestMapping(value = "/json/deletePark", method = RequestMethod.POST)
+    @ResponseBody
+    public Object deletePark(@RequestBody ParkTableEntity parkTableEntity, HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try{
+                List list = new ArrayList();
+                list.add(parkTableEntity);
+                if (parkDao.delete(list)) {
+                    return "{\"info\":\"delete success\"}";
+                } else {
+                    return "{\"info\":\"delete fail\"}";
+                }
+            } catch (Exception e) {
+                return "{\"info\":\"something happened\"}";
+            }
+        }
+    }
+
+
+    @RequestMapping(value = "/json/getAllPark", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getAllPark(HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                return parkDao.findAll(ParkTableEntity.class);
+            } catch (Exception e) {
+                return "{\"info\":\"something happened\"}";
+            }
+        }
+    }
+
+    @RequestMapping(value = "/json/getParkByPlace", method = RequestMethod.POST)
+    @ResponseBody
+    public Object getParkByPlace(@RequestBody Map map, HttpSession session) {
+        int role = isAdmin(session);
+        if (role == -1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                return parkDao.findOrderByLikePlace(map.get("place").toString());
+            } catch (Exception e) {
+                return "{\"info\":\"something happened\"}";
+            }
+        }
+    }
+
+    @RequestMapping(value = "/json/getAllHouseInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getAllHouseInfo(HttpSession session) {
+        if (false) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                return houseDao.findAllLinkUserTable(HouseTableEntity.class);
+            } catch (Exception e) {
+                return "{\"info\":\"something happened\"}";
+            }
+        }
+    }
+
+    @RequestMapping(value = "/json/addHouse", method = RequestMethod.POST)
+    @ResponseBody
+    public Object addNewHouse(@RequestBody HouseTableEntity houseTableEntity, HttpSession session) {
+        if (isAdmin(session)==-1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                if (houseDao.insert(houseTableEntity)) {
+                    return "{\"info\":\"insert success\"}";
+                } else {
+                    return "{\"info\":\"insert fail\"}";
+                }
+            } catch (Exception e) {
+                return "{\"info\":\"something happened\"}";
+            }
+        }
+    }
+
+    @RequestMapping(value = "/json/deleteHouse", method = RequestMethod.POST)
+    @ResponseBody
+    public Object deleteHouse(@RequestBody HouseTableEntity houseTableEntity, HttpSession session) {
+        if (isAdmin(session)==-1) {
+            return "{\"info\":\"permission denied\"}";
+        } else {
+            try {
+                List list = new ArrayList();
+                list.add(houseTableEntity);
+                if (houseDao.delete(list)) {
+                    return "{\"info\":\"insert success\"}";
+                } else {
+                    return "{\"info\":\"insert fail\"}";
+                }
+            } catch (Exception e) {
+                return "{\"info\":\"something happened\"}";
+            }
+        }
+    }
 }

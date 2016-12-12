@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface ParkDao extends BaseDao{
 
-    public List<ParkTableEntity> findOrderByUId(Integer uId) throws Exception;
+    public List findOrderByUId(Integer uId) throws Exception;
 
+    public List findOrderByLikePlace(String place) throws Exception;
 }
