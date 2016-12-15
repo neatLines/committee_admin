@@ -55,6 +55,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 插入一条新的公告
+     * 传入一个PublicityTableEntity
+     * 验证登陆情况
+     * 没有权限返回permission denied
+     * 插入成功返回success
+     * 插入失败返回fail
+     * @param publicityTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/addNewPublicity",  method = RequestMethod.POST)
     @ResponseBody
     public Object addNewPublicity(@RequestBody PublicityTableEntity publicityTableEntity, HttpSession session) {
@@ -72,6 +84,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 修改公告
+     * 传入一个PublicityTableEntity
+     * 验证登陆情况
+     * 没有权限返回permission denied
+     * 修改成功返回success
+     * 修改失败返回fail
+     * @param publicityTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/changePublicity", method = RequestMethod.POST)
     @ResponseBody
     public Object changePublicity(@RequestBody PublicityTableEntity publicityTableEntity, HttpSession session) {
@@ -90,11 +114,23 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 删除一条公告
+     * 传入一个PublicityTableEntity
+     * 验证登陆情况
+     * 没有权限返回permission denied
+     * 删除成功返回success
+     * 删除失败返回fail
+     * @param publicityTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/deletePublicity", method = RequestMethod.POST)
     @ResponseBody
     public Object deletePublicity(@RequestBody PublicityTableEntity publicityTableEntity, HttpSession session) {
         int role = isAdmin(session);
-        if (role== -1) {
+        if (role == -1) {
             return "{\"info\":\"permission denied\"}";
         } else {
             List list = new ArrayList();
@@ -111,11 +147,21 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 得到所有公共设施
+     * 验证登陆情况
+     * 没有权限返回permission denied
+     * 成功返回所有公共设施
+     * 失败返回json提示
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/getAllCommonality", method = RequestMethod.GET)
     @ResponseBody
     public Object getAllComminality(HttpSession session) {
         int role = isAdmin(session);
-        if (false) {
+        if (role == -1) {
             return "{\"info\":\"permission denied\"}";
         } else {
             try {
@@ -126,6 +172,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 改变公共设施信息
+     * 传入一个CommonalityTableEntity
+     * 验证登陆情况
+     * 没有权限返回permission denied
+     * 成功返回success
+     * 失败返回fail
+     * @param commonalityTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/changeCommonality", method = RequestMethod.POST)
     @ResponseBody
     public Object changeCommonality(@RequestBody CommonalityTableEntity commonalityTableEntity, HttpSession session) {
@@ -147,6 +205,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 增加公共设施信息
+     * 传入一个CommonalityTableEntity
+     * 验证登陆情况
+     * 没有权限返回permission denied
+     * 成功返回success
+     * 失败返回fail
+     * @param commonalityTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/addCommonality", method = RequestMethod.POST)
     @ResponseBody
     public Object addCommonality(@RequestBody CommonalityTableEntity commonalityTableEntity, HttpSession session) {
@@ -166,6 +236,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 删除公共设施信息
+     * 传入一个CommonalityTableEntity
+     * 验证登陆情况
+     * 没有权限返回permission denied
+     * 成功返回success
+     * 失败返回fail
+     * @param commonalityTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/deleteCommonality", method = RequestMethod.POST)
     @ResponseBody
     public Object deleteCommonality(@RequestBody CommonalityTableEntity commonalityTableEntity, HttpSession session) {
@@ -188,6 +270,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 增加违章记录
+     * 传入一个ruleBreakTableEntity————不需要adminUid
+     * 验证登陆情况
+     * 没有权限返回permission denied
+     * 成功返回success
+     * 失败返回fail
+     * @param map
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/addBreakLog", method = RequestMethod.POST)
     @ResponseBody
     public Object addBreakLog(@RequestBody Map map, HttpSession session) {
@@ -201,7 +295,7 @@ public class BaseAdminController {
             ruleBreakTableEntity.setDecribe((String) map.get("decribe"));
             try {
                 ruleBreakTableEntity.setAdminUId(Integer.valueOf((String) session.getAttribute("userCode")));
-                ruleBreakTableEntity.setBreakUId(userDao.findOrderByUserName((String) map.get("breakUserName")).get(0).getuId());
+                ruleBreakTableEntity.setBreakUId((Integer) map.get("breakUId"));
             } catch (Exception e) {
                 return "{\"info\":\"userName not found\"}";
             }
@@ -217,6 +311,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 删除违章记录
+     * 传入一个ruleBreakTableEntity
+     * 验证登陆情况
+     * 没有权限返回permission denied
+     * 成功返回success
+     * 失败返回fail
+     * @param ruleBreakTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/deleteBreakLog", method = RequestMethod.POST)
     @ResponseBody
     public Object deleteBreakLog(@RequestBody RuleBreakTableEntity ruleBreakTableEntity, HttpSession session) {
@@ -238,6 +344,16 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 得到所有的财产信息
+     * 验证登陆情况
+     * 没有权限返回permission denied
+     * 成功返回propertyTableEntity
+     * 失败返回fail
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/getAllProperty", method = RequestMethod.GET)
     @ResponseBody
     public Object getAllProperty(HttpSession session) {
@@ -253,6 +369,19 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 增加一种资产
+     * 验证登陆情况
+     * 没有权限则返回permission denied
+     * 传入一个propertyTableEntity
+     * 成功返回success
+     * 失败返回fail
+     * 同步添加log
+     * @param propertyTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/addProperty", method = RequestMethod.POST)
     @ResponseBody
     public Object addProperty(@RequestBody PropertyTableEntity propertyTableEntity, HttpSession session) {
@@ -278,6 +407,19 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 改变一种资产
+     * 验证登陆情况
+     * 没有权限则返回permission denied
+     * 传入propertyTableEntity
+     * 成功返回success
+     * 失败返回fail
+     * 同步添加log
+     * @param propertyTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/changeProperty",method = RequestMethod.POST)
     @ResponseBody
     public Object changeProperty(@RequestBody PropertyTableEntity propertyTableEntity, HttpSession session) {
@@ -304,6 +446,19 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 删除一种资产
+     * 验证登陆情况
+     * 没有权限则返回permission denied
+     * 传入propertyTableEntity
+     * 成功返回success
+     * 失败返回fail
+     * 同步添加log
+     * @param propertyTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/deleteProperty",method = RequestMethod.POST)
     @ResponseBody
     public Object deleteProperty(@RequestBody PropertyTableEntity propertyTableEntity, HttpSession session) {
@@ -330,6 +485,18 @@ public class BaseAdminController {
         }
     }
 
+
+    /**
+     * json接口
+     * 得到所有资产操作记录
+     * 验证登陆情况
+     * 没有权限则返回permission denied
+     * 成功返回所有记录
+     * 失败返回fail
+     * 同步添加log
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/getAllPropertyLog", method = RequestMethod.GET)
     @ResponseBody
     public Object getAllPropertyLog(HttpSession session) {
