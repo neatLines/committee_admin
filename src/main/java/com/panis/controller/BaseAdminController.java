@@ -513,6 +513,18 @@ public class BaseAdminController {
     }
 
 
+    /**
+     * json借口
+     * 增加一个用户
+     * 验证登陆情况
+     * 传入userTableEntity
+     * 没有权限则返回permission denied
+     * 成功返回success
+     * 失败返回fail
+     * @param userTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/addUser", method = RequestMethod.POST)
     @ResponseBody
     public Object addUser(@RequestBody UserTableEntity userTableEntity, HttpSession session) {
@@ -533,6 +545,18 @@ public class BaseAdminController {
     }
 
 
+    /**
+     * json接口
+     * 修改某用户信息
+     * 验证登陆情况
+     * 传入一个userTableEntity
+     * 没有权限则返回permission denied
+     * 成功返回success
+     * 失败返回fail
+     * @param userTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/changeUserInfo", method = RequestMethod.POST)
     @ResponseBody
     public Object changeUserInfo(@RequestBody UserTableEntity userTableEntity,HttpSession session) {
@@ -558,6 +582,18 @@ public class BaseAdminController {
     }
 
 
+    /**
+     * json接口
+     * 增加一个停车场信息
+     * 验证登陆信息
+     * 传入ParkTableEntity
+     * 没有权限返回permission denied
+     * 成功返回success
+     * 失败返回fail
+     * @param parkTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/addPark", method = RequestMethod.POST)
     @ResponseBody
     public Object addPark(@RequestBody ParkTableEntity parkTableEntity, HttpSession session) {
@@ -577,6 +613,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 删除一个停车场信息
+     * 验证登陆信息
+     * 传入要删除的parkTableEntity
+     * 没有权限返回permission denied
+     * 成功返回success
+     * 失败返回fail
+     * @param parkTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/deletePark", method = RequestMethod.POST)
     @ResponseBody
     public Object deletePark(@RequestBody ParkTableEntity parkTableEntity, HttpSession session) {
@@ -599,6 +647,15 @@ public class BaseAdminController {
     }
 
 
+    /**
+     * json接口
+     * 得到所有停车场信息
+     * 验证登陆信息
+     * 没有权限返回permission denied
+     * 查询失败返回something happened
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/getAllPark", method = RequestMethod.GET)
     @ResponseBody
     public Object getAllPark(HttpSession session) {
@@ -614,6 +671,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 查询停车场
+     * 传入地理信息
+     * 验证登陆信息
+     * 返回parkTableEntity对象数组
+     * 没有权限返回permission denied
+     * 查询失败返回something happened
+     * @param map
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/getParkByPlace", method = RequestMethod.POST)
     @ResponseBody
     public Object getParkByPlace(@RequestBody Map map, HttpSession session) {
@@ -629,6 +698,16 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 得到所有住宅信息
+     * 验证登陆信息
+     * 返回houseTableEntity对象数组
+     * 没有权限返回permission denied
+     * 查询失败返回something happened
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/getAllHouseInfo", method = RequestMethod.GET)
     @ResponseBody
     public Object getAllHouseInfo(HttpSession session) {
@@ -643,6 +722,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 增加一个住宅
+     * 验证登陆信息
+     * 传入HouseTableEntity
+     * 没有权限返回permission denied
+     * 插入成功返回success
+     * 插入失败返回fail
+     * @param houseTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/addHouse", method = RequestMethod.POST)
     @ResponseBody
     public Object addNewHouse(@RequestBody HouseTableEntity houseTableEntity, HttpSession session) {
@@ -661,6 +752,18 @@ public class BaseAdminController {
         }
     }
 
+    /**
+     * json接口
+     * 删除住宅----没有的接口
+     * 验证登陆信息
+     * 传入houseTableEntity
+     * 没有权限返回permission denied
+     * 删除成功返回success
+     * 删除失败返回fail
+     * @param houseTableEntity
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "/json/deleteHouse", method = RequestMethod.POST)
     @ResponseBody
     public Object deleteHouse(@RequestBody HouseTableEntity houseTableEntity, HttpSession session) {
