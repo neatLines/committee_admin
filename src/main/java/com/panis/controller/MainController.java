@@ -209,4 +209,22 @@ public class MainController {
     public String change1() {
         return "change1";
     }
+
+    /**
+     * 主页？
+     * @return
+     */
+    @RequestMapping(value = "/selfmanage" ,method = RequestMethod.GET)
+    public String selfm() {
+        return "selfmanage";
+    }
+
+    /**
+     * 修改密码
+     * @return
+     */
+    @RequestMapping(value = "/changepassword" ,method = RequestMethod.GET)
+    public String changep() {
+        return "changepassword";
+    }
 }
