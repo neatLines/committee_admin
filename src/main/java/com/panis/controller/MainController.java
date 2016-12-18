@@ -184,4 +184,22 @@ public class MainController {
     public String changepInfo() {
         return "changepersonalinfo";
     }
+
+    /**
+     * 修改
+     * @return
+     */
+    @RequestMapping(value = "/change" ,method = RequestMethod.GET)
+    public String change() {
+        return "change";
+    }
+
+    /**
+     * 修改1
+     * @return
+     */
+    @RequestMapping(value = "/change1" ,method = RequestMethod.GET)
+    public String change1() {
+        return "change1";
+    }
 }

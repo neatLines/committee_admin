@@ -175,7 +175,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endC
 <%--<tr><td>权限</td><td></td></tr>--%>
 </table>
 <form>
-    <center><button class="button green"><a href="change.html">修改</a></button></center>
+    <center><button class="button green"><a href="/change">修改</a></button></center>
 </form>
 </div>
 <script src='js/particles.js' type="text/javascript"></script>

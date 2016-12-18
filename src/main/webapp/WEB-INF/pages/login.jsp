@@ -74,7 +74,8 @@
             type: "POST",
             url: "/loginp",
             data:JSON.stringify( {userName:$("#user").val(),password:$("#password").val()}),
-            success: function(){
+            success: function(result){
+                location.href(result);
             },
             contentType: "application/json",
             dataType: "json"
