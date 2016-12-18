@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<component name="dataSourceStorage">
-  <data-source name="defaultPersistenceUnit/Hibernate" uuid="cd415a31-c4b9-41c9-9c1c-8edd0fab4981">
-    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
-  </data-source>
-</component>

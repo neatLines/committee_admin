@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="committee_admin:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="committee_admin.war">
-      <element id="artifact" artifact-name="committee_admin:war exploded" />
-    </root>
-  </artifact>
-</component>
