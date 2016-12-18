@@ -138,4 +138,49 @@ public class MainController {
             return "{\"info\":\"fail\"}";
         }
     }
+    /**
+     * 显示个人信息
+     * @return
+     */
+
+    @RequestMapping(value = "/displayselfinfo" ,method = RequestMethod.GET)
+    public String displayInfo() {
+        return "displayselfinfo";
+    }
+
+    /**
+     * 修改展示页面
+     * @return
+     */
+    @RequestMapping(value = "/changeselfinfo" ,method = RequestMethod.GET)
+    public String changeInfo() {
+        return "changeselfinfo";
+    }
+
+    /**
+     * 显示人事信息
+     * @return
+     */
+    @RequestMapping(value = "/displaypersonalinfo" ,method = RequestMethod.GET)
+    public String displaypInfo() {
+        return "displaypersonalinfo";
+    }
+
+    /**
+     * 显示用户信息
+     * @return
+     */
+    @RequestMapping(value = "/displayuserinfo" ,method = RequestMethod.GET)
+    public String displayuInfo() {
+        return "displayuserinfo";
+    }
+
+    /**
+     * 修改人事信息
+     * @return
+     */
+    @RequestMapping(value = "/changepersonalinfo" ,method = RequestMethod.GET)
+    public String changepInfo() {
+        return "changepersonalinfo";
+    }
 }
