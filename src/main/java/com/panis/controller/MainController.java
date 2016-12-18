@@ -82,13 +82,16 @@ public class MainController {
         if (dataList.isEmpty()) {
             return "{\"info\":\"fail\"}";
         }
-        System.out.println(dataList.get(0).toString());
-        System.out.println((md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName())));
-        System.out.println(dataList.get(0).getPassword());
         if ((md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName())).equals(dataList.get(0).getPassword())){
             model.addAttribute("userCode", Integer.toString(dataList.get(0).getuId()));
             model.addAttribute("role", Integer.toString(dataList.get(0).getPower()));
-            return "{\"info\":\"success\"}";
+            if (dataList.get(0).getPower()==0) {
+                return "{\"info\":\"user\"}";
+            } else if (dataList.get(0).getPower()==1) {
+                return "{\"info\":\"admin\"}";
+            } else if (dataList.get(0).getPower()==2) {
+                return "{\"info\":\"superAdmin\"}";
+            }
         }
         return "{\"info\":\"fail\"}";
     }

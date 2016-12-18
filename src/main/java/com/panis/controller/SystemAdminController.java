@@ -7,7 +7,6 @@ import com.panis.DaoImpl.UserDaoImpl;
 import com.panis.model.PersonnelTableEntity;
 import com.panis.model.UserTableEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -31,20 +30,6 @@ public class SystemAdminController {
         personnelDao = new PersonnelDaoImpl();
     }
 
-    /**
-     * 系统管理员登陆
-     * @param model
-     * @param session
-     * @return
-     */
-    @RequestMapping(value = "/superLoginp", method = RequestMethod.POST)
-    public String superLogin(Model model, HttpSession session) {
-        if (((String)session.getAttribute("role")).equals("2")) {
-            return "/superAdmin";
-        } else {
-            return "/";
-        }
-    }
 
     /**
      * 系统管理员获取所有用户信息
