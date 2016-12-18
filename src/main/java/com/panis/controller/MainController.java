@@ -80,14 +80,17 @@ public class MainController {
         Md5Util md5Util = new Md5Util();
 
         if (dataList.isEmpty()) {
-            return "login";
+            return "{\"info\":\"fail\"}";
         }
         System.out.println(dataList.get(0).toString());
+        System.out.println((md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName())));
+        System.out.println(dataList.get(0).getPassword());
         if ((md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName())).equals(dataList.get(0).getPassword())){
             model.addAttribute("userCode", Integer.toString(userTableEntity.getuId()));
             model.addAttribute("role",dataList.get(0).getPower());
+            return "{\"info\":\"success\"}";
         }
-        return "/";
+        return "{\"info\":\"fail\"}";
     }
 
     /**
@@ -135,7 +138,7 @@ public class MainController {
 
         // 重定向到登陆页面
         if (insert) {
-            return "redirect:/login";
+            return "{\"info\":\"success\"}";
         } else {
             return "{\"info\":\"fail\"}";
         }

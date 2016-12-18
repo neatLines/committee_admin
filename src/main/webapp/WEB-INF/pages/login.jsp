@@ -75,7 +75,12 @@
             url: "/loginp",
             data:JSON.stringify( {userName:$("#user").val(),password:$("#password").val()}),
             success: function(result){
-                location.href(result);
+                alert(result.info);
+                if ((result.info).equals("success")) {//判断。。。
+                    location.href = "/";
+                } else if (result.info.equals("fail")) {
+                    location.href = "login";
+                }
             },
             contentType: "application/json",
             dataType: "json"
