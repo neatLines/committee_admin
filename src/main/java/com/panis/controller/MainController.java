@@ -48,7 +48,7 @@ public class MainController {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(Model model) {
         model.addAttribute("userCode","1");
-        model.addAttribute("role","2");
+        model.addAttribute("role","1");
         return "login";
     }
 
@@ -86,8 +86,8 @@ public class MainController {
         System.out.println((md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName())));
         System.out.println(dataList.get(0).getPassword());
         if ((md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName())).equals(dataList.get(0).getPassword())){
-            model.addAttribute("userCode", Integer.toString(userTableEntity.getuId()));
-            model.addAttribute("role",dataList.get(0).getPower());
+            model.addAttribute("userCode", Integer.toString(dataList.get(0).getuId()));
+            model.addAttribute("role", Integer.toString(dataList.get(0).getPower()));
             return "{\"info\":\"success\"}";
         }
         return "{\"info\":\"fail\"}";

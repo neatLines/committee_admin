@@ -70,14 +70,15 @@ public class UserAdminController {
      * 权限认证（带修改）
      * todo 修改增加错误返回
      * @param session
-     * @param model
+     * @param userCode
      * @return
      */
     @RequestMapping(value = "/json/getMinBreakLog", method = RequestMethod.GET)
-    public @ResponseBody List getBreakLog (HttpSession session,Model model) {
+    public @ResponseBody List getBreakLog (HttpSession session,@ModelAttribute("userCode") String userCode) {
         List ruleBreakTableEntities = null;
         try {
-            ruleBreakTableEntities = ruleBreakDao.findOrderByBreakUId(Integer.parseInt((String) session.getAttribute("userCode")));
+            System.out.println(Integer.parseInt(userCode));
+            ruleBreakTableEntities = ruleBreakDao.findOrderByBreakUId(Integer.parseInt(userCode));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -151,9 +152,11 @@ public class UserAdminController {
     @RequestMapping(value = "/json/getMinInfo",method = RequestMethod.GET)
     @ResponseBody
     public Object getMinInfo(HttpSession session) {
-        UserTableEntity userTableEntity = null;
+        UserTableEntity userTableEntity = new UserTableEntity();
         try {
-            userTableEntity = (UserTableEntity) userDao.findById(Integer.valueOf((String) session.getAttribute("userCode"))).get(0);
+            System.out.println((String) session.getAttribute("userCode"));
+            userTableEntity.setuId(Integer.parseInt((String) session.getAttribute("userCode")));
+            userTableEntity = (UserTableEntity) userDao.findById(userTableEntity).get(0);
         } catch (Exception e) {
             e.printStackTrace();
         }
