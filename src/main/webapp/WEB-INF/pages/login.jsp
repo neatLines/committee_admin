@@ -69,14 +69,8 @@
 
 <script>
     $(document).ready(function(){
-//            $("#button").click(function(){
-//                $.post("/loginp",
-//                        {
-//                            "userName":$("#user").val(),
-//                            "password":$("#password").val()
-//                        },function(){},"JSON");
-//            });
-        $.ajax({
+            $("#button").click(function(){
+            $.ajax({
             type: "POST",
             url: "/loginp",
             data:JSON.stringify( {userName:$("#user").val(),password:$("#password").val()}),
@@ -84,6 +78,7 @@
             },
             contentType: "application/json",
             dataType: "json"
-        });
+            });
+            });
     });
 </script>

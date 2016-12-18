@@ -67,8 +67,9 @@ public class MainController {
      * @return
      */
     @RequestMapping(value = "/loginp", method = RequestMethod.POST)
-    @ResponseBody
     public String getJSON(@RequestBody UserTableEntity userTableEntity, Model model) {
+        System.out.println(userTableEntity.toString());
+        System.out.println(userTableEntity.getUserName());
         List<UserTableEntity> dataList = null;
         try {
             dataList = userDao.findOrderByUserName(userTableEntity.getUserName());
