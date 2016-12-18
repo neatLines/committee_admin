@@ -67,6 +67,7 @@ public class MainController {
      * @return
      */
     @RequestMapping(value = "/loginp", method = RequestMethod.POST)
+    @ResponseBody
     public String getJSON(@RequestBody UserTableEntity userTableEntity, Model model) {
         System.out.println(userTableEntity.toString());
         System.out.println(userTableEntity.getUserName());
@@ -86,7 +87,7 @@ public class MainController {
             model.addAttribute("userCode", Integer.toString(userTableEntity.getuId()));
             model.addAttribute("role",dataList.get(0).getPower());
         }
-        return "redirect:/";
+        return "/";
     }
 
     /**

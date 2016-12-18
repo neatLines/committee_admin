@@ -3,19 +3,15 @@ package com.panis.controller;
 import com.panis.Dao.*;
 import com.panis.DaoImpl.*;
 import com.panis.model.*;
-import com.panis.repository.*;
 import com.panis.util.Md5Util;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by fuyipeng on 28/11/2016.
@@ -187,14 +183,12 @@ public class UserAdminController {
         try {
             userTableEntity1 = (UserTableEntity) userDao.findById(Integer.valueOf((String) session.getAttribute("userCode"))).get(0);
         } catch (Exception e) {
-            return "{\"info\":\"你还没有登陆\"}";
+            return "{\"info\":\"permission denied\"}";
         }
         if (userTableEntity.getUserName().equals(userTableEntity1.getUserName())) {
             userTableEntity.setuId(userTableEntity1.getuId());
             userTableEntity.setPower(userTableEntity1.getPower());
-            Md5Util md5Util = new Md5Util();
-
-            userTableEntity.setPassword(md5Util.parseStrToMd5L16(userTableEntity.getPassword()+userTableEntity.getUserName()));
+            userTableEntity.setPassword(userTableEntity1.getPassword());
             try {
                 List list = new ArrayList();
                 list.add(userTableEntity);
@@ -206,6 +200,33 @@ public class UserAdminController {
         }
         return "{\"info\":\"fail\"}";
     }
+
+    @RequestMapping(value = "/json/changePassword", method = RequestMethod.POST)
+    @ResponseBody
+    public Object changePassword(@RequestBody Map map, HttpSession session) {
+        UserTableEntity userTableEntity;
+        Md5Util md5Util = new Md5Util();
+
+        try {
+            userTableEntity = (UserTableEntity) userDao.findById(Integer.valueOf((String) session.getAttribute("userCode"))).get(0);
+        } catch (Exception e) {
+            return "{\"info\":\"permission denied\"}";
+        }
+        if (md5Util.parseStrToMd5L16(map.get("oldPassword").toString()).equals(userTableEntity.getPassword())) {
+            userTableEntity.setPassword(md5Util.parseStrToMd5L16(map.get("newPassword").toString()));
+            List list = new ArrayList();
+            try {
+                userDao.updateById(list);
+                return "{\"info\":\"update success\"}";
+            } catch (Exception e) {
+                return "{\"info\":\"something happened\"}";
+            }
+        } else {
+            return "{\"info\":\"error old Password\"}";
+        }
+
+    }
+
 
     // TODO: 29/11/2016 增加错误提示页面代替tomcat自带提示
 

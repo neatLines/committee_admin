@@ -2,6 +2,7 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="defaultPersistenceUnit/Hibernate" uuid="cd415a31-c4b9-41c9-9c1c-8edd0fab4981">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <user-name>panis</user-name>
       <user-password>dfc0dfcedfc8dfc9df90dfc7dfd3dfd9dfdbdfc6df90df85df85df9bdf98df99df84df98df9adf9cdf84df9bdf9adf98df84df9cdf93df90df99df99df9adf9cdf85dfc9dfc5dfc7dfc7dfc3dfdedfdedfcfdfcfdff5dfcbdfcedfc7dfc3dfc4</user-password>
     </data-source>
