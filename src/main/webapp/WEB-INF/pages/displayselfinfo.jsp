@@ -115,15 +115,13 @@ table.table1{
 <script>
     $(document).ready(function(){
         $.getJSON("/json/getMinInfo",function(result) {
-            $.each(result,function(index,comment){
-                $("#table").append("<tr><td>"+"用户编号"+"</td><td>"+comment.u_id+"</td></tr>");
-                $("#table").append("<tr><td>"+"姓名"+"</td><td>"+comment.u_name+"</td></tr>");
-                $("#table").append("<tr><td>"+"联系电话"+"</td><td>"+comment.phone_number+"</td></tr>");
-                $("#table").append("<tr><td>"+"年龄"+"</td><td>"+comment.u_age+"</td></tr>");
-                $("#table").append("<tr><td>"+"性别"+"</td><td>"+comment.u_sex+"</td></tr>");
-                $("#table").append("<tr><td>"+"用户名"+"</td><td>"+comment.user_name+"</td></tr>");
-                $("#table").append("<tr><td>"+"权限"+"</td><td>"+comment.power+"</td></tr>");
-            })
+                $("#table").append("<tr><td>"+"用户编号"+"</td><td>"+result.uId+"</td></tr>");
+                $("#table").append("<tr><td>"+"姓名"+"</td><td>"+result.uName+"</td></tr>");
+                $("#table").append("<tr><td>"+"联系电话"+"</td><td>"+result.phoneNumber+"</td></tr>");
+                $("#table").append("<tr><td>"+"年龄"+"</td><td>"+result.uAge+"</td></tr>");
+                $("#table").append("<tr><td>"+"性别"+"</td><td>"+result.uSex+"</td></tr>");
+                $("#table").append("<tr><td>"+"用户名"+"</td><td>"+result.userName+"</td></tr>");
+                $("#table").append("<tr><td>"+"权限"+"</td><td>"+result.power+"</td></tr>");
         })
     });
 </script>

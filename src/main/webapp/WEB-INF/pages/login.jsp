@@ -76,9 +76,9 @@
             data:JSON.stringify( {userName:$("#user").val(),password:$("#password").val()}),
             success: function(result){
                 alert(result.info);
-                if ((result.info).equals("success")) {//判断。。。
-                    location.href = "/";
-                } else if (result.info.equals("fail")) {
+                if (result.info=="success") {//判断。。。
+                    location.href = "selfmanage";
+                } else if (result.info=="fail") {
                     location.href = "login";
                 }
             },
