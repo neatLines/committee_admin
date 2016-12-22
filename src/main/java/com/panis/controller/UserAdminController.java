@@ -182,9 +182,10 @@ public class UserAdminController {
     @RequestMapping(value = "/json/changeInfo",method = RequestMethod.POST)
     @ResponseBody
     public Object changeInfo(@RequestBody UserTableEntity userTableEntity,HttpSession session) {
-        UserTableEntity userTableEntity1;
+        UserTableEntity userTableEntity1 = null;
         try {
-            userTableEntity1 = (UserTableEntity) userDao.findById(Integer.valueOf((String) session.getAttribute("userCode"))).get(0);
+            userTableEntity.setuId(Integer.valueOf((String) session.getAttribute("userCode")));
+            userTableEntity1 = (UserTableEntity) userDao.findById(userTableEntity).get(0);
         } catch (Exception e) {
             return "{\"info\":\"permission denied\"}";
         }
@@ -207,11 +208,12 @@ public class UserAdminController {
     @RequestMapping(value = "/json/changePassword", method = RequestMethod.POST)
     @ResponseBody
     public Object changePassword(@RequestBody Map map, HttpSession session) {
-        UserTableEntity userTableEntity;
+        UserTableEntity userTableEntity = new UserTableEntity();
         Md5Util md5Util = new Md5Util();
 
         try {
-            userTableEntity = (UserTableEntity) userDao.findById(Integer.valueOf((String) session.getAttribute("userCode"))).get(0);
+            userTableEntity.setuId(Integer.valueOf((String) session.getAttribute("userCode")));
+            userTableEntity = (UserTableEntity) userDao.findById(userTableEntity).get(0);
         } catch (Exception e) {
             return "{\"info\":\"permission denied\"}";
         }
