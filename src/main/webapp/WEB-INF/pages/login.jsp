@@ -13,9 +13,21 @@
     <meta charset="utf-8">
     <title>登录 - 居委会管理系统</title>
     <link rel="stylesheet" type="text/css" href="css/register-login1.css">
-
-
 </head>
+<%--<script type="text/javascript">--%>
+    <%--function jiami(){--%>
+        <%--var user0 = user.value;--%>
+        <%--var user1 = hex_sha1(user0);--%>
+        <%--var mima0 = password.value;--%>
+        <%--var mima1 = hex_sha1(mima0);--%>
+
+        <%--if(user0==""||mima0=="")--%>
+        <%--{alert("请填写完整信息！！！");--%>
+            <%--return false;--%>
+        <%--}--%>
+        <%--return true;--%>
+    <%--}--%>
+<%--</script>--%>
 <body>
 <div id="box"></div>
 <div class="cent-box">
@@ -36,7 +48,7 @@
         <div class="login form">
             <div class="group">
                 <div class="group-ipt email">
-                    <input type="text" name="userName" id="user" class="ipt" placeholder="输入您的账号" required>
+                    <input type="text" name="user" id="user" class="ipt" placeholder="输入您的账号" required>
                 </div>
                 <div class="group-ipt password">
                     <input type="password" name="password" id="password" class="ipt" placeholder="输入您的登录密码" required>
@@ -47,12 +59,6 @@
         <div class="button">
             <button class="login-btn register-btn" id="button">登录</button>
         </div>
-
-        <div class="remember clearfix">
-            <label class="forgot-password">
-                <a href="#">忘记密码？</a>
-            </label>
-        </div>
     </div>
 </div>
 
@@ -62,6 +68,7 @@
 </div>
 <script src='js/particles.js' type="text/javascript"></script>
 <script src='js/background.js' type="text/javascript"></script>
+<script src='js/sha1.js' type="text/ecmascript" ></script>
 
 
 </body>
@@ -76,10 +83,12 @@
             data:JSON.stringify( {userName:$("#user").val(),password:$("#password").val()}),
             success: function(result){
                 alert(result.info);
-                if (result.info=="success") {//判断。。。
+                if (result.info=="user") {//判断。。。
                     location.href = "selfmanage";
-                } else if (result.info=="fail") {
-                    location.href = "login";
+                } else if (result.info=="admin") {
+                    location.href = "selfmanage";
+                } else if (result.info=="superAdmin"){
+                    location.href = "selfmanage";
                 }
             },
             contentType: "application/json",

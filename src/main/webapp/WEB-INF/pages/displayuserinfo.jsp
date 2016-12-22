@@ -195,11 +195,11 @@
         <li>姓名</li>
         <li>职务</li>
     </ul>
-    <form>
-        <button class="button green"><a href="change.html">修改</a></button>
-        <button class="button green"><a href="change.html">删除</a></button>
-        <button class="button green"><a href="change.html">添加</a></button>
-    </form>
+    <%--<form>--%>
+        <%--<button class="button green"><a href="change.html">修改</a></button>--%>
+        <%--<button class="button green"><a href="change.html">删除</a></button>--%>
+        <%--<button class="button green"><a href="change.html">添加</a></button>--%>
+    <%--</form>--%>
 </div>
 <script src='js/particles.js' type="text/javascript"></script>
 <script src='js/background.js' type="text/javascript"></script>
@@ -211,6 +211,9 @@
             $.each(result,function(index,comment){
                 $("div.cent-box").append("<ul><li>"+comment.u_id+"</li><li>"+comment.user_name+"</li><li>"+comment.u_name+"</li><li>"+comment.duty+"</li></ul>");
             })
+            $("div.cent-box").append("<button class='button green'><a href='change.html'>"+"修改"+"</a></button>");
+            $("div.cent-box").append("<button class='button green'><a href='change.html'>"+"删除"+"</a></button>");
+            $("div.cent-box").append("<button class='button green'><a href='change.html'>"+"添加"+"</a></button>");
         })
     });
 </script>

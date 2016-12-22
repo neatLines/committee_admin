@@ -1,8 +1,10 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>change.html</title>
-<link href="css/register-login.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <link href="css/register-login.css" rel="stylesheet" type="text/css" />
 <link href="css/reset.css" rel="stylesheet" type="text/css" />
 <link href="css/master.css" rel="stylesheet" type="text/css" />
 <link href="css/fonts.css" rel="stylesheet" type="text/css" />
@@ -26,17 +28,17 @@ $(document).ready(function() {
 		<div class="cent-box">
         <div id="main_container">
          <div id="header_content">
-              <h1>хкйбпео╒пч╦д<strong><br><br><br>гКх╥хопео╒нчнС</strong></h1>
+              <h1>Д╨╨Д╨▀Д©║Ф│╞Д©╝Ф■╧<strong><br><br><br>Х╞╥Г║╝Х╝╓Д©║Ф│╞Ф≈═Х╞╞</strong></h1>
          </div>
         <!-- form -->
         <form action="#" method="post" id="myform" class="expose" > 
                 <fieldset class="col_f_1">	
-                        <label>сц╩╖цШ</label><input type="text" name="username"  class="required"  /> 
-                        <label>а╙о╣╣Г╩╟</label><input type="text" name="uname"   class="required email"  />
-                        <label>х╗оч</label> <select name="catalogs">
-                                            <option value="level1">о╣мЁ╧эюМт╠</option>
-                                            <option value="level2">фум╗╧эюМт╠</option>
-                                            <option value="level3">сц╩╖</option>
+                        <label>Г■╗Ф┬╥Е░█</label><input type="text" name="username"  class="required"  /> 
+                        <label>Х│■ГЁ╩Г■╣Х╞²</label><input type="text" name="uname"   class="required email"  />
+                        <label>Ф²┐И≥░</label> <select name="catalogs">
+                                            <option value="level1">ГЁ╩Г╩÷Г╝║Г░├Е▒≤</option>
+                                            <option value="level2">Ф≥╝И─ Г╝║Г░├Е▒≤</option>
+                                            <option value="level3">Г■╗Ф┬╥</option>
                                             </select>
                 </fieldset>
                 <!--<fieldset class="col_f_2">-->
@@ -45,7 +47,7 @@ $(document).ready(function() {
                  <!--</fieldset>-->
                  <div class="clr"></div>
                  <hr />
-                 <button type="submit">х╥хопч╦д</button>
+                 <button type="submit">Г║╝Х╝╓Д©╝Ф■╧</button>
         </form>	
         <!--/form -->
 
