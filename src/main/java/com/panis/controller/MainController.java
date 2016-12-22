@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -68,7 +69,7 @@ public class MainController {
      */
     @RequestMapping(value = "/loginp", method = RequestMethod.POST)
     @ResponseBody
-    public String getJSON(@RequestBody UserTableEntity userTableEntity, Model model) {
+    public Object getJSON(@RequestBody UserTableEntity userTableEntity, Model model) {
         System.out.println(userTableEntity.toString());
         System.out.println(userTableEntity.getUserName());
         List<UserTableEntity> dataList = null;
@@ -94,6 +95,18 @@ public class MainController {
             }
         }
         return "{\"info\":\"fail\"}";
+    }
+
+    @RequestMapping(value = "/logoutp",method = RequestMethod.POST)
+    @ResponseBody
+    public Object logout(HttpSession session) {
+        try {
+            session.removeAttribute("userCode");
+            session.removeAttribute("role");
+        } catch (Exception e) {
+            return "{\"info\":\"fail\"}";
+        }
+        return "{\"info\":\"success\"}";
     }
 
     /**
