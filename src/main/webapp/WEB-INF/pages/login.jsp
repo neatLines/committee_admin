@@ -84,9 +84,9 @@
             success: function(result){
                 alert(result.info);
                 if (result.info=="user") {//判断。。。
-                    location.href = "selfmanage";
+                    location.href = "selfmanage1";
                 } else if (result.info=="admin") {
-                    location.href = "selfmanage";
+                    location.href = "selfmanage1";
                 } else if (result.info=="superAdmin"){
                     location.href = "selfmanage";
                 }

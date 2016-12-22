@@ -217,9 +217,10 @@ public class UserAdminController {
         } catch (Exception e) {
             return "{\"info\":\"permission denied\"}";
         }
-        if (md5Util.parseStrToMd5L16(map.get("oldPassword").toString()).equals(userTableEntity.getPassword())) {
-            userTableEntity.setPassword(md5Util.parseStrToMd5L16(map.get("newPassword").toString()));
+        if (md5Util.parseStrToMd5L16(map.get("oldPassword").toString()+map.get("userName").toString()).equals(userTableEntity.getPassword())) {
+            userTableEntity.setPassword(md5Util.parseStrToMd5L16(map.get("newPassword").toString()+map.get("userName")));
             List list = new ArrayList();
+            list.add(userTableEntity);
             try {
                 userDao.updateById(list);
                 return "{\"info\":\"update success\"}";

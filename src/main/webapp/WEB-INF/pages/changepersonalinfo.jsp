@@ -212,9 +212,9 @@ div ul:first-child li{
         $.getJSON("/json/getPersonnelOnlyRead",function(result) {
             $.each(result,function(index,comment){
 //                $("div.cent-box").append("<ul><li>"+comment.u_id+"</li><li>"+comment.u_name+"</li><li>"+comment.phone_number+"</li><li>"+comment.duty+"</li></ul>");
-                $("#table").append("<tr><td>"+comment.u_id+"</td><td>"+comment.u_name+"</td><td>"+comment.phone_number+"</td><td>"+comment.duty+"</td></tr>");
+                $("#table").append("<tr><td>"+comment.u_id+"</td><td><a href='change1'>"+comment.u_name+"</a></td><td>"+comment.phone_number+"</td><td>"+comment.duty+"</td></tr>");
             });
-            $("div.cent-box").append("<form><button class='button green'><a href='change1.html'>"+"修改"+"</a></button></form>");
+
         });
     });
 </script>

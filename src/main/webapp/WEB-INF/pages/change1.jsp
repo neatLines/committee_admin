@@ -31,30 +31,48 @@ $(document).ready(function() {
               <h1>人事信息修改<strong><br><br><br>请确认信息无误</strong></h1>
          </div>
         <!-- form -->
-        <form action="#" method="post" id="myform" class="expose" > 
+        <form method="post" id="myform" class="expose" >
                 <fieldset class="col_f_1">	
-                        <label>用户名</label><input type="text" name="username"  class="required"  /> 
-                        <label>联系电话</label><input type="text" name="uname"   class="required email"  />
-                        <label>权限</label> <select name="catalogs">
-                                            <option value="level1">系统管理员</option>
-                                            <option value="level2">普通管理员</option>
-                                            <option value="level3">用户</option>
-                                            </select>
-                </fieldset>
-                <!--<fieldset class="col_f_2">-->
-                        <!--<img src="https://gss0.bdstatic.com/70cFsjip0QIZ8tyhnq/img/iknow/logo-iknowxjd.gif">-->
+                        <label>用户名</label><input type="text" name="username"  class="required"  />
+                        <label>联系电话</label><input type="text" name="uname"   class="required"  />
 
-                 <!--</fieldset>-->
-                 <div class="clr"></div>
-                 <hr />
-                 <button type="submit">确认修改</button>
+                </fieldset>
+                <fieldset class="col_f_2">
+                    <label>权限</label> <select name="catalogs">
+                    <option value="level2">系统管理员</option>
+                    <option value="level1">普通管理员</option>
+                    <option value="level0">用户</option>
+                                       </select>
+                    <label>职位</label><input type="text" name="duty"   class="required"  />
+                </fieldset>
+                <div class="clr"></div>
+                <hr />
+
         </form>	
         <!--/form -->
 
-         <div class="clr"></div>
+         <div class="clr">
+             <button id="bt2">确认修改</button>
+         </div>
      </div>
      </div>
      <script src='js/particles.js' type="text/javascript"></script>
 	 <script src='js/background.js' type="text/javascript"></script>
   </body>
 </html>
+<script>
+    $(document).ready(function () {
+        $("#bt2").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/json/",
+                data:JSON.stringify( {userName:$("#1").val(),uName:$("#2").val(),uSex:$("#3").val(),phoneNumber:$("#4").val(),uAge:$("#5").val()}),
+                success: function(result){
+                    alert(result.info);
+                },
+                contentType: "application/json",
+                dataType: "json"
+            })
+        })
+    })
+</script>

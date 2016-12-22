@@ -68,7 +68,7 @@
 				success: function(result){
 					alert(result.info);
 					if (result.info=="update success") {//判断。。。
-						location.href = "login";
+						location.href="selfmanage";
 					}
 				},
 				contentType: "application/json",

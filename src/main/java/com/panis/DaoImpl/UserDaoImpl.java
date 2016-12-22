@@ -38,7 +38,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
     @Override
     public List findAllLinkPersonnel() throws Exception {
         Connection connection = connect.getConnection();
-        String sql = "SELECT user_table.u_id, u_name, user_name, duty FROM personnel_table RIGHT JOIN user_table ON personnel_table.u_id = user_table.u_id";
+        String sql = "SELECT user_table.u_id, u_name, phone_number, user_name, duty FROM personnel_table RIGHT JOIN user_table ON personnel_table.u_id = user_table.u_id";
         List list;
         statement = connection.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();

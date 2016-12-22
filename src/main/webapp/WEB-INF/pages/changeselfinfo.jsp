@@ -185,13 +185,22 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endC
 <script>
     $(document).ready(function(){
         $.getJSON("/json/getMinInfo",function(result) {
+                var a = result.power;
+                var role;
+                if(a=="2") {
+                    role = "系统管理员"
+                }else if(a=="1"){
+                    role = "普通管理员"
+                }else if(a=="0"){
+                    role = "普通用户"
+                }
                 $("#table1").append("<tr><td>"+"用户编号"+"</td><td>"+result.uId+"</td></tr>");
                 $("#table1").append("<tr><td>"+"姓名"+"</td><td>"+result.uName+"</td></tr>");
                 $("#table1").append("<tr><td>"+"联系电话"+"</td><td>"+result.phoneNumber+"</td></tr>");
                 $("#table1").append("<tr><td>"+"年龄"+"</td><td>"+result.uAge+"</td></tr>");
                 $("#table1").append("<tr><td>"+"性别"+"</td><td>"+result.uSex+"</td></tr>");
                 $("#table1").append("<tr><td>"+"用户名"+"</td><td>"+result.userName+"</td></tr>");
-                $("#table1").append("<tr><td>"+"权限"+"</td><td>"+result.power+"</td></tr>");
+                $("#table1").append("<tr><td>"+"权限"+"</td><td>"+role+"</td></tr>");
         })
     });
 </script>

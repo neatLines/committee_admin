@@ -240,4 +240,13 @@ public class MainController {
     public String changep() {
         return "changepassword";
     }
+
+    /**
+     * 主页？
+     * @return
+     */
+    @RequestMapping(value = "/selfmanage1" ,method = RequestMethod.GET)
+    public String selfm1() {
+        return "selfmanage1";
+    }
 }
