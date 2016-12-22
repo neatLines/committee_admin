@@ -32,10 +32,10 @@ $(document).ready(function() {
               <h1>个人信息修改<strong><br><br><br>请确认信息无误</strong></h1>    
          </div>
         <!-- form -->
-        <form action="#" method="post" id="myform" class="expose" > 
+        <form  id="myform" class="expose" >
                 <fieldset class="col_f_1">
                         <label>用户名</label><input type="text" name="username" id="1" class="required"  />
-                        <label>姓名</label><input type="text" name="uname" id="2"   class="required email"  />
+                        <label>姓名</label><input type="text" name="uname" id="2"    class="required" />
                         <label>性别</label> <input type="text" name="sex" id="3" />
                 </fieldset>
                 <fieldset class="col_f_2">	
@@ -45,11 +45,15 @@ $(document).ready(function() {
                  </fieldset>
                  <div class="clr"></div>
                  <hr />
-                 <button type="submit">确认修改</button>
-        </form>	
+        </form>
+
         <!--/form -->
 
-         <div class="clr"></div>
+         <div class="clr">
+             <div class="button">
+                 <button id="bt1">确认修改</button>
+             </div>
+         </div>
      </div>
      </div>
      <script src='js/particles.js' type="text/javascript"></script>
@@ -57,14 +61,25 @@ $(document).ready(function() {
   </body>
 </html>
 <script>
+    $(document).ready(function () {
+        $.getJSON("/json/getMinInfo",function(result) {
+            document.getElementById("1").value=result.userName;
+            document.getElementById("2").value=result.uName;
+            document.getElementById("3").value=result.uSex;
+            document.getElementById("4").value=result.phoneNumber;
+            document.getElementById("5").value=result.uAge;
+        })
+    })
+</script>
+<script>
     $(document).ready(function(){
-        $("#button").click(function(){
+        $("#bt1").click(function(){
             $.ajax({
                 type: "POST",
                 url: "/json/changeInfo",
-                data:JSON.stringify( {userName:$("#user").val(),password:$("#password").val()}),
+                data:JSON.stringify( {userName:$("#1").val(),uName:$("#2").val(),uSex:$("#3").val(),phoneNumber:$("#4").val(),uAge:$("#5").val()}),
                 success: function(result){
-                    location.href(result);
+                    alert(result.info);
                 },
                 contentType: "application/json",
                 dataType: "json"
@@ -72,3 +87,4 @@ $(document).ready(function() {
         });
     });
 </script>
+

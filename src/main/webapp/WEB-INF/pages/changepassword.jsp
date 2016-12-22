@@ -28,10 +28,10 @@
 					<input type="text" name="user" id="user" class="ipt" placeholder="输入您的账号" required>
 				</div>
 				<div class="group-ipt password">
-					<input type="password" name="password" id="password" class="ipt" placeholder="输入您的旧密码" required>
+					<input type="password" name="password" id="password1" class="ipt" placeholder="输入您的旧密码" required>
 				</div>
 				<div class="group-ipt password">
-					<input type="password" name="password" id="password" class="ipt" placeholder="输入您的新密码" required>
+					<input type="password" name="password" id="password2" class="ipt" placeholder="输入您的新密码" required>
 				</div>
 			</div>
 		</div>
@@ -58,3 +58,22 @@
 
 </body>
 </html>
+<script>
+	$(document).ready(function () {
+		$("#button").click(function () {
+			$.ajax({
+				type: "POST",
+				url: "/json/changePassword",
+				data:JSON.stringify( {userName:$("#user").val(),oldPassword:$("#password1").val(),newPassword:$("#password2").val()}),
+				success: function(result){
+					alert(result.info);
+					if (result.info=="update success") {//判断。。。
+						location.href = "login";
+					}
+				},
+				contentType: "application/json",
+				dataType: "json"
+			});
+		})
+	})
+</script>

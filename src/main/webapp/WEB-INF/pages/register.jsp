@@ -1,80 +1,110 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fuyipeng
-  Date: 2016/11/13
-  Time: 下午5:06
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>注册</title>
-
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <title>注册 - 居委会管理系统</title>
+    <link rel="stylesheet" type="text/css" href="css/register-login1.css">
 </head>
+<%--<script type="text/javascript">--%>
+    <%--function jiami(){--%>
+        <%--var user0 = user.value;--%>
+        <%--var user1 = hex_sha1(user0);--%>
+        <%--var mima0 = password.value;--%>
+        <%--var mima1 = hex_sha1(mima0);--%>
+        <%--var name0 = name.value;--%>
+        <%--var name00 = hex_sha1(name0);--%>
+        <%--var age0 = age.value;--%>
+        <%--var age00 = hex_sha1(age0);--%>
+        <%--var sex0 = sex.value;--%>
+        <%--var sex00 = hex_sha1(sex0);--%>
+        <%--var link0 = link.value;--%>
+        <%--var link00 = hex_sha1(link0);--%>
+        <%--var sex0 = sex.value;--%>
+        <%--var sex00 = hex_sha1(sex0);--%>
 
-<%--private String uName;--%>
-<%--private int uAge;--%>
-<%--private byte uSex;--%>
-<%--private String phoneNumber;--%>
-<%--private String userName;--%>
-<%--private String password;--%>
+        <%--if(user0==""||mima0==""||name0==""||age0==""||sex0==""||link0=="")--%>
+        <%--{alert("请填写完整信息！！！");--%>
+            <%--return false;--%>
+        <%--}--%>
+        <%--return true;--%>
+    <%--}--%>
+<%--</script>--%>
 <body>
-<div class="container">
-    <h1>添加用户</h1>
-    <hr/>
-    <form:form action="registerp" method="post" commandName="user" role="form">
-        <div class="form-group">
-            <label for="uName">名字:</label>
-            <input type="text" class="form-control" id="uName" name="uName" placeholder="Enter Name:"/>
+<div id="box"></div>
+<div class="cent-box register-box">
+    <div class="cent-box-header">
+        <h1 class="main-title">居委会</h1>
+        <h2 class="sub-title">全心全意为人民服务</h2>
+    </div>
+
+    <div class="cont-main clearfix">
+        <div class="index-tab">
+            <div class="index-slide-nav">
+                <a href="login.html">登录</a>
+                <a href="register.html" class="active">注册</a>
+
+            </div>
         </div>
-        <div class="form-group">
-            <label for="uAge">年龄:</label>
-            <input type="number" class="form-control" id="uAge" name="uAge" placeholder="Enter Age:"/>
+
+        <div class="login form">
+            <div class="group">
+
+                <div class="group-ipt user">
+                    <input type="text" name="user" id="user" class="ipt" placeholder="输入您喜欢的用户名" required>
+                </div>
+                <div class="group-ipt password">
+                    <input type="password" name="password" id="password" class="ipt" placeholder="设置登录密码" required>
+                </div>
+                <div class="group-ipt user">
+                    <input type="text" name="name" id="name" class="ipt" placeholder="姓名" required>
+                </div>
+                <div class="group-ipt user">
+                    <input type="text" name="sex" id="sex" class="ipt" placeholder="性别" required>
+                </div>
+                <div class="group-ipt user">
+                    <input type="text" name="age" id="age" class="ipt" placeholder="年龄" required>
+                </div>
+                <div class="group-ipt user">
+                    <input type="text" name="link" id="link" class="ipt" placeholder="联系方式" required>
+                </div>
+
+            </div>
         </div>
-        <div class="form-group">
-            <select class="form-control" id="uSex" name="uSex">
-                <option>男</option>
-                <option>女</option>
-                <option>空</option>
-            </select>
+
+        <div class="button">
+            <button class="login-btn register-btn" id="button">注册</button>
         </div>
-        <div class="form-group">
-            <label for="phoneNumber">手机号码:</label>
-            <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter phoneNumber:"/>
-        </div>
-        <div class="form-group">
-            <label for="userName">用户名:</label>
-            <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter userName:"/>
-        </div>
-        <div class="form-group">
-            <label for="password">密码:</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password:"/>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-sm btn-success">提交</button>
-        </div>
-    </form:form>
+    </div>
 </div>
 
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<div class="footer">
+    <p>居委会</p>
+</div>
 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src='js/particles.js' type="text/javascript"></script>
+<script src='js/background.js' type="text/javascript"></script>
+<script src='js/sha1.js' type="text/ecmascript" ></script>
+
+
 </body>
 </html>
+<script>
+    $(document).ready(function(){
+        $("#button").click(function(){
+            $.ajax({
+                type: "POST",
+                url: "/registerp",
+                data:JSON.stringify( {userName:$("#user").val(),password:$("#password").val(),uName:$("#name").val(),uAge:$("#age").val(),uSex:$("#sex").val(),phoneNumber:$("#link").val()}),
+                success: function(result){
+                    alert(result.info);
+                    if (result.info=="success") {//判断。。。
+                        location.href = "login";
+                    }
+                },
+                contentType: "application/json",
+                dataType: "json"
+            });
+        });
+    });
+</script>
