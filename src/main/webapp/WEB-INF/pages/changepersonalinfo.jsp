@@ -188,7 +188,7 @@ div ul:first-child li{
 <body>
 <div id="box"></div>
 <div class="cent-box">
-    <table class="table1" align="center" id="table">
+    <table class="table1" align="center" id="table1">
         <caption>人事信息</caption>
         <tr><td>用户编号</td><td>姓名</td><td>联系电话</td><td>职务</td></tr>
 
@@ -209,12 +209,18 @@ div ul:first-child li{
 </html>
 <script>
     $(document).ready(function(){
+        var x=0;
         $.getJSON("/json/getPersonnelOnlyRead",function(result) {
             $.each(result,function(index,comment){
 //                $("div.cent-box").append("<ul><li>"+comment.u_id+"</li><li>"+comment.u_name+"</li><li>"+comment.phone_number+"</li><li>"+comment.duty+"</li></ul>");
-                $("#table").append("<tr><td>"+comment.u_id+"</td><td><a href='change1'>"+comment.u_name+"</a></td><td>"+comment.phone_number+"</td><td>"+comment.duty+"</td></tr>");
+                $("#table1").append("<tr><td>"+comment.u_id+"</td><td>"+comment.u_name+"</td><td>"+comment.phone_number+"</td><td>"+comment.duty+"</td></tr>");
+                $("tr").click(function () {
+                    var temp=this.getElementsByTagName("td");
+                    window.location.href="change1?u_name='"+temp[1].innerHTML+"'&phone_number='"+temp[2].innerHTML+"'&duty='"+temp[3].innerHTML+"'";
+                })
             });
 
         });
     });
+
 </script>

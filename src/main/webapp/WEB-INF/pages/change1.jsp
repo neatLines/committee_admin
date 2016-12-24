@@ -33,17 +33,17 @@ $(document).ready(function() {
         <!-- form -->
         <form method="post" id="myform" class="expose" >
                 <fieldset class="col_f_1">	
-                        <label>用户名</label><input type="text" name="username"  class="required"  />
-                        <label>联系电话</label><input type="text" name="uname"   class="required"  />
+                        <label>用户名</label><input type="text" name="username" id="1" class="required" value=<%=request.getParameter("u_name")%> />
+                        <label>联系电话</label><input type="text" name="uname"  id="2" class="required" value=<%=request.getParameter("phone_number")%> />
 
                 </fieldset>
                 <fieldset class="col_f_2">
-                    <label>权限</label> <select name="catalogs">
-                    <option value="level2">系统管理员</option>
-                    <option value="level1">普通管理员</option>
-                    <option value="level0">用户</option>
+                    <label>权限</label> <select id="select" name="catalogs">
+                    <option id="a" value="level2">系统管理员</option>
+                    <option id="b" value="level1">普通管理员</option>
+                    <option id="c" value="level0">用户</option>
                                        </select>
-                    <label>职位</label><input type="text" name="duty"   class="required"  />
+                    <label>职位</label><input type="text" name="duty"  id="3" class="required" value=<%=request.getParameter("duty")%> />
                 </fieldset>
                 <div class="clr"></div>
                 <hr />
@@ -60,13 +60,39 @@ $(document).ready(function() {
 	 <script src='js/background.js' type="text/javascript"></script>
   </body>
 </html>
+<%--<script>--%>
+    <%--$(document).ready(function () {--%>
+        <%--var all_options = document.getElementById("select").options;--%>
+        <%--$.getJSON("/json/getMinInfo",function(result) {--%>
+            <%--document.getElementById("1").value=result.userName;--%>
+            <%--document.getElementById("2").value=result.uName;--%>
+            <%--var role = result.power;--%>
+            <%--if(role=="0"){--%>
+                <%--all_options[2].selected=true;--%>
+            <%--}else if(role=="1"){--%>
+                <%--all_options[1].selected=true;--%>
+            <%--}else if(role=="2"){--%>
+                <%--all_options[0].selected=true;--%>
+            <%--}--%>
+        <%--})--%>
+    <%--})--%>
+<%--</script>--%>
 <script>
     $(document).ready(function () {
+        var role;
+        var all_options = document.getElementById("select").options;
+        if(all_options[0].selected){
+            role="2";
+        }else if(all_options[1].selected){
+            role="1";
+        }else if(all_options[2].selected){
+            role="0";
+        }
         $("#bt2").click(function () {
             $.ajax({
                 type: "POST",
-                url: "/json/",
-                data:JSON.stringify( {userName:$("#1").val(),uName:$("#2").val(),uSex:$("#3").val(),phoneNumber:$("#4").val(),uAge:$("#5").val()}),
+                url: "/json/changeUserPower",
+                data:JSON.stringify( {userName:$("#1").val(),uName:$("#2").val(),power:role}),
                 success: function(result){
                     alert(result.info);
                 },

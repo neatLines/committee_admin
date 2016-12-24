@@ -249,4 +249,13 @@ public class MainController {
     public String selfm1() {
         return "selfmanage1";
     }
+
+    /**
+     * 测试
+     * @return
+     */
+    @RequestMapping(value = "/parkPage" ,method = RequestMethod.GET)
+    public String pkg() {
+        return "parkPage";
+    }
 }

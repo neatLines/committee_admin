@@ -163,7 +163,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endC
 <body>
 <div id="box"></div>
 <div class="cent-box">
-<table class="table1" align="center"  id="table1">
+<table class="table1" align="center"  id="table2">
 <caption>个人信息显示</caption>
 <%--<tr><td>用户编号</td><td></td></tr>--%>
 <%--<tr><td>姓名</td><td></td></tr>--%>
@@ -194,13 +194,13 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endC
                 }else if(a=="0"){
                     role = "普通用户"
                 }
-                $("#table1").append("<tr><td>"+"用户编号"+"</td><td>"+result.uId+"</td></tr>");
-                $("#table1").append("<tr><td>"+"姓名"+"</td><td>"+result.uName+"</td></tr>");
-                $("#table1").append("<tr><td>"+"联系电话"+"</td><td>"+result.phoneNumber+"</td></tr>");
-                $("#table1").append("<tr><td>"+"年龄"+"</td><td>"+result.uAge+"</td></tr>");
-                $("#table1").append("<tr><td>"+"性别"+"</td><td>"+result.uSex+"</td></tr>");
-                $("#table1").append("<tr><td>"+"用户名"+"</td><td>"+result.userName+"</td></tr>");
-                $("#table1").append("<tr><td>"+"权限"+"</td><td>"+role+"</td></tr>");
+                $("#table2").append("<tr><td>"+"用户编号"+"</td><td>"+result.uId+"</td></tr>");
+                $("#table2").append("<tr><td>"+"姓名"+"</td><td>"+result.uName+"</td></tr>");
+                $("#table2").append("<tr><td>"+"联系电话"+"</td><td>"+result.phoneNumber+"</td></tr>");
+                $("#table2").append("<tr><td>"+"年龄"+"</td><td>"+result.uAge+"</td></tr>");
+                $("#table2").append("<tr><td>"+"性别"+"</td><td>"+result.uSex+"</td></tr>");
+                $("#table2").append("<tr><td>"+"用户名"+"</td><td>"+result.userName+"</td></tr>");
+                $("#table2").append("<tr><td>"+"权限"+"</td><td>"+role+"</td></tr>");
         })
     });
 </script>
