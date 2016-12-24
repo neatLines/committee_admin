@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by fuyipeng on 04/12/2016.
@@ -146,7 +147,26 @@ public class SystemAdminController {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            return "{\"info\":\"something happened\"}";
+        }
+    }
+
+
+    @RequestMapping(value = "/json/getUserInfoOrderByUserName", method = RequestMethod.POST)
+    @ResponseBody
+    public Object getUserInfoByUserName(@RequestBody Map map, HttpSession session) {
+        String temp = null;
+        try {
+            temp = (String) session.getAttribute("role");
+        } catch (Exception e) {
+            return "{\"info\":\"permission denied\"}";
+        }
+        if (!"2".equals(temp)) {
+            return "{\"info\":\"permission denied\"}";
+        }
+        try{
+            return userDao.findOrderByUserName(map.get("userName").toString()).get(0);
+        } catch (Exception e) {
             return "{\"info\":\"something happened\"}";
         }
     }

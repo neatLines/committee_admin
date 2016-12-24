@@ -300,7 +300,7 @@ public class UserAdminController {
      * @param publicityTableEntity
      * @return
      */
-    @RequestMapping(value = "json/getPublicityDetail", method = RequestMethod.POST)
+    @RequestMapping(value = "/json/getPublicityDetail", method = RequestMethod.POST)
     @ResponseBody
     public  PublicityTableEntity getDetail(@RequestBody PublicityTableEntity publicityTableEntity){
         List<PublicityTableEntity> publicityTableEntities = null;

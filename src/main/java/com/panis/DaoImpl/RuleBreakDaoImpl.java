@@ -1,12 +1,9 @@
 package com.panis.DaoImpl;
 
 import com.panis.Dao.RuleBreakDao;
-import com.panis.model.RuleBreakTableEntity;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +33,7 @@ public class RuleBreakDaoImpl extends BaseDaoImpl implements RuleBreakDao {
     @Override
     public List findAllLinkUserAndAdmin() throws Exception {
         Connection connection = connect.getConnection();
-        String sql = "SELECT admin_name, u_name, decribe, flag FROM (SELECT u_name AS admin_name, decribe, flag, break_u_id FROM rule_break_table INNER JOIN user_table ON rule_break_table.admin_u_id = user_table.u_id) AS tableA INNER JOIN user_table ON break_u_id = user_table.u_id";
+        String sql = "SELECT break_log_id, admin_name, u_name, decribe, flag FROM (SELECT break_log_id, u_name AS admin_name, decribe, flag, break_u_id FROM rule_break_table INNER JOIN user_table ON rule_break_table.admin_u_id = user_table.u_id) AS tableA INNER JOIN user_table ON break_u_id = user_table.u_id";
         List list;
         statement = connection.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
