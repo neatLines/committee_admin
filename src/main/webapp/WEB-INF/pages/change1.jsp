@@ -115,24 +115,15 @@ $(document).ready(function() {
             }
             $.ajax({
                 type: "POST",
-                url: "/json/changeUserPower",
-                data:JSON.stringify( {uId:u_id,power:role}),
+                url: "/json/changeUserPowerAndDuty",
+                data:JSON.stringify( {uId:u_id,power:role,duty:$("#3").val()}),
                 success: function(result){
                     alert(result.info);
                 },
                 contentType: "application/json",
                 dataType: "json"
             })
-            $.ajax({
-                type:"POST",
-                url:"/json/changeUserDuty",
-                data:JSON.stringify({uId:u_id,duty:$("#3").val()}),
-                success:function (result) {
-                    alert(result.info);
-                },
-                contentType: "application/json",
-                dataType: "json"
-            })
+
         })
     })
 </script>

@@ -72,6 +72,7 @@ public class SystemAdminController {
         int uId = Integer.valueOf((String) map.get("uId"));
         int power = Integer.valueOf((String) map.get("power"));
         String duty = (String) map.get("duty");
+        System.out.println(uId+" "+power+" "+duty);
         UserTableEntity userTableEntity = new UserTableEntity();
         userTableEntity.setuId(uId);
         try {
@@ -83,11 +84,11 @@ public class SystemAdminController {
         }
         try {
             PersonnelTableEntity personnelTableEntity = new PersonnelTableEntity();
-            personnelTableEntity.setDuty((String) map.get("duty"));
-            personnelTableEntity.setuId((Integer) map.get("uId"));
+            personnelTableEntity.setDuty(duty);
+            personnelTableEntity.setuId(uId);
 
             if (personnelDao.findById(personnelTableEntity).size()<1) {
-                personnelDao.changeUserPower(uId,power );
+                personnelDao.changeUserPower(uId,power);
                 personnelDao.insert(uId,duty);
                 if (personnelDao.flushTest()) {
                     return "{\"info\":\"insert success\"}";
