@@ -2,12 +2,10 @@ package com.panis.DaoImpl;
 
 import com.panis.Dao.BaseDao;
 import com.panis.DataBaseConnect.DataBaseConnect;
-import com.panis.model.UserTableEntity;
 
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.*;
-import java.util.concurrent.locks.Lock;
 
 import static com.panis.util.Tool.humpToLine2;
 
@@ -193,6 +191,23 @@ public class BaseDaoImpl implements BaseDao {
             return false;
         } finally {
             connectTemp.close();
+            return true;
+        }
+    }
+
+    public boolean flushTest() {
+        try {
+            connect.commit();
+        } catch (SQLException sql) {
+            try {
+                connect.rollback();
+            } catch (SQLException sqle) {
+                sqle.printStackTrace();
+                return false;
+            }
+            return false;
+        } finally {
+            connect.close();
             return true;
         }
     }

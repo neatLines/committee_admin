@@ -1,11 +1,10 @@
 package com.panis.DaoImpl;
 
 import com.panis.Dao.UserDao;
-import com.panis.DataBaseConnect.DataBaseConnect;
 import com.panis.model.UserTableEntity;
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.List;
 
 /**

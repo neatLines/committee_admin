@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -58,32 +57,51 @@ public class SystemAdminController {
         }
     }
 
-    @RequestMapping(value = "/json/changeUserPower", method = RequestMethod.POST)
+    @RequestMapping(value = "/json/changeUserPowerAndDuty", method = RequestMethod.POST)
     @ResponseBody
-    public Object superChangeUserInfo(@RequestBody UserTableEntity userTableEntity, HttpSession session) {
+    public Object superChangeUserInfo(@RequestBody Map map, HttpSession session) {
         String temp = null;
+//        try {
+//            temp = (String) session.getAttribute("role");
+//        } catch (Exception e) {
+//            return "{\"info\":\"permission denied\"}";
+//        }
+//        if (!"2".equals(temp)) {
+//            return "{\"info\":\"permission denied\"}";
+//        }
+        int uId = (Integer) map.get("uId");
+        int power = (Integer) map.get("power");
+        String duty = (String) map.get("duty");
+        UserTableEntity userTableEntity = new UserTableEntity();
+        userTableEntity.setuId(uId);
         try {
-            temp = (String) session.getAttribute("role");
-        } catch (Exception e) {
-            return "{\"info\":\"permission denied\"}";
-        }
-        if (!"2".equals(temp)) {
-            return "{\"info\":\"permission denied\"}";
-        }
-        int power = userTableEntity.getPower();
-        try {
-            userTableEntity = (UserTableEntity) userDao.findById(userTableEntity).get(0);
+            if (userDao.findById(userTableEntity).size()<1) {
+                return "{\"info\":\"object not found\"}";
+            }
         } catch (Exception e) {
             return "{\"info\":\"object not found\"}";
         }
-        userTableEntity.setPower(power);
         try {
-            List list = new ArrayList();
-            list.add(userTableEntity);
-            if (userDao.updateById(list)) {
-                return "{\"info\":\"success\"}";
+            PersonnelTableEntity personnelTableEntity = new PersonnelTableEntity();
+            personnelTableEntity.setDuty((String) map.get("duty"));
+            personnelTableEntity.setuId((Integer) map.get("uId"));
+
+            if (personnelDao.findById(personnelTableEntity).size()<1) {
+                personnelDao.changeUserPower(uId,power );
+                personnelDao.insert(uId,duty);
+                if (personnelDao.flushTest()) {
+                    return "{\"info\":\"insert success\"}";
+                } else {
+                    return "{\"info\":\"哎呀没办法更新\"}";
+                }
             } else {
-                return "{\"info\":\"哎呀没办法更新\"}";
+                personnelDao.changeUserPower(uId,power);
+                personnelDao.changeDuty(uId,duty);
+                if (personnelDao.flushTest()) {
+                    return "{\"info\":\"update success\"}";
+                } else {
+                    return "{\"info\":\"哎呀没办法更新\"}";
+                }
             }
         } catch (Exception e) {
             return "{\"info\":\"出了一些偏差\"}";
@@ -111,44 +129,6 @@ public class SystemAdminController {
             return "{\"info\":\"something happened\"}";
         }
         return "{\"info\":\"delete success\"}";
-    }
-
-    @RequestMapping(value = "/json/changeUserDuty", method = RequestMethod.POST)
-    @ResponseBody
-    public Object changeUserDuty(@RequestBody PersonnelTableEntity personnelTableEntity, HttpSession session) {
-        String temp = null;
-        try {
-            temp = (String) session.getAttribute("role");
-        } catch (Exception e) {
-            return "{\"info\":\"permission denied\"}";
-        }
-        if (!"2".equals(temp)) {
-            return "{\"info\":\"permission denied\"}";
-        }
-        try {
-            UserTableEntity tmp = new UserTableEntity();
-            tmp.setuId(personnelTableEntity.getuId());
-            if (userDao.findById(tmp).size()<1) {
-                return "{\"info\":\"object not found\"}";
-            }
-            List list = new ArrayList();
-            list.add(personnelTableEntity);
-            if (personnelDao.updateById(list)) {
-                return "{\"info\":\"update success\"}";
-            } else {
-                try {
-                    if (personnelDao.insert(personnelTableEntity)) {
-                        return "{\"info\":\"insert success\"}";
-                    } else {
-                        return "{\"info\":\"insert fail\"}";
-                    }
-                } catch (SQLException sqlE) {
-                    return "{\"info\":\"insert fail\"}";
-                }
-            }
-        } catch (Exception e) {
-            return "{\"info\":\"something happened\"}";
-        }
     }
 
 
