@@ -61,16 +61,16 @@ public class SystemAdminController {
     @ResponseBody
     public Object superChangeUserInfo(@RequestBody Map map, HttpSession session) {
         String temp = null;
-//        try {
-//            temp = (String) session.getAttribute("role");
-//        } catch (Exception e) {
-//            return "{\"info\":\"permission denied\"}";
-//        }
-//        if (!"2".equals(temp)) {
-//            return "{\"info\":\"permission denied\"}";
-//        }
-        int uId = (Integer) map.get("uId");
-        int power = (Integer) map.get("power");
+        try {
+            temp = (String) session.getAttribute("role");
+        } catch (Exception e) {
+            return "{\"info\":\"permission denied\"}";
+        }
+        if (!"2".equals(temp)) {
+            return "{\"info\":\"permission denied\"}";
+        }
+        int uId = Integer.valueOf((String) map.get("uId"));
+        int power = Integer.valueOf((String) map.get("power"));
         String duty = (String) map.get("duty");
         UserTableEntity userTableEntity = new UserTableEntity();
         userTableEntity.setuId(uId);
