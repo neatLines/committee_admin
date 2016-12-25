@@ -14,20 +14,7 @@
     <title>登录 - 居委会管理系统</title>
     <link rel="stylesheet" type="text/css" href="css/register-login1.css">
 </head>
-<%--<script type="text/javascript">--%>
-    <%--function jiami(){--%>
-        <%--var user0 = user.value;--%>
-        <%--var user1 = hex_sha1(user0);--%>
-        <%--var mima0 = password.value;--%>
-        <%--var mima1 = hex_sha1(mima0);--%>
 
-        <%--if(user0==""||mima0=="")--%>
-        <%--{alert("请填写完整信息！！！");--%>
-            <%--return false;--%>
-        <%--}--%>
-        <%--return true;--%>
-    <%--}--%>
-<%--</script>--%>
 <body>
 <div id="box"></div>
 <div class="cent-box">
@@ -73,20 +60,25 @@
 
 </body>
 </html>
-
 <script>
     $(document).ready(function(){
             $("#button").click(function(){
+                var mima0 = password.value;
+                var mima1 = hex_sha1(mima0);
+                if(mima0=="")
+                {alert("请填写完整信息！！！");
+                    return false;
+                }
             $.ajax({
             type: "POST",
             url: "/loginp",
-            data:JSON.stringify( {userName:$("#user").val(),password:$("#password").val()}),
+            data:JSON.stringify( {userName:$("#user").val(),password:mima1}),
             success: function(result){
                 alert(result.info);
                 if (result.info=="user") {//判断。。。
                     location.href = "selfmanage1";
                 } else if (result.info=="admin") {
-                    location.href = "selfmanage1";
+                    location.href = "mainPage";
                 } else if (result.info=="superAdmin"){
                     location.href = "selfmanage";
                 }

@@ -92,10 +92,12 @@
 <script>
     $(document).ready(function(){
         $("#button").click(function(){
+            var mima0 = password.value;
+            var mima1 = hex_sha1(mima0);
             $.ajax({
                 type: "POST",
                 url: "/registerp",
-                data:JSON.stringify( {userName:$("#user").val(),password:$("#password").val(),uName:$("#name").val(),uAge:$("#age").val(),uSex:$("#sex").val(),phoneNumber:$("#link").val()}),
+                data:JSON.stringify( {userName:$("#user").val(),password:mima1,uName:$("#name").val(),uAge:$("#age").val(),uSex:$("#sex").val(),phoneNumber:$("#link").val()}),
                 success: function(result){
                     alert(result.info);
                     if (result.info=="success") {//判断。。。

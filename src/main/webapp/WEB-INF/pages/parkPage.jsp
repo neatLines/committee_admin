@@ -19,6 +19,7 @@
            margin-left: 10px;
        }
         ul li {
+            overflow: hidden;
             list-style: none;
             float: left;
             width: 54%;
@@ -47,9 +48,9 @@
          padding-top: 15px;
          z-index: 10;
      }
-        .second,.first{width: 12%;}
-        .third{width: 18%}
-        ul:first-child .second,.first{width:13%}
+        .first{width: 21%;}
+        .third{width: 21%}
+        ul:first-child .first{width:22%}
        a{text-decoration: none;
           color: inherit;
           font-size: inherit}
@@ -68,29 +69,24 @@
 <body><div>
     <ul>
         <li class="first">用户ID</li>
-        <li class="second">用户名</li>
         <li class="third">停车位</li>
         <li>地址</li>
     </ul>
     <ul>
         <li class="first">用户ID</li>
-        <li class="second">用户名</li>
         <li class="third">停车位</li>
         <li>地址</li>
     </ul>  <ul>
     <li class="first">用户ID</li>
-    <li class="second">用户名</li>
     <li class="third">停车位</li>
     <li>地址</li>
 </ul>  <ul>
     <li class="first">用户ID</li>
-    <li class="second">用户名</li>
     <li class="third">停车位</li>
     <li>地址</li>
     </ul>
     <ul>
     <li class="first">用户ID</li>
-    <li class="second">用户名</li>
     <li class="third">停车位</li>
     <li>地址</li>
 </ul>
@@ -100,23 +96,15 @@
 <script>
     $("ul").click(function(){
         var temp=this.getElementsByTagName("li");
-        window.location.href="changeParkPage.jsp?id='"+temp[0].innerHTML+"'"+"&name='"+temp[1].innerHTML+"'"+"&park='"+temp[2].innerHTML+"'"+"&address='"+temp[3].innerHTML+"'";
+        self.location.href="changeParkPage?u_id='"+temp[0].innerHTML+"'"+"&park_id='"+temp[1].innerHTML+"'"+"&place='"+temp[2].innerHTML+"'";
     })
     $(document).ready(function(){
-        $.getJSON("/json/getPersonnelOnlyRead",function (result) {
-            var example=["first","second","third",""];
-            for(var i=0;i<result.length;i++)
-            {
-                var temp = result[i];
-                var str="";
-                var j=0;
-                for(var x in temp)
-                {
-                    str=str+"<li class="+example[j++]+">"+temp[x]+"</li>";
-                }
-                $("div").append("<ul>"+str+"</ul>");
-            }
-
+        $.getJSON("/json/getAllPak",function (result) {
+             for(var i=0;i<result.length;i++)
+             {
+                 var temp=result[i];
+                 $("div").append("<ul><li class='first'>"+temp.u_id+"</li>"+"<li class='third'>"+temp.park_id+"</li>"+"<li>"+temp.place+"</li></ul>");
+             }
         })
     })
 </script>

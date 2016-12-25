@@ -267,4 +267,89 @@ public class MainController {
     public String change2() {
         return "change2";
     }
+
+    @RequestMapping(value = "/changeConsult" ,method = RequestMethod.GET)
+    public String changeC() {
+        return "changeConsult";
+    }
+
+    @RequestMapping(value = "/changeHousePage" ,method = RequestMethod.GET)
+    public String changeH() {
+        return "changeHousePage";
+    }
+
+    @RequestMapping(value = "/changeParkPage" ,method = RequestMethod.GET)
+    public String changeP() {
+        return "changeParkPage";
+    }
+
+    @RequestMapping(value = "/changePeccancyPage" ,method = RequestMethod.GET)
+    public String changePe() {
+        return "changePeccancyPage";
+    }
+
+    @RequestMapping(value = "/changeRichesPage" ,method = RequestMethod.GET)
+    public String changeR() {
+        return "changeRichesPage";
+    }
+
+    @RequestMapping(value = "/consultPage" ,method = RequestMethod.GET)
+    public String consultP() {
+        return "consultPage";
+    }
+
+    @RequestMapping(value = "/housePage" ,method = RequestMethod.GET)
+    public String houseP() {
+        return "housePage";
+    }
+
+    @RequestMapping(value = "/insertConsultPage" ,method = RequestMethod.GET)
+    public String insertC() {
+        return "insertConsultPage";
+    }
+
+    @RequestMapping(value = "/insertPeccancyPage" ,method = RequestMethod.GET)
+    public String insertP() {
+        return "insertPeccancyPage";
+    }
+
+    @RequestMapping(value = "/insertPublicFacPage" ,method = RequestMethod.GET)
+    public String insertPu() {
+        return "insertPublicFacPage";
+    }
+
+    @RequestMapping(value = "/insertRichesPage" ,method = RequestMethod.GET)
+    public String insertRi() {
+        return "insertRichesPage";
+    }
+
+    @RequestMapping(value = "/mainPage" ,method = RequestMethod.GET)
+    public String mainP() {
+        return "mainPage";
+    }
+
+    @RequestMapping(value = "/peccancyPage" ,method = RequestMethod.GET)
+    public String peccancyP() {
+        return "peccancyPage";
+    }
+
+    @RequestMapping(value = "/publicFacPage" ,method = RequestMethod.GET)
+    public String publicF() {
+        return "publicFacPage";
+    }
+
+    @RequestMapping(value = "/publicFacPageInfo" ,method = RequestMethod.GET)
+    public String publicFa() {
+        return "publicFacPageInfo";
+    }
+
+    @RequestMapping(value = "/richesPage" ,method = RequestMethod.GET)
+    public String richesPage() {
+        return "richesPage";
+    }
+
+    @RequestMapping(value = "/singleIfo" ,method = RequestMethod.GET)
+    public String singleIfo() {
+        return "singleIfo";
+    }
 }

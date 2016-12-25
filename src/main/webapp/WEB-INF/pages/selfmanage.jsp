@@ -56,6 +56,10 @@ a{text-decoration:none;}
 			<dd><a target="rightPage" href="displayuserinfo.html">查询用户</a></dd>
 			<dd><a target="rightPage" href="changepersonalinfo.html">编辑人事信息</a></dd>
 		</dl>
+		<dl class="custom">
+			<dt>退出登陆</dt>
+			<dd class="first_dd" id="logout" font-color="white">登出</dd>
+		</dl>
 	</div>
 	<div class="right">
 	<iframe name="rightPage">
@@ -85,3 +89,21 @@ $(function(){
 </script>
 </body>
 </html>
+<script>
+	$(document).ready(function () {
+		$("#logout").click(function () {
+			$.ajax({
+				type: "POST",
+				url: "/logoutp",
+				success: function(result){
+					alert(result.info);
+					if (result.info=="success") {//判断。。。
+						location.href="login";
+					}
+				},
+				contentType: "application/json",
+				dataType: "json"
+			});
+		})
+	})
+</script>
