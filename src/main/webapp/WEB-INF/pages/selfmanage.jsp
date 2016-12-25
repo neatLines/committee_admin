@@ -58,7 +58,9 @@ a{text-decoration:none;}
 		</dl>
 	</div>
 	<div class="right">
-	<iframe name="rightPage"></iframe>
+	<iframe name="rightPage">
+		
+	</iframe>
 	</div>
 </div>
 
