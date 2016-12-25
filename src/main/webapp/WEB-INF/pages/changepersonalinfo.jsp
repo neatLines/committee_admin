@@ -216,7 +216,7 @@ div ul:first-child li{
                 $("#table1").append("<tr><td>"+comment.u_id+"</td><td>"+comment.u_name+"</td><td>"+comment.phone_number+"</td><td>"+comment.duty+"</td></tr>");
                 $("tr").click(function () {
                     var temp=this.getElementsByTagName("td");
-                    window.location.href="change1?u_name='"+temp[1].innerHTML+"'&phone_number='"+temp[2].innerHTML+"'&duty='"+temp[3].innerHTML+"'";
+                    window.location.href="change1?u_name='"+temp[1].innerHTML+"'&phone_number='"+temp[2].innerHTML+"'&duty='"+temp[3].innerHTML+"'&u_id='"+temp[0].innerHTML+"'";
                 })
             });
 

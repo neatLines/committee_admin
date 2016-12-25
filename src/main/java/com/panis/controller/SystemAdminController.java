@@ -72,7 +72,7 @@ public class SystemAdminController {
         }
         int power = userTableEntity.getPower();
         try {
-            userTableEntity = (UserTableEntity) userDao.findById(userTableEntity.getuId()).get(0);
+            userTableEntity = (UserTableEntity) userDao.findById(userTableEntity).get(0);
         } catch (Exception e) {
             return "{\"info\":\"object not found\"}";
         }
@@ -155,6 +155,7 @@ public class SystemAdminController {
     @RequestMapping(value = "/json/getUserInfoOrderByUserName", method = RequestMethod.POST)
     @ResponseBody
     public Object getUserInfoByUserName(@RequestBody Map map, HttpSession session) {
+        System.out.println("...");
         String temp = null;
         try {
             temp = (String) session.getAttribute("role");
@@ -164,8 +165,32 @@ public class SystemAdminController {
         if (!"2".equals(temp)) {
             return "{\"info\":\"permission denied\"}";
         }
+        System.out.println(".....");
         try{
             return userDao.findOrderByUserName(map.get("userName").toString()).get(0);
+        } catch (Exception e) {
+            return "{\"info\":\"something happened\"}";
+        }
+    }
+
+    @RequestMapping(value = "/json/getUserInfoOrderByUId", method = RequestMethod.POST)
+    @ResponseBody
+    public Object getUserInfoByUId(@RequestBody Map map, HttpSession session) {
+        System.out.println("...");
+        String temp = null;
+        try {
+            temp = (String) session.getAttribute("role");
+        } catch (Exception e) {
+            return "{\"info\":\"permission denied\"}";
+        }
+        if (!"2".equals(temp)) {
+            return "{\"info\":\"permission denied\"}";
+        }
+        System.out.println(".....");
+        try{
+            UserTableEntity userTableEntity = new UserTableEntity();
+            userTableEntity.setuId(Integer.valueOf((String) map.get("uId")));
+            return (UserTableEntity)userDao.findById(userTableEntity).get(0);
         } catch (Exception e) {
             return "{\"info\":\"something happened\"}";
         }

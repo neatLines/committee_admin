@@ -33,8 +33,8 @@ $(document).ready(function() {
         <!-- form -->
         <form method="post" id="myform" class="expose" >
                 <fieldset class="col_f_1">	
-                        <label>用户名</label><input type="text" name="username" id="1" class="required" value=<%=request.getParameter("u_name")%> />
-                        <label>联系电话</label><input type="text" name="uname"  id="2" class="required" value=<%=request.getParameter("phone_number")%> />
+                        <label>用户名</label><input type="text" name="username" id="1" class="required" value=<%=request.getParameter("u_name")%> readonly="readonly" />
+                        <label>联系电话</label><input type="text" name="uname"  id="2" class="required" value=<%=request.getParameter("phone_number")%> readonly="readonly" />
 
                 </fieldset>
                 <fieldset class="col_f_2">
@@ -79,21 +79,55 @@ $(document).ready(function() {
 <%--</script>--%>
 <script>
     $(document).ready(function () {
+        var u_id=<%=request.getParameter("u_id")%>;
+        var all_options = document.getElementById("select").options;
+        $.ajax({
+            type: "POST",
+            url: "/json/getUserInfoOrderByUId",
+            data:JSON.stringify( {uId:u_id}),
+            success: function(result){
+                if(result.power==0){
+                    all_options[2].selected=true;
+                }else if(result.power==1){
+                    all_options[1].selected=true;
+                }else if(result.power==2){
+                    all_options[0].selected=true;
+                }
+            },
+            contentType: "application/json",
+            dataType: "json"
+        })
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        var u_id=<%=request.getParameter("u_id")%>;
         var role;
         var all_options = document.getElementById("select").options;
-        if(all_options[0].selected){
-            role="2";
-        }else if(all_options[1].selected){
-            role="1";
-        }else if(all_options[2].selected){
-            role="0";
-        }
         $("#bt2").click(function () {
+            var index=all_options.selectedIndex;
+            if(index==0){
+                role="2";
+            }else if(index==1){
+                role="1";
+            }else if(index==2){
+                role="0";
+            }
             $.ajax({
                 type: "POST",
                 url: "/json/changeUserPower",
-                data:JSON.stringify( {userName:$("#1").val(),uName:$("#2").val(),power:role}),
+                data:JSON.stringify( {uId:u_id,power:role}),
                 success: function(result){
+                    alert(result.info);
+                },
+                contentType: "application/json",
+                dataType: "json"
+            })
+            $.ajax({
+                type:"POST",
+                url:"/json/changeUserDuty",
+                data:JSON.stringify({uId:u_id,duty:$("#3").val()}),
+                success:function (result) {
                     alert(result.info);
                 },
                 contentType: "application/json",
