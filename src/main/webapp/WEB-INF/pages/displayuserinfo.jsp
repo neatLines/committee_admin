@@ -214,10 +214,11 @@
             $.each(result,function(index,comment){
 //                $("div.cent-box").append("<ul><li>"+comment.u_id+"</li><li>"+comment.user_name+"</li><li>"+comment.u_name+"</li><li>"+comment.duty+"</li></ul>");
                 $("#table5").append("<tr><td>"+comment.u_id+"</td><td>"+comment.user_name+"</td><td>"+comment.u_name+"</td><td>"+comment.duty+"</td></tr>");
+                $("tr").click(function () {
+                    var temp=this.getElementsByTagName("td");
+                    window.location.href="change2?user_name='"+temp[1].innerHTML+"'&u_name='"+temp[2].innerHTML+"'&duty='"+temp[3].innerHTML+"'&u_id='"+temp[0].innerHTML+"'";
+                })
             })
-            $("div.cent-box").append("<button class='button green'><a href='change.html'>"+"修改"+"</a></button>");
-            $("div.cent-box").append("<button class='button green'><a href='change.html'>"+"删除"+"</a></button>");
-            $("div.cent-box").append("<button class='button green'><a href='change.html'>"+"添加"+"</a></button>");
         })
     });
 </script>

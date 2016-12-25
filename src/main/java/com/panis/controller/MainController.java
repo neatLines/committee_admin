@@ -258,4 +258,13 @@ public class MainController {
     public String pkg() {
         return "parkPage";
     }
+
+    /**
+     * 删除用户信息
+     * @return
+     */
+    @RequestMapping(value = "/change2" ,method = RequestMethod.GET)
+    public String change2() {
+        return "change2";
+    }
 }
