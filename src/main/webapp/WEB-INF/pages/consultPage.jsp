@@ -26,6 +26,7 @@
             z-index: 10;
         }
         ul li{
+            height: 30px;
             overflow: hidden;
             text-align: center;
             list-style: none;
@@ -82,7 +83,7 @@
     </style>
 </head>
 <body>
-<div>
+<div id="first">
     <ul>
         <li class="first" >咨询ID</li>
         <li class="second">标题</li>
@@ -124,7 +125,7 @@
         self.location.href=str;
     })
     $(document).ready(function(){
-        $.getJSON("/json/getAllpublic",function (result) {
+        $.getJSON("/json/getAllPublicity",function (result) {
             for(var i=0;i<result.length;i++) {
                 var temp =result[i];
                 var str="<ul>";
@@ -134,7 +135,7 @@
                 str=str+"<li class='forth'>"+temp.date+"</li>";
                 str=str+"<li class='fifth'>"+temp.detail+"</li>";
                 str=str+"</li>";
-                $("div").append(str);
+                $("#first").append(str);
             }
         })
     })

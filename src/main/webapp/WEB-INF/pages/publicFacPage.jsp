@@ -26,6 +26,7 @@
             margin-left: 13px;
         }
         ul li{
+            height: 30px;
             list-style: none;
             float: left;
             display: block;
@@ -88,7 +89,7 @@
     </style>
 </head>
 <body>
-<div>
+<div id="first">
     <ul>
         <li class="first">公共设施ID</li>
         <li class="second">名字</li>
@@ -139,7 +140,7 @@
 </html>
 <script>
     $(document).ready(function(){
-        $.getJSON("192.168.1.118:8080/json/getAllCommonality", function(result){
+        $.getJSON("/json/getAllCommonality", function(result){
             var example=["first","second","third","forth"];
             for(var i=0;i<result.length;i++) {
                 var temp = result[i];
@@ -148,7 +149,7 @@
                 for (var x in temp) {
                     str = str + "<li class=" + example[j++] + ">" + temp[x] + "</li>";
                 }
-                $("div").append("<ul>" + str + "</ul>");
+                $("#first").append("<ul>" + str + "</ul>");
             }
         })
         })

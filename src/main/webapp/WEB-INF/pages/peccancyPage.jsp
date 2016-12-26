@@ -25,6 +25,7 @@
             margin:0px;
         }
         ul li{
+            height: 30px;
             overflow:hidden;
             list-style: none;
             margin: 0px;
@@ -130,7 +131,7 @@
                 {
                     str=str+"<li>"+temp[x]+"</li>";
                 }
-                $("div").append("<ul>"+str+"</ul>");
+                $("#first").append("<ul>"+str+"</ul>");
             }
         })
     })

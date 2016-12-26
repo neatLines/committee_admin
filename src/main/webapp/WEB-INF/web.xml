@@ -33,16 +33,16 @@
 
   <error-page>
     <error-code>404</error-code>
-    <location>error/404/index.html</location>
+    <location>/WEB-INF/error/404/index.html</location>
   </error-page>
 
   <error-page>
     <error-code>500</error-code>
-    <location>error/500/index.html</location>
+    <location>/WEB-INF/error/500/index.html</location>
   </error-page>
 
   <error-page>
     <error-code>502</error-code>
-    <location>error/502/index.html</location>
+    <location>/WEB-INF/error/502/index.html</location>
   </error-page>
 </web-app>

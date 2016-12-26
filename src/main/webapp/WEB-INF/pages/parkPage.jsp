@@ -19,6 +19,7 @@
            margin-left: 10px;
        }
         ul li {
+            height: 30px;
             overflow: hidden;
             list-style: none;
             float: left;
@@ -66,7 +67,7 @@
       }
     </style>
 </head>
-<body><div>
+<body><div id="first">
     <ul>
         <li class="first">用户ID</li>
         <li class="third">停车位</li>
@@ -99,11 +100,11 @@
         self.location.href="changeParkPage?u_id='"+temp[0].innerHTML+"'"+"&park_id='"+temp[1].innerHTML+"'"+"&place='"+temp[2].innerHTML+"'";
     })
     $(document).ready(function(){
-        $.getJSON("/json/getAllPak",function (result) {
+        $.getJSON("/json/getAllPark",function (result) {
              for(var i=0;i<result.length;i++)
              {
                  var temp=result[i];
-                 $("div").append("<ul><li class='first'>"+temp.u_id+"</li>"+"<li class='third'>"+temp.park_id+"</li>"+"<li>"+temp.place+"</li></ul>");
+                 $("#first").append("<ul><li class='first'>"+temp.u_id+"</li>"+"<li class='third'>"+temp.park_id+"</li>"+"<li>"+temp.place+"</li></ul>");
              }
         })
     })

@@ -36,6 +36,7 @@
             font-weight: bold;
             font-size: larger;
             background-color: white;
+            height:30px;
         }
         div ul:first-child li{
             background-color: brown;
@@ -83,7 +84,7 @@
     </style>
 </head>
 <body>
-<div>
+<div id="first">
     <ul>
         <li class="first" >资产ID</li>
         <li class="second">资产名</li>
@@ -125,7 +126,7 @@
             for(var i=0;i<result.length;i++)
             {
                 var temp=result[i];
-                $("div").append("<ul><li class='first'>"+temp.property_id+"</li>"+"<li class='second'>"+temp.p_name+"</li>"+"<li>"+temp.count+"</li>"+"<li>"+temp.p_value+"</li></ul>");
+                $("#first").append("<ul><li class='first'>"+temp.property_id+"</li>"+"<li class='second'>"+temp.p_name+"</li>"+"<li class='third'>"+temp.count+"</li>"+"<li class='forth'>"+temp.p_value+"</li></ul>");
             }
         })
     })

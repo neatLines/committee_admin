@@ -24,6 +24,7 @@
             text-align: center;
             color: black;
             font-weight:bold;
+            height:30px;
             font-size:larger;
             background-color:white;
         }
@@ -64,7 +65,7 @@
         }
     </style>
 </head>
-<body><div>
+<body><div id="first">
         <ul>
             <li class="first" >房子ID</li>
             <li class="second">用户ID</li>
@@ -95,14 +96,14 @@
         window.location.href="changeHousePage?houseId='"+temp[0].innerHTML+"'"+"&userId='"+temp[1].innerHTML+"'"+"&name='"+temp[2].innerHTML+"'"+"&house='"+temp[3].innerHTML+"'"+"&state='"+temp[4].innerHTML+"'";
     })
     $(document).ready(function(){
-        $.getJSON("/json/	getAllHouseInfo",function (result) {
+        $.getJSON("/json/getAllHouseInfo",function (result) {
             for(var i=0;i<result.length;i++)
             {
                 var temp = result[i];
                 var str="<ul><li  class='first'>"+temp.house_id+"</li>"+"<li class='second'>"+temp.temp_id+"</li>"
                 +"<li class='fifth'>"+temp.u_name+"</li>"+"<li class='third'>"+temp.ap_house+"</li>"+"<li class='forth'>"+temp.state
                 +"</li></ul>"};
-            $("div").append(str);
+            $("#first").append(str);
         })
     })
 </script>

@@ -14,7 +14,7 @@
             html, body{height:100%;}
             img{border:none;}
             *{font-family:'微软雅黑';font-size:12px;color: black;}
-            dl,dt,dd{display:block;margin:0; background-color:black;opacity:.75;font-weight: bold;font-size:large}
+            dl,dt,dd{display:block;margin:0; background-color:black;opacity:.75;font-weight: bold;}
             a{text-decoration:none;font-size: large}
             /*#bg{background-image:url(images/content/dotted.png);}*/
             .container{width:100%;height:100%;margin:auto;}
@@ -22,7 +22,7 @@
             /*left*/
             .leftsidebar_box{ border-radius:5px;width:13%;height:auto !important;overflow:visible !important;position:fixed;height:100% !important;background-color:black;}
             /**.line{height:2px;width:100%;background-image:url(images/left/line_bg.png);background-repeat:repeat-x;}*!*/
-            .leftsidebar_box dt{border-radius:5px;padding-left:40px;padding-right:10px;width:inherit;background-repeat:no-repeat;background-position:10px center;color:#f5f5f5;font-size:large;position:relative;line-height:48px;cursor:pointer;}
+            .leftsidebar_box dt{border-radius:5px;padding-left:40px;padding-right:10px;width:inherit;background-repeat:no-repeat;background-position:10px center;font-size:15px;color:#f5f5f5;position:relative;line-height:48px;cursor:pointer;}
             .leftsidebar_box dd{padding-left:40px;background-color:black;width:inherit;opacity:.75}
             .leftsidebar_box dd a{color:#f5f5f5;line-height:20px;}
             .leftsidebar_box dt{background-color: black;}
@@ -47,7 +47,7 @@
     <div class="leftsidebar_box">
         <dl class="system_log">
             <dt onClick="changeImage()" class="person">个人管理<img src="images/left/select_xl01.png"></dt>
-            <dd><a href="singleIfo.jsp" target="rightPage">个人信息</a></dd>
+            <dd><a href="singleIfo" target="rightPage">个人信息</a></dd>
         </dl>
 
         <%--//<dl class="custom">--%>
